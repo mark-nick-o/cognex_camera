@@ -193,9 +193,9 @@ typedef struct  {
 //READ HOLDING REGISTERS – 03H
 //WRITE SINGLE REGISTER – 06H
 #define COGN_MOD_STRRES_BLK_RES 6000u
-#define COGN_MOD_STRRES_BLK_LEN 6001u /* 401000 (u16) length */
-#define COGN_MOD_STRRES_BLK_START 6002u /* 401001 (u16) */
-#define COGN_MOD_STRRES_BLK_END 6999u /* 401999 (u16) */
+#define COGN_MOD_STRRES_BLK_LEN 6001u /* 406000 (u16) length */
+#define COGN_MOD_STRRES_BLK_START 6002u /* 406001 (u16) */
+#define COGN_MOD_STRRES_BLK_END 6999u /* 406999 (u16) */
 /* =======================================================================================================================================================================================================
    String Command Result Block
    The String Command Result block is sent from the reader to the PLC. The block is used to transport the response from string based commands (DMCC) to the PLC
