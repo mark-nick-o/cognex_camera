@@ -26,6 +26,8 @@ extern "C" {
   #define EIPPACKED( __Declaration__ ) __pragma( pack(push, 1) ) __Declaration__ __pragma( pack(pop) )
 #endif
 
+#define ETHIP_HOST_IS_BIG_ENDIAN                                                /* uncomment if you dont need the bytes swaps */
+	
 #define YASKAWA_IP_ADDR "192.168.1.2"
 #define YASKAWA_PORT 0xAF12ul
 #define YASKAWA_VENDOR_ID 0x2cu
