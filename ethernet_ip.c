@@ -39,11 +39,11 @@ int8_t decodeListIdentityEIP( const char*msg, EIPListIdentity_t *listId )
     else
     {
        memcpy((void*) listId,(void*) msg, sizeof(EIPListIdentity_t));
-#if defined(HOST_IS_BIG_ENDIAN)
-       listId->SinFamily = SWAPINT16(listId->SinFamily);
-       listId->SinPort = SWAPINT16(listId->SinPort);
-       listId->SinAddr = SWAPINT32(listId->SinAddr);
-       listId->SinZero = SWAPINT64(listId->SinZero);
+#if defined(ETHIP_HOST_IS_BIG_ENDIAN)
+       listId->Item.SinFamily = SWAPINT16(listId->Item.SinFamily);
+       listId->Item.SinPort = SWAPINT16(listId->Item.SinPort);
+       listId->Item.SinAddr = SWAPINT32(listId->Item.SinAddr);
+       listId->Item.SinZero = SWAPINT64(listId->Item.SinZero);
 #endif	   
      }	
      return retn;
