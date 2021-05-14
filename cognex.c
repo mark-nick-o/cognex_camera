@@ -125,6 +125,37 @@ int16_t COGN_ParseTM_TRIG_AlignmentReply(const char* msg, COGN_TM_TRIG_Rcv_t *po
 uint8_t COGN_TM_TRIG_Send( char *msg, const uint32_t prodID, const uint16_t trigVal );
 uint8_t COGN_TM_TRIG_Receive( const char *msg, COGN_TM_TRIG_Rcv_t *rcv );
 
+/* ---- function protypes for calibration ------------------------- */
+uint8_t COGN_HEB_CAL_Receive( char *msg, COGN_HEB_CAL_Rcv_t *rcv );
+uint8_t COGN_HEB_CAL_Send( char *msg, const uint32_t camId );
+void COGN_SendHEB( char *msg, const uint32_t camID );
+uint8_t COGN_ParseHEB_AlignmentReply(char* msg, COGN_HEB_CAL_Rcv_t *poseRead);
+uint8_t COGN_ParseHE_AlignmentReply(char* msg, COGN_HE_CAL_Rcv_t *poseRead);
+void COGN_SendHE( char *msg, const uint32_t camID, const uint32_t feature, const COGN_pose_t pose );
+uint8_t COGN_HE_CAL_Send( char *msg, const uint32_t camId, const uint32_t feature, const COGN_pose_t *pose );
+uint8_t COGN_HE_CAL_Receive( char *msg, COGN_HE_CAL_Rcv_t *rcv );
+uint8_t COGN_ParseHEE_AlignmentReply(char* msg, COGN_HEE_CAL_Rcv_t *poseRead);
+void COGN_SendHEE( char *msg, const uint32_t camID );
+uint8_t COGN_HEE_CAL_Send( char *msg, const uint32_t camId );
+uint8_t COGN_HEE_CAL_Receive( char *msg, COGN_HEE_CAL_Rcv_t *rcv );
+
+uint8_t COGN_ParseCCB_AlignmentReply(char* msg, COGN_CCB_CAL_Rcv_t *poseRead);
+void COGN_SendCCB( char *msg, const uint32_t camID );
+uint8_t COGN_CCB_CAL_Send( char *msg, const uint32_t camId );
+uint8_t COGN_CCB_CAL_Receive( char *msg, COGN_CCB_CAL_Rcv_t *rcv );
+uint8_t COGN_ParseCC_AlignmentReply(char* msg, COGN_CC_CAL_Rcv_t *poseRead);
+void COGN_SendCC( char *msg, const uint32_t camID, const uint32_t hand, const uint32_t x, const uint32_t y );
+uint8_t COGN_CC_CAL_Send( char *msg, const uint32_t camId, const uint32_t hand, const uint32_t x, const uint32_t y );
+uint8_t COGN_CC_CAL_Receive( char *msg, COGN_CC_CAL_Rcv_t *rcv );
+uint8_t COGN_ParseCCE_AlignmentReply(char* msg, COGN_CCE_CAL_Rcv_t *poseRead);
+void COGN_SendCCE( char *msg, const uint32_t camID );
+uint8_t COGN_CCE_CAL_Send( char *msg, const uint32_t camId );
+uint8_t COGN_CCE_CAL_Receive( char *msg, COGN_CCE_CAL_Rcv_t *rcv );
+uint8_t COGN_ParseAC_AlignmentReply(char* msg, COGN_AC_CAL_Rcv_t *poseRead);
+void COGN_SendAC( char *msg, const uint32_t camID, const uint32_t feature, const COGN_pose_t pose );
+uint8_t COGN_AC_CAL_Send( char *msg, const uint32_t camId, const uint32_t feat, const COGN_pose_t *pose );
+uint8_t COGN_AC_CAL_Receive( char *msg, COGN_AC_CAL_Rcv_t *rcv );
+
 /* Train Alignment Golden Pose --- Train the “Golden Pose” of the target */
 
 /*-----------------------------------------------------------------------------
@@ -147,9 +178,7 @@ void COGN_SendTA( char *msg, const uint32_t partID )
 uint8_t COGN_ParseTA_AlignmentReply(char* msg)
 {
     char * pch = NULL;
-    char * method = NULL;
-    uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found
-    uint8_t commandStatus = 0u;                                                 // command status     
+    uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found  
     
     if (!strncmp(msg,"TA",2U))                                                  // message is XA = Golden Pose
     {
@@ -619,9 +648,7 @@ uint8_t COGN_XAMP_GP_Receive( char *msg, COGN_XAMP_GP_Rcv_t *rcv )
 uint8_t COGN_ParseSGP_AlignmentReply(char* msg)
 {
     char * pch = NULL;
-    char * method = NULL;
-    uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found
-    uint8_t commandStatus = 0u;                                                 // command status     
+    uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found 
     
     if (!strncmp(msg,"SGP",3U))                                                  // message is SGP = set Golden Pose
     {
@@ -727,9 +754,7 @@ void COGN_SendGCP( char *msg, const uint32_t stepID, const uint32_t coord )
 uint8_t COGN_ParseGCP_AlignmentReply(char* msg, COGN_GCP_GP_Rcv_t *poseRead)
 {
     char * pch = NULL;
-    char * method = NULL;
     uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found
-    uint8_t commandStatus = 0u;                                                 // command status     
     
     if ((!strncmp(msg,"GGP",3U)) || (!strncmp(msg,"GCP",3U)))                   // message is GGP = get Golden Pose / get Current Pose
     {
@@ -891,9 +916,7 @@ void COGN_SendTT( char *msg, const uint32_t partID, const COGN_pose_t pose )
 uint8_t COGN_ParseTT_AlignmentReply(char* msg)
 {
     char * pch = NULL;
-    char * method = NULL;
-    uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found
-    uint8_t commandSTTtus = 0u;                                                 // command sTTtus     
+    uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found  
     
     if (!strncmp(msg,"TT",2U))                                                  // message is XA = Golden Pose
     {
@@ -902,15 +925,15 @@ uint8_t COGN_ParseTT_AlignmentReply(char* msg)
        {
           itemNum = ++itemNum % UINT8_MAX;
           switch(itemNum)
-              {
+          {
                 case 2u:
                 ret = atoi(pch);
                 break;
                           
-            default:
-            break;                                                    
-              }
-              pch = strtok(NULL, ",");                                              /* get the next string in the line */                             
+                default:
+                break;                                                    
+          }
+          pch = strtok(NULL, ",");                                              /* get the next string in the line */                             
        }
     }
     return ret;
@@ -987,9 +1010,7 @@ void COGN_SendTTR( char *msg, const uint32_t partID, const COGN_pose_t pose )
 uint8_t COGN_ParseTTR_AlignmentReply(char* msg)
 {
     char * pch = NULL;
-    char * method = NULL;
-    uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found
-    uint8_t commandSTTRtus = 0u;                                                 // command sTTRtus     
+    uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found    
     
     if (!strncmp(msg,"TTR",2U))                                                  // message is XA = Golden Pose
     {
@@ -998,15 +1019,15 @@ uint8_t COGN_ParseTTR_AlignmentReply(char* msg)
        {
           itemNum = ++itemNum % UINT8_MAX;
           switch(itemNum)
-              {
+          {
                 case 2u:
                 ret = atoi(pch);
                 break;
                           
-            default:
-            break;                                                    
-              }
-              pch = strtok(NULL, ",");                                              /* get the next string in the line */                             
+                default:
+                break;                                                    
+          }
+          pch = strtok(NULL, ",");                                              /* get the next string in the line */                             
        }
     }
     return ret;
@@ -1086,7 +1107,6 @@ int8_t COGN_SendXT( char *msg, const uint32_t partID, COGN_VGR_Result_e resMode,
 uint8_t COGN_ParseXT_AlignmentReply(const char* msg, COGN_pose_t *pose)
 {
     char * pch = NULL;
-    char * method = NULL;
     uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found   
     
     if (!strncmp((char*)msg,"XT",2U))                                                  // message is XT = 
@@ -1114,7 +1134,7 @@ uint8_t COGN_ParseXT_AlignmentReply(const char* msg, COGN_pose_t *pose)
                 break;
 
                 case 6u:
-                pose->rotat.x = atol(pch);
+                pose->rotat.z = atol(pch);
                 break;
 
                 case 7u:
@@ -1122,7 +1142,7 @@ uint8_t COGN_ParseXT_AlignmentReply(const char* msg, COGN_pose_t *pose)
                 break;
 
                 case 8u:
-                pose->rotat.z = atol(pch);
+                pose->rotat.x = atol(pch);
                 break;
                         
                 default:
@@ -1212,7 +1232,6 @@ int8_t COGN_SendXT2( char *msg, const uint32_t partID, COGN_VGR_Result_e resMode
 uint8_t COGN_ParseXT2_AlignmentReply(const char* msg, COGN_XT2_VGR_Rcv_t *pose)
 {
     char * pch = NULL;
-    char * method = NULL;
     uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found   
     
     if (!strncmp((char*)msg,"XT2",2U))                                                  // message is XT2 = 
@@ -1256,27 +1275,27 @@ uint8_t COGN_ParseXT2_AlignmentReply(const char* msg, COGN_XT2_VGR_Rcv_t *pose)
                 break;
 
                 case 10u:
-                pose->curPosX1 = atol(pch);
+                pose->curPosX2 = atol(pch);
                 break;
 
                 case 11u:
-                pose->curPosY1 = atol(pch);
+                pose->curPosY2 = atol(pch);
                 break;
 
                 case 12u:
-                pose->curPosZ1 = atol(pch);
+                pose->curPosZ2 = atol(pch);
                 break;
 
                 case 13u:
-                pose->rotZ1 = atol(pch);
+                pose->rotZ2 = atol(pch);
                 break;
 
                 case 14u:
-                pose->rotY1 = atol(pch);
+                pose->rotY2 = atol(pch);
                 break;
 
                 case 15u:
-                pose->rotX1 = atol(pch);
+                pose->rotX2 = atol(pch);
                 break;
                         
                 default:
@@ -1367,7 +1386,6 @@ int8_t COGN_SendXTS( char *msg, const uint32_t partID, COGN_VGR_Result_e resMode
 uint8_t COGN_ParseXTS_AlignmentReply(const char* msg, COGN_XTS_VGR_Rcv_t *pose)
 {
     char * pch = NULL;
-    char * method = NULL;
     uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found   
     
     if (!strncmp((char*)msg,"XTS",2U))                                                  // message is XTS = 
@@ -1502,7 +1520,6 @@ int8_t COGN_SendXTLC( char *msg, const uint32_t partID, COGN_VGR_Result_e resMod
 uint8_t COGN_ParseXTLC_AlignmentReply(const char* msg, COGN_XTLC_VGR_Rcv_t *pose)
 {
     char * pch = NULL;
-    char * method = NULL;
     uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found   
     
     if (!strncmp((char*)msg,"XTLC",2U))                                                  // message is XTLC = 
@@ -1772,7 +1789,7 @@ uint8_t COGN_ParseLF_AlignmentReply(const char* msg, COGN_LF_MSC_Rcv_t *pose)
     char * pch = NULL;
     uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found   
     uint32_t valueIn = 0UL;
-	
+        
     if (!strncmp((char*)msg,"LF",2U))                                                  // message is LF = 
     {
        pch = strtok((char*)msg,",");                                                   // split it by commas
@@ -1780,23 +1797,23 @@ uint8_t COGN_ParseLF_AlignmentReply(const char* msg, COGN_LF_MSC_Rcv_t *pose)
        {
           itemNum = ++itemNum % UINT8_MAX;
           switch(itemNum)
-          {			
-	        case 2u:
-	        pose->result = atoi(pch);
-	        break;
+          {                        
+                case 2u:
+                pose->result = atoi(pch);
+                break;
 
                 case 3u:
-		pose->token = atol(pch);
+                pose->token = atol(pch);
                 break;
-			
+                        
                 case 4u:
                 pose->prodID = atol(pch);
                 break;
-			
+                        
                 default:
-                break;			  			  
+                break;                                                    
            }
-	   pch = strtok(NULL, ",");                                             /* get the neLF string in the line */   			  
+           pch = strtok(NULL, ",");                                             /* get the neLF string in the line */                             
        }
        ret = pose->result;
     }
@@ -1816,7 +1833,7 @@ uint8_t COGN_LF_MSC_Send( char *msg, const uint32_t stepId, const COGN_pose_t *p
    COGN_LF_MSC_Snd_t snd; 
    size_t len = COGN_LF_SND_OFFST + sizeof(COGN_LF_MSC_Snd_t);
    uint8_t ret = -1;
-	
+        
    snd.cmdId = COGN_LF_SLMP_CMD;
    snd.stepID = stepId;  
    snd.curPosX = pose->coord.x;
@@ -1826,7 +1843,7 @@ uint8_t COGN_LF_MSC_Send( char *msg, const uint32_t stepId, const COGN_pose_t *p
    snd.rotY = pose->rotat.y;
    snd.rotZ = pose->rotat.z;
    snd.prodID = 0UL;
-	   
+           
    if (sizeof(msg) >= len)
    {
        memcpy((void*) msg+COGN_LF_SND_OFFST, (void*) &snd, sizeof(COGN_LF_MSC_Snd_t));
@@ -1877,7 +1894,7 @@ uint8_t COGN_ParseTPR_AlignmentReply(const char* msg, COGN_TPR_MSC_Rcv_t *pose)
     char * pch = NULL;
     uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found   
     uint32_t valueIn = 0UL;
-	
+        
     if (!strncmp((char*)msg,"TPR",2U))                                                  // message is TPR = 
     {
        pch = strtok((char*)msg,",");                                                   // split it by commas
@@ -1885,15 +1902,15 @@ uint8_t COGN_ParseTPR_AlignmentReply(const char* msg, COGN_TPR_MSC_Rcv_t *pose)
        {
           itemNum = ++itemNum % UINT8_MAX;
           switch(itemNum)
-	  {			
-	        case 2u:
-	        pose->result = atoi(pch);
-	        break;
-			
-            default:
-            break;			  			  
+          {                        
+                case 2u:
+                pose->result = atoi(pch);
+                break;
+                        
+                default:
+                break;                                                    
           }
-          pch = strtok(NULL, ",");                                              /* get the neTPR string in the line */   			  
+          pch = strtok(NULL, ",");                                              /* get the neTPR string in the line */                             
        }
        ret = pose->result;
     }
@@ -1913,7 +1930,7 @@ uint8_t COGN_TPR_MSC_Send( char *msg, const uint32_t partID, const uint32_t alig
    COGN_TPR_MSC_Snd_t snd; 
    size_t len = COGN_TPR_SND_OFFST + sizeof(COGN_TPR_MSC_Snd_t);
    uint8_t ret = -1;
-	
+        
    snd.cmdId = COGN_TPR_SLMP_CMD;
    snd.partID = partID;  
    snd.curPosX = pose->coord.x;
@@ -1923,7 +1940,7 @@ uint8_t COGN_TPR_MSC_Send( char *msg, const uint32_t partID, const uint32_t alig
    snd.rotY = pose->rotat.y;
    snd.rotZ = pose->rotat.z;
    snd.AlignMode = align;
-	   
+           
    if (sizeof(msg) >= len)
    {
        memcpy((void*) msg+COGN_TPR_SND_OFFST, (void*) &snd, sizeof(COGN_TPR_MSC_Snd_t));
@@ -1974,7 +1991,7 @@ int16_t COGN_ParseGP_MSC_AlignmentReply(const char* msg, COGN_GP_MSC_Rcv_t *pose
     char * pch = NULL;
     uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found   
     uint32_t valueIn = 0UL;
-	
+        
     if (!strncmp((char*)msg,"GP",2U))                                                  // message is GP = 
     {
        pch = strtok((char*)msg,",");                                                   // split it by commas
@@ -1982,10 +1999,10 @@ int16_t COGN_ParseGP_MSC_AlignmentReply(const char* msg, COGN_GP_MSC_Rcv_t *pose
        {
           itemNum = ++itemNum % UINT8_MAX;
           switch(itemNum)
-          {			
-	        case 2u:
-	        pose->result = atoi(pch);
-	        break;
+          {                        
+                case 2u:
+                pose->result = atoi(pch);
+                break;
 
                 case 3u:
                 pose->x = atol(pch);
@@ -2010,11 +2027,11 @@ int16_t COGN_ParseGP_MSC_AlignmentReply(const char* msg, COGN_GP_MSC_Rcv_t *pose
                 case 8u:
                 pose->cx = atol(pch);
                 break;
-				
+                                
                 default:
-                break;			  			  
+                break;                                                    
            }
-	   pch = strtok(NULL, ",");                                              /* get the neGP string in the line */   			  
+           pch = strtok(NULL, ",");                                              /* get the neGP string in the line */                             
        }
        ret = pose->result;
     }
@@ -2034,7 +2051,7 @@ uint8_t COGN_GP_MSC_Send( char *msg, const uint32_t partID, const uint32_t align
    COGN_GP_MSC_Snd_t snd; 
    size_t len = COGN_GP_SND_OFFST + sizeof(COGN_GP_MSC_Snd_t);
    uint8_t ret = -1;
-	
+        
    snd.cmdId = COGN_GP_SLMP_CMD;
    snd.partID = partID;  
    snd.curPosX = pose->coord.x;
@@ -2044,7 +2061,7 @@ uint8_t COGN_GP_MSC_Send( char *msg, const uint32_t partID, const uint32_t align
    snd.rotY = pose->rotat.y;
    snd.rotZ = pose->rotat.z;
    snd.AlignMode = align % 4;
-   snd.resMode = resMode % COGN_VGR_RET_NUM;	   
+   snd.resMode = resMode % COGN_VGR_RET_NUM;           
    if (snd.resMode == 0) snd.resMode = COGN_VGR_RET_ABS;   /* force default return */
    if (snd.AlignMode == 0) snd.AlignMode = 1;
    
@@ -2098,7 +2115,7 @@ int16_t COGN_ParseLC_MSC_AlignmentReply(const char* msg, COGN_LC_MSC_Rcv_t *pose
     char * pch = NULL;
     uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found   
     uint32_t valueIn = 0UL;
-	
+        
     if (!strncmp((char*)msg,"LC",2U))                                                  // message is LC = 
     {
        pch = strtok((char*)msg,",");                                                   // split it by commas
@@ -2106,10 +2123,10 @@ int16_t COGN_ParseLC_MSC_AlignmentReply(const char* msg, COGN_LC_MSC_Rcv_t *pose
        {
           itemNum = ++itemNum % UINT8_MAX;
           switch(itemNum)
-	  {			
-	    case 2u:
-	    pose->status = atoi(pch);
-	    break;
+          {                        
+            case 2u:
+            pose->status = atoi(pch);
+            break;
 
             case 3u:
             pose->result = atol(pch);
@@ -2118,11 +2135,11 @@ int16_t COGN_ParseLC_MSC_AlignmentReply(const char* msg, COGN_LC_MSC_Rcv_t *pose
             case 4u:
             pose->LCJudge = atoi(pch);
             break;
-				
+                                
             default:
-            break;			  			  
-	  }
-	  pch = strtok(NULL, ",");                                              /* get the neLC string in the line */   			  
+            break;                                                    
+          }
+          pch = strtok(NULL, ",");                                              /* get the neLC string in the line */                             
        }
        ret = pose->status;
     }
@@ -2142,10 +2159,10 @@ uint8_t COGN_LC_MSC_Send( char *msg, const uint32_t partID, COGN_LCResult_e resM
    COGN_LC_MSC_Snd_t snd; 
    size_t len = COGN_LC_SND_OFFST + sizeof(COGN_LC_MSC_Snd_t);
    uint8_t ret = -1;
-	
+        
    snd.cmdId = COGN_LC_SLMP_CMD;
    snd.partID = partID;  
-   snd.resMode = resMode % COGN_LC_RET_NUM;	   
+   snd.resMode = resMode % COGN_LC_RET_NUM;           
    if (snd.resMode == 0) snd.resMode = COGN_LC_ABS;   /* force default return */
    
    if (sizeof(msg) >= len) 
@@ -2198,7 +2215,7 @@ int16_t COGN_ParseTP_MSC_AlignmentReply(const char* msg, COGN_TP_MSC_Rcv_t *pose
     char * pch = NULL;
     uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found   
     uint32_t valueIn = 0UL;
-	
+        
     if (!strncmp((char*)msg,"TP",2U))                                                  // message is TP = 
     {
        pch = strtok((char*)msg,",");                                                   // split it by commas
@@ -2206,15 +2223,15 @@ int16_t COGN_ParseTP_MSC_AlignmentReply(const char* msg, COGN_TP_MSC_Rcv_t *pose
        {
           itemNum = ++itemNum % UINT8_MAX;
           switch(itemNum)
-          {			
-	     case 2u:
-	     pose->status = atoi(pch);
-	     break;
-				
+          {                        
+             case 2u:
+             pose->status = atoi(pch);
+             break;
+                                
              default:
-             break;			  			  
+             break;                                                    
            }
-	   pch = strtok(NULL, ",");                                              /* get the neTP string in the line */   			  
+           pch = strtok(NULL, ",");                                              /* get the neTP string in the line */                             
        }
        ret = pose->status;
     }
@@ -2234,10 +2251,10 @@ uint8_t COGN_TP_MSC_Send( char *msg, const uint32_t partID, const uint16_t align
    COGN_TP_MSC_Snd_t snd; 
    size_t len = COGN_TP_SND_OFFST + sizeof(COGN_TP_MSC_Snd_t);
    uint8_t ret = -1;
-	
+        
    snd.cmdId = COGN_TP_SLMP_CMD;
    snd.partID = partID;  
-   snd.AlignMode = alignMode % 3;	   
+   snd.AlignMode = alignMode % 3;           
    if (snd.AlignMode == 0) snd.AlignMode = 1;   /* force default return */
    
    if (sizeof(msg) >= len) 
@@ -2290,7 +2307,7 @@ int16_t COGN_ParseCP_MSC_AlignmentReply(const char* msg, COGN_CP_MSC_Rcv_t *pose
     char * pch = NULL;
     uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found   
     uint32_t valueIn = 0UL;
-	
+        
     if (!strncmp((char*)msg,"CP",2U))                                                  // message is CP = 
     {
        pch = strtok((char*)msg,",");                                                   // split it by commas
@@ -2298,17 +2315,17 @@ int16_t COGN_ParseCP_MSC_AlignmentReply(const char* msg, COGN_CP_MSC_Rcv_t *pose
        {
           itemNum = ++itemNum % UINT8_MAX;
           switch(itemNum)
-	      {			
-	        case 2u:
-	        pose->status = atoi(pch);
-	        break;
-				
+              {                        
+                case 2u:
+                pose->status = atoi(pch);
+                break;
+                                
             default:
-            break;			  			  
-	      }
-	      pch = strtok(NULL, ",");                                              /* get the neCP string in the line */   			  
+            break;                                                    
+              }
+              pch = strtok(NULL, ",");                                              /* get the neCP string in the line */                             
        }
-	   ret = pose->status;
+           ret = pose->status;
     }
     return ret;
 }
@@ -2326,7 +2343,7 @@ uint8_t COGN_CP_MSC_Send( char *msg, const uint16_t rStat )
    COGN_CP_MSC_Snd_t snd; 
    size_t len = COGN_CP_SND_OFFST + sizeof(COGN_CP_MSC_Snd_t);
    uint8_t ret = -1;
-	
+        
    snd.cmdId = COGN_CP_SLMP_CMD;
    snd.reqStat = rStat;
    
@@ -2380,7 +2397,7 @@ int16_t COGN_ParseGS_SV_AlignmentReply(const char* msg, COGN_GS_SV_Rcv_t *pose)
     char * pch = NULL;
     uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found   
     uint32_t valueIn = 0UL;
-	
+        
     if (!strncmp((char*)msg,"GS",2U))                                                  // message is GS = 
     {
        pch = strtok((char*)msg,",");                                                   // split it by commas
@@ -2388,15 +2405,15 @@ int16_t COGN_ParseGS_SV_AlignmentReply(const char* msg, COGN_GS_SV_Rcv_t *pose)
        {
           itemNum = ++itemNum % UINT8_MAX;
           switch(itemNum)
-          {			
-	        case 2u:
-	        pose->status = atoi(pch);
-	        break;
-				
+          {                        
+                case 2u:
+                pose->status = atoi(pch);
+                break;
+                                
                 default:
-                break;			  			  
+                break;                                                    
            }
-	   pch = strtok(NULL, ",");                                              /* get the neGS string in the line */   			  
+           pch = strtok(NULL, ",");                                              /* get the neGS string in the line */                             
        }
        ret = pose->status;
     }
@@ -2416,7 +2433,7 @@ uint8_t COGN_GS_SV_Send( char *msg, const uint16_t cameraNo )
    COGN_GS_SV_Snd_t snd; 
    size_t len = COGN_GS_SND_OFFST + sizeof(COGN_GS_SV_Snd_t);
    uint8_t ret = -1;
-	
+        
    snd.cmdId = COGN_GS_SLMP_CMD;
    snd.camera = cameraNo;
    
@@ -2470,7 +2487,7 @@ int16_t COGN_ParseGV_SV_AlignmentReply(const char* msg, COGN_GV_SV_Rcv_t *pose)
     char * pch = NULL;
     uint8_t itemNum = 0U, ret = 0U;                                             // number of strinGV found   
     uint32_t valueIn = 0UL;
-	
+        
     if (!strncmp((char*)msg,"GV",2U))                                                  // message is GV = 
     {
        pch = strtok((char*)msg,",");                                                   // split it by commas
@@ -2478,27 +2495,27 @@ int16_t COGN_ParseGV_SV_AlignmentReply(const char* msg, COGN_GV_SV_Rcv_t *pose)
        {
           itemNum = ++itemNum % UINT8_MAX;
           switch(itemNum)
-          {			
-	        case 2u:
-	        pose->status = atoi(pch);
-	        break;
+          {                        
+                case 2u:
+                pose->status = atoi(pch);
+                break;
 
-	        case 3u:
-	        pose->major = atol(pch);
-	        break;
+                case 3u:
+                pose->major = atol(pch);
+                break;
 
-	        case 4u:
-	        pose->minor = atol(pch);
-	        break;
+                case 4u:
+                pose->minor = atol(pch);
+                break;
 
-	        case 5u:
-	        pose->subMinor = atol(pch);
-	        break;
-			
+                case 5u:
+                pose->subMinor = atol(pch);
+                break;
+                        
             default:
-            break;			  			  
+            break;                                                    
           }
-	  pch = strtok(NULL, ",");                                              /* get the neGV string in the line */   			  
+          pch = strtok(NULL, ",");                                              /* get the neGV string in the line */                             
        }
        ret = pose->status;
     }
@@ -2518,7 +2535,7 @@ uint8_t COGN_GV_SV_Send( char *msg, const uint16_t cameraNo )
    COGN_GV_SV_Snd_t snd; 
    size_t len = COGN_GV_SND_OFFST + sizeof(COGN_GV_SV_Snd_t);
    uint8_t ret = -1;
-	
+        
    snd.cmdId = COGN_GV_SLMP_CMD;
    snd.camera = cameraNo;
    
@@ -2572,25 +2589,25 @@ int16_t COGN_ParsePID_SV_AlignmentReply(const char* msg, COGN_PID_SV_Rcv_t *pose
     char * pch = NULL;
     uint8_t itemNum = 0U, ret = 0U;                                             // number of strinPID found   
     uint32_t valueIn = 0UL;
-	
-    if (!strncmp(msg,"PID",2U))                                                  // message is PID = 
+        
+    if (!strncmp((char*)msg,(char*)"PID",(char)2U))                                                  // message is PID = 
     {
        pch = strtok((char*)msg,",");                                                   // split it by commas
        while (pch != NULL)
        {
           itemNum = ++itemNum % UINT8_MAX;
           switch(itemNum)
-	      {			
-	        case 2u:
-	        pose->status = atoi(pch);
-	        break;
-			
+              {                        
+                case 2u:
+                pose->status = atoi(pch);
+                break;
+                        
             default:
-            break;			  			  
-	      }
-	      pch = strtok(NULL, ",");                                              /* get the nePID string in the line */   			  
+            break;                                                    
+              }
+              pch = strtok(NULL, ",");                                              /* get the nePID string in the line */                             
        }
-	   ret = pose->status;
+           ret = pose->status;
     }
     return ret;
 }
@@ -2608,7 +2625,7 @@ uint8_t COGN_PID_SV_Send( char *msg, const uint32_t prodID )
    COGN_PID_SV_Snd_t snd; 
    size_t len = COGN_PID_SND_OFFST + sizeof(COGN_PID_SV_Snd_t);
    uint8_t ret = -1;
-	
+        
    snd.cmdId = COGN_PID_SLMP_CMD;
    snd.prodID = prodID ;
    
@@ -2648,7 +2665,7 @@ uint8_t COGN_PID_SV_Receive( const char *msg, COGN_PID_SV_Rcv_t *rcv )
  *----------------------------------------------------------------------------*/
 void COGN_SendTM( char *msg, const uint32_t prodID, const uint8_t trigVal )
 {
-   uint8_t trig2send = trigVal % 2u;	
+   uint8_t trig2send = trigVal % 2u;        
    API_COGN_TM_TRIG(msg,prodID,trig2send);
 }
 
@@ -2663,23 +2680,23 @@ int16_t COGN_ParseTM_TRIG_AlignmentReply(const char* msg, COGN_TM_TRIG_Rcv_t *po
     char * pch = NULL;
     uint8_t itemNum = 0U, ret = 0U;                                             // number of strinTM found   
     uint32_t valueIn = 0UL;
-	
-    if (!strncmp(msg,"TM",2U))                                                  // message is TM = 
+        
+    if (!strncmp((char*)msg,(char*)"TM",(char)2U))                                                  // message is TM = 
     {
        pch = strtok((char*)msg,",");                                            // split it by commas
        while (pch != NULL)
        {
           itemNum = ++itemNum % UINT8_MAX;
           switch(itemNum)
-          {			
-	        case 2u:
-	        pose->status = atoi(pch);
-	        break;
-			
+          {                        
+                case 2u:
+                pose->status = atoi(pch);
+                break;
+                        
             default:
-            break;			  			  
-	  }
-	  pch = strtok(NULL, ",");                                              /* get the neTM string in the line */   			  
+            break;                                                    
+          }
+          pch = strtok(NULL, ",");                                              /* get the neTM string in the line */                             
        }
        ret = pose->status;
     }
@@ -2699,7 +2716,7 @@ uint8_t COGN_TM_TRIG_Send( char *msg, const uint32_t prodID, const uint16_t trig
    COGN_TM_TRIG_Snd_t snd; 
    size_t len = COGN_TM_SND_OFFST + sizeof(COGN_TM_TRIG_Snd_t);
    uint8_t ret = -1;
-	
+        
    snd.cmdId = COGN_TM_SLMP_CMD;
    snd.prodID = prodID ;
    snd.trigger = trigVal % 2u;
@@ -2730,6 +2747,682 @@ uint8_t COGN_TM_TRIG_Receive( const char *msg, COGN_TM_TRIG_Rcv_t *rcv )
    }
    return ret;
 }
+
+/*-----------------------------------------------------------------------------
+ *  COGN_ParseHEB_AlignmentReply:  Parses the HEB ascci response
+ *      
+ *  Parameters: char* msg, COGN_HEB_CAL_Rcv_t *poseRead
+ *  Return: uint8_t The result status 1: Success <=0: Fail
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_ParseHEB_AlignmentReply(char* msg, COGN_HEB_CAL_Rcv_t *poseRead)
+{
+    char * pch = NULL;
+    char * method = NULL;
+    uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found
+    uint8_t commandStatus = 0u;                                                 // command status     
+    
+    if (!strncmp(msg,"HEB",3U))                                                  // message is HEB start hand-eye
+    {
+       pch = strtok(msg,",");                                                   // split it by commas
+       while (pch != NULL)
+       {
+          itemNum = ++itemNum % UINT8_MAX;
+          switch(itemNum)
+          {
+              case 2u:
+              poseRead->result = atoi(pch);
+              break;
+                          
+              default:
+              break;                                                    
+          }
+          pch = strtok(NULL, ",");                                              /* get the next string in the line */                             
+       }
+    }
+    return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_SendHEB :  wrapper for writing HEB to message buffer 
+ *                 (you can add tcp send as you wish)
+ *      
+ *  Parameters: char *msg, const uint16_t camID 
+ *          
+ *              
+ *  Return: void
+ *----------------------------------------------------------------------------*/
+void COGN_SendHEB( char *msg, const uint32_t camID )
+{
+   API_GOGN_HEB_CAL(msg,camID);
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_HEB_CAL_Send: compose an HEB message using SLMP 
+ *      
+ *  Parameters: char *msg, const uint32_t camId
+ *  Return: uint8_t
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_HEB_CAL_Send( char *msg, const uint32_t camId )
+{
+   COGN_HEB_CAL_Snd_t snd; 
+   size_t len = COGN_HEB_SND_OFFST + sizeof(COGN_HEB_CAL_Snd_t);
+   uint8_t ret = -1;
+   
+   snd.camId = camId;
+   snd.cmdId = COGN_HEB_SLMP_CMD;
+   
+   if (sizeof(msg) >= len)
+   {
+       memcpy((void*) msg+COGN_HEB_SND_OFFST, (void*) &snd, sizeof(COGN_HEB_CAL_Snd_t));
+       ret = len;
+   }
+   return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_HEB_CAL_Receive: receive GCP message 
+ *      
+ *  Parameters: char *msg, COGN_HEB_CAL_Rcv_t *rcv 
+ *  Return: uint8_t
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_HEB_CAL_Receive( char *msg, COGN_HEB_CAL_Rcv_t *rcv )
+{
+   size_t len = COGN_HEB_RCV_OFFST + sizeof(COGN_HEB_CAL_Rcv_t);
+   uint8_t ret = -1;
+   
+   if (sizeof(msg) >= len)
+   {
+       memcpy((void*) rcv, (void*) msg+COGN_HEB_RCV_OFFST, sizeof(COGN_HEB_CAL_Rcv_t));
+       ret = len;
+   }
+   return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_ParseHE_AlignmentReply:  Parses the HE ascci response
+ *      
+ *  Parameters: char* msg, COGN_HE_CAL_Rcv_t *poseRead
+ *  Return: uint8_t The result status 1: Success <=0: Fail
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_ParseHE_AlignmentReply(char* msg, COGN_HE_CAL_Rcv_t *poseRead)
+{
+    char * pch = NULL;
+    char * method = NULL;
+    uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found
+    uint8_t commandStatus = 0u;                                                 // command status     
+    
+    if (!strncmp(msg,"HE",2U))                                                  // message is HE start hand-eye
+    {
+       pch = strtok(msg,",");                                                   // split it by commas
+       while (pch != NULL)
+       {
+          itemNum = ++itemNum % UINT8_MAX;
+          switch(itemNum)
+          {
+              case 2u:
+              poseRead->result = atoi(pch);
+              break;
+                          
+              default:
+              break;                                                    
+          }
+          pch = strtok(NULL, ",");                                              /* get the next string in the line */                             
+       }
+    }
+    return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_SendHE :  wrapper for writing HE to message buffer 
+ *                 (you can add tcp send as you wish)
+ *      
+ *  Parameters: char *msg, const uint32_t camID, const uint32_t feature, 
+ *              const COGN_pose_t pose        
+ *              
+ *  Return: void
+ *----------------------------------------------------------------------------*/
+void COGN_SendHE( char *msg, const uint32_t camID, const uint32_t feature, const COGN_pose_t pose )
+{
+   API_GOGN_HE_CAL(msg,camID,feature,pose);
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_HE_CAL_Send: compose an HE message using SLMP 
+ *      
+ *  Parameters: char *msg, const uint32_t camId, const uint32_t feature, const COGN_pose_t *pose
+ *  Return: uint8_t
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_HE_CAL_Send( char *msg, const uint32_t camId, const uint32_t feature, const COGN_pose_t *pose )
+{
+   COGN_HE_CAL_Snd_t snd; 
+   size_t len = COGN_HE_SND_OFFST + sizeof(COGN_HE_CAL_Snd_t);
+   uint8_t ret = -1;
+   
+   snd.camId = camId;
+   snd.cmdId = COGN_HE_SLMP_CMD;
+   snd.featureId = feature;
+   snd.coordX = pose->coord.x;
+   snd.coordY = pose->coord.y;
+   snd.coordZ = pose->coord.z;
+   snd.rotatZ = pose->rotat.z;
+   snd.rotatY = pose->rotat.y;
+   snd.rotatX = pose->rotat.x;
+        
+   if (sizeof(msg) >= len)
+   {
+       memcpy((void*) msg+COGN_HE_SND_OFFST, (void*) &snd, sizeof(COGN_HE_CAL_Snd_t));
+       ret = len;
+   }
+   return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_HE_CAL_Receive: receive GCP message 
+ *      
+ *  Parameters: char *msg, COGN_HE_CAL_Rcv_t *rcv 
+ *  Return: uint8_t
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_HE_CAL_Receive( char *msg, COGN_HE_CAL_Rcv_t *rcv )
+{
+   size_t len = COGN_HE_RCV_OFFST + sizeof(COGN_HE_CAL_Rcv_t);
+   uint8_t ret = -1;
+   
+   if (sizeof(msg) >= len)
+   {
+       memcpy((void*) rcv, (void*) msg+COGN_HE_RCV_OFFST, sizeof(COGN_HE_CAL_Rcv_t));
+       ret = len;
+   }
+   return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_ParseHEE_AlignmentReply:  Parses the HEE ascci response
+ *      
+ *  Parameters: char* msg, COGN_HEE_CAL_Rcv_t *poseRead
+ *  Return: uint8_t The result status 1: Success <=0: Fail
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_ParseHEE_AlignmentReply(char* msg, COGN_HEE_CAL_Rcv_t *poseRead)
+{
+    char * pch = NULL;
+    char * method = NULL;
+    uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found
+    uint8_t commandStatus = 0u;                                                 // command status     
+    
+    if (!strncmp(msg,"HEE",3U))                                                  // message is HEE start hand-eye
+    {
+       pch = strtok(msg,",");                                                   // split it by commas
+       while (pch != NULL)
+       {
+          itemNum = ++itemNum % UINT8_MAX;
+          switch(itemNum)
+          {
+              case 2u:
+              poseRead->result = atoi(pch);
+              break;
+                          
+              default:
+              break;                                                    
+          }
+          pch = strtok(NULL, ",");                                              /* get the next string in the line */                             
+       }
+    }
+    return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_SendHEE :  wrapper for writing HEE to message buffer 
+ *                 (you can add tcp send as you wish)
+ *      
+ *  Parameters: char *msg, const uint32_t camID 
+ *              
+ *  Return: void
+ *----------------------------------------------------------------------------*/
+void COGN_SendHEE( char *msg, const uint32_t camID )
+{
+   API_GOGN_HEE_CAL(msg,camID);
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_HEE_CAL_Send: compose an HEE message using SLMP 
+ *      
+ *  Parameters: char *msg, const uint32_t camId
+ *  Return: uint8_t
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_HEE_CAL_Send( char *msg, const uint32_t camId )
+{
+   COGN_HEE_CAL_Snd_t snd; 
+   size_t len = COGN_HEE_SND_OFFST + sizeof(COGN_HEE_CAL_Snd_t);
+   uint8_t ret = -1;
+   
+   snd.camId = camId;
+   snd.cmdId = COGN_HEE_SLMP_CMD;
+        
+   if (sizeof(msg) >= len)
+   {
+       memcpy((void*) msg+COGN_HEE_SND_OFFST, (void*) &snd, sizeof(COGN_HEE_CAL_Snd_t));
+       ret = len;
+   }
+   return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_HEE_CAL_Receive: receive GCP message 
+ *      
+ *  Parameters: char *msg, COGN_HEE_CAL_Rcv_t *rcv 
+ *  Return: uint8_t
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_HEE_CAL_Receive( char *msg, COGN_HEE_CAL_Rcv_t *rcv )
+{
+   size_t len = COGN_HEE_RCV_OFFST + sizeof(COGN_HEE_CAL_Rcv_t);
+   uint8_t ret = -1;
+   
+   if (sizeof(msg) >= len)
+   {
+       memcpy((void*) rcv, (void*) msg+COGN_HEE_RCV_OFFST, sizeof(COGN_HEE_CAL_Rcv_t));
+       ret = len;
+   }
+   return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_ParseCCE_AlignmentReply:  Parses the CCE ascci response
+ *      
+ *  Parameters: char* msg, COGN_CCE_CAL_Rcv_t *poseRead
+ *  Return: uint8_t The result status 1: Success <=0: Fail
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_ParseCCE_AlignmentReply(char* msg, COGN_CCE_CAL_Rcv_t *poseRead)
+{
+    char * pch = NULL;
+    char * method = NULL;
+    uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found
+    uint8_t commandStatus = 0u;                                                 // command status     
+    
+    if (!strncmp(msg,"CCE",3U))                                                  // message is CCE start hand-eye
+    {
+       pch = strtok(msg,",");                                                   // split it by commas
+       while (pch != NULL)
+       {
+          itemNum = ++itemNum % UINT8_MAX;
+          switch(itemNum)
+          {
+              case 2u:
+              poseRead->result = atoi(pch);
+              break;
+                          
+              default:
+              break;                                                    
+          }
+          pch = strtok(NULL, ",");                                              /* get the next string in the line */                             
+       }
+    }
+    return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_SendCCE :  wrapper for writing CCE to message buffer 
+ *                 (you can add tcp send as you wish)
+ *      
+ *  Parameters: char *msg, const uint32_t camID 
+ *              
+ *  Return: void
+ *----------------------------------------------------------------------------*/
+void COGN_SendCCE( char *msg, const uint32_t camID )
+{
+   API_GOGN_CCE_CAL(msg,camID);
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_CCE_CAL_Send: compose an CCE message using SLMP 
+ *      
+ *  Parameters: char *msg, const uint32_t camId
+ *  Return: uint8_t
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_CCE_CAL_Send( char *msg, const uint32_t camId )
+{
+   COGN_CCE_CAL_Snd_t snd; 
+   size_t len = COGN_CCE_SND_OFFST + sizeof(COGN_CCE_CAL_Snd_t);
+   uint8_t ret = -1;
+   
+   snd.camId = camId;
+   snd.cmdId = COGN_CCE_SLMP_CMD;
+        
+   if (sizeof(msg) >= len)
+   {
+       memcpy((void*) msg+COGN_CCE_SND_OFFST, (void*) &snd, sizeof(COGN_CCE_CAL_Snd_t));
+       ret = len;
+   }
+   return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_CCE_CAL_Receive: receive GCP message 
+ *      
+ *  Parameters: char *msg, COGN_CCE_CAL_Rcv_t *rcv 
+ *  Return: uint8_t
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_CCE_CAL_Receive( char *msg, COGN_CCE_CAL_Rcv_t *rcv )
+{
+   size_t len = COGN_CCE_RCV_OFFST + sizeof(COGN_CCE_CAL_Rcv_t);
+   uint8_t ret = -1;
+   
+   if (sizeof(msg) >= len)
+   {
+       memcpy((void*) rcv, (void*) msg+COGN_CCE_RCV_OFFST, sizeof(COGN_CCE_CAL_Rcv_t));
+       ret = len;
+   }
+   return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_ParseCCB_AlignmentReply:  Parses the CCB ascci response
+ *      
+ *  Parameters: char* msg, COGN_CCB_CAL_Rcv_t *poseRead
+ *  Return: uint8_t The result status 1: SuCCBss <=0: Fail
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_ParseCCB_AlignmentReply(char* msg, COGN_CCB_CAL_Rcv_t *poseRead)
+{
+    char * pch = NULL;
+    char * method = NULL;
+    uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found
+    uint8_t commandStatus = 0u;                                                 // command status     
+    
+    if (!strncmp(msg,"CCB",3U))                                                  // message is CCB start hand-eye
+    {
+       pch = strtok(msg,",");                                                   // split it by commas
+       while (pch != NULL)
+       {
+          itemNum = ++itemNum % UINT8_MAX;
+          switch(itemNum)
+          {
+              case 2u:
+              poseRead->result = atoi(pch);
+              break;
+                          
+              default:
+              break;                                                    
+          }
+          pch = strtok(NULL, ",");                                              /* get the next string in the line */                             
+       }
+    }
+    return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_SendCCB :  wrapper for writing CCB to message buffer 
+ *                 (you can add tcp send as you wish)
+ *      
+ *  Parameters: char *msg, const uint32_t camID, const uint32_t hand, const uint32_t x, const uint32_t y
+ *              
+ *  Return: void
+ *----------------------------------------------------------------------------*/
+void COGN_SendCCB( char *msg, const uint32_t camID, const uint32_t hand, const uint32_t x, const uint32_t y )
+{
+   API_GOGN_CCB_CAL(msg,camID,hand,x,y);
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_CCB_CAL_Send: compose an CCB message using SLMP 
+ *      
+ *  Parameters: char *msg, const uint32_t camId, const uint32_t hand, 
+ *              const uint32_t x, const uint32_t y
+ *
+ *  Return: uint8_t
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_CCB_CAL_Send( char *msg, const uint32_t camId, const uint32_t hand, const uint32_t x, const uint32_t y )
+{
+   COGN_CCB_CAL_Snd_t snd; 
+   size_t len = COGN_CCB_SND_OFFST + sizeof(COGN_CCB_CAL_Snd_t);
+   uint8_t ret = -1;
+   
+   snd.camId = camId;
+   snd.cmdId = COGN_CCB_SLMP_CMD;
+   snd.swapHand = hand;
+   snd.offsetX = x;
+   snd.offsetY = y;
+        
+   if (sizeof(msg) >= len)
+   {
+       memcpy((void*) msg+COGN_CCB_SND_OFFST, (void*) &snd, sizeof(COGN_CCB_CAL_Snd_t));
+       ret = len;
+   }
+   return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_CCB_CAL_Receive: receive GCP message 
+ *      
+ *  Parameters: char *msg, COGN_CCB_CAL_Rcv_t *rcv 
+ *  Return: uint8_t
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_CCB_CAL_Receive( char *msg, COGN_CCB_CAL_Rcv_t *rcv )
+{
+   size_t len = COGN_CCB_RCV_OFFST + sizeof(COGN_CCB_CAL_Rcv_t);
+   uint8_t ret = -1;
+   
+   if (sizeof(msg) >= len)
+   {
+       memcpy((void*) rcv, (void*) msg+COGN_CCB_RCV_OFFST, sizeof(COGN_CCB_CAL_Rcv_t));
+       ret = len;
+   }
+   return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_ParseCC_AlignmentReply:  Parses the CC ascci response
+ *      
+ *  Parameters: char* msg, COGN_CC_CAL_Rcv_t *poseRead
+ *  Return: uint8_t The result status 1: SuCCBss <=0: Fail
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_ParseCC_AlignmentReply(char* msg, COGN_CC_CAL_Rcv_t *poseRead)
+{
+    char * pch = NULL;
+    char * method = NULL;
+    uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found
+    uint8_t commandStatus = 0u;                                                 // command status     
+    
+    if (!strncmp(msg,"CC",2U))                                                  // message is CC start hand-eye
+    {
+       pch = strtok(msg,",");                                                   // split it by commas
+       while (pch != NULL)
+       {
+          itemNum = ++itemNum % UINT8_MAX;
+          switch(itemNum)
+          {
+              case 2u:
+              poseRead->result = atoi(pch);
+              break;
+                          
+              default:
+              break;                                                    
+          }
+          pch = strtok(NULL, ",");                                              /* get the next string in the line */                             
+       }
+    }
+    return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_SendCC :  wrapper for writing CC to message buffer 
+ *                 (you can add tcp send as you wish)
+ *      
+ *  Parameters: char *msg, const uint32_t camID, const uint32_t hand, const uint32_t x, const uint32_t y
+ *              
+ *  Return: void
+ *----------------------------------------------------------------------------*/
+void COGN_SendCC( char *msg, const uint32_t camID, const uint32_t hand, const uint32_t x, const uint32_t y )
+{
+   API_GOGN_CC_CAL(msg,camID,hand,x,y);
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_CC_CAL_Send: compose an CC message using SLMP 
+ *      
+ *  Parameters: char *msg, const uint32_t camId, const uint32_t hand, 
+ *              const uint32_t x, const uint32_t y
+ *
+ *  Return: uint8_t
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_CC_CAL_Send( char *msg, const uint32_t camId, const uint32_t hand, const uint32_t x, const uint32_t y )
+{
+   COGN_CC_CAL_Snd_t snd; 
+   size_t len = COGN_CC_SND_OFFST + sizeof(COGN_CC_CAL_Snd_t);
+   uint8_t ret = -1;
+   
+   snd.camId = camId;
+   snd.cmdId = COGN_CC_SLMP_CMD;
+   snd.swapHand = hand;
+   snd.offsetX = x;
+   snd.offsetY = y;
+        
+   if (sizeof(msg) >= len)
+   {
+       memcpy((void*) msg+COGN_CC_SND_OFFST, (void*) &snd, sizeof(COGN_CC_CAL_Snd_t));
+       ret = len;
+   }
+   return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_CC_CAL_Receive: receive GCP message 
+ *      
+ *  Parameters: char *msg, COGN_CC_CAL_Rcv_t *rcv 
+ *  Return: uint8_t
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_CC_CAL_Receive( char *msg, COGN_CC_CAL_Rcv_t *rcv )
+{
+   size_t len = COGN_CC_RCV_OFFST + sizeof(COGN_CC_CAL_Rcv_t);
+   uint8_t ret = -1;
+   
+   if (sizeof(msg) >= len)
+   {
+       memcpy((void*) rcv, (void*) msg+COGN_CC_RCV_OFFST, sizeof(COGN_CC_CAL_Rcv_t));
+       ret = len;
+   }
+   return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_ParseAC_AlignmentReply:  Parses the AC ascci response
+ *      
+ *  Parameters: char* msg, COGN_AC_CAL_Rcv_t *poseRead
+ *  Return: uint8_t The result status 1: SuCCBss <=0: Fail
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_ParseAC_AlignmentReply(char* msg, COGN_AC_CAL_Rcv_t *poseRead)
+{
+    char * pch = NULL;
+    char * method = NULL;
+    uint8_t itemNum = 0U, ret = 0U;                                             // number of strings found
+    uint8_t commandStatus = 0u;                                                 // command status     
+    
+    if (!strncmp(msg,"AC",2U))                                                  // message is AC start hand-eye
+    {
+       pch = strtok(msg,",");                                                   // split it by commas
+       while (pch != NULL)
+       {
+          itemNum = ++itemNum % UINT8_MAX;
+          switch(itemNum)
+          {
+              case 2u:
+              poseRead->result = atoi(pch);
+              break;
+
+              case 3u:
+              poseRead->coordX = atol(pch);
+              break;
+
+              case 4u:
+              poseRead->coordY = atol(pch);
+              break;
+
+              case 5u:
+              poseRead->coordZ = atol(pch);
+              break;
+
+              case 6u:
+              poseRead->rotatZ = atol(pch);
+              break;
+
+              case 7u:
+              poseRead->rotatY = atol(pch);
+              break;
+
+              case 8u:
+              poseRead->rotatX = atol(pch);
+              break;
+				
+              default:
+              break;                                                    
+          }
+          pch = strtok(NULL, ",");                                              /* get the next string in the line */                             
+       }
+    }
+    return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_SendAC :  wrapper for writing AC to message buffer 
+ *                 (you can add tcp send as you wish)
+ *      
+ *  Parameters: char *msg, const uint32_t camID, const uint32_t feature, const COGN_pose_t pose
+ *              
+ *  Return: void
+ *----------------------------------------------------------------------------*/
+void COGN_SendAC( char *msg, const uint32_t camID, const uint32_t feature, const COGN_pose_t pose )
+{
+   API_GOGN_AC_CAL(msg,camID,feature,pose);
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_AC_CAL_Send: compose an AC message using SLMP 
+ *      
+ *  Parameters: char *msg, const uint32_t camId, const uint32_t feat,  
+ *              const COGN_pose_t *pose
+ *
+ *  Return: uint8_t
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_AC_CAL_Send( char *msg, const uint32_t camId, const uint32_t feat, const COGN_pose_t *pose )
+{
+   COGN_AC_CAL_Snd_t snd; 
+   size_t len = COGN_AC_SND_OFFST + sizeof(COGN_AC_CAL_Snd_t);
+   uint8_t ret = -1;
+   
+   snd.camId = camId;
+   snd.cmdId = COGN_AC_SLMP_CMD;
+   snd.featureId = feat;
+   snd.coordX = pose->coord.x;
+   snd.coordY = pose->coord.y;
+   snd.coordZ = pose->coord.z;
+   snd.rotatZ = pose->rotat.z;
+   snd.rotatY = pose->rotat.y;
+   snd.rotatX = pose->rotat.x;
+	
+   if (sizeof(msg) >= len)
+   {
+       memcpy((void*) msg+COGN_AC_SND_OFFST, (void*) &snd, sizeof(COGN_AC_CAL_Snd_t));
+       ret = len;
+   }
+   return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  COGN_AC_CAL_Receive: receive GCP message 
+ *      
+ *  Parameters: char *msg, COGN_AC_CAL_Rcv_t *rcv 
+ *  Return: uint8_t
+ *----------------------------------------------------------------------------*/
+uint8_t COGN_AC_CAL_Receive( char *msg, COGN_AC_CAL_Rcv_t *rcv )
+{
+   size_t len = COGN_AC_RCV_OFFST + sizeof(COGN_AC_CAL_Rcv_t);
+   uint8_t ret = -1;
+   
+   if (sizeof(msg) >= len)
+   {
+       memcpy((void*) rcv, (void*) msg+COGN_AC_RCV_OFFST, sizeof(COGN_AC_CAL_Rcv_t));
+       ret = len;
+   }
+   return ret;
+}
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
