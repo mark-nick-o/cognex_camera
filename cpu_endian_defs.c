@@ -29,7 +29,7 @@
 
 //Dependencies
 #include <stdint.h>
-#include "cpu_endian.h"
+/*#include "cpu_endian.h"*/
 #include "cpu_endian_defs.h"
 
 #ifdef __cplusplus
