@@ -5,6 +5,8 @@
 /* standard telnet commands                   */
 /* information refs : Semyonov Y.A. (GNC ITEF)*/
 /* Vladislav Bogomolov                        */ 
+/* Sean Middleditch                           */
+/* sean@sourcemud.org                         */
 /* written by AirCamPro                       */
 /* ------------------------------------------ */
 
@@ -14,39 +16,54 @@ extern "C" {
 
 #define DEFAULT_TELNET_PORT 23u
 
+/* RFC1143 state names */
+#define Q_NO 0u
+#define Q_YES 1u
+#define Q_WANTNO 2u
+#define Q_WANTYES 3u
+#define Q_WANTNO_OP 4u
+#define Q_WANTYES_OP 5u
+
+/* telnet NVT EOL sequences */
+static const char TELNET_CRLF[2u] = { '\r', '\n' };
+static const char TELNET_CRNUL[2u] = { '\r', '\0' };
+
+/* RFC1143 option negotiation state table allocation quantum */
+#define Q_BUFFER_GROWTH_QUANTUM 4u
+
 typedef enum {
-	Tel_Binary_exchange = 0,
-	Tel_echo = 1,
-	Tel_reconnecting = 2,
-	Tel_Suppressing_input_buffering	= 3,
-	Tel_Dialogue_about_the_size_of_the_message = 4,
-	Tel_status = 5,
-	Tel_Temporary_label = 6,
-	Tel_Remote_access_and_response = 7,
-	Tel_Length_of_output = 8,
-	Tel_Page_output_size = 9,
-	Tel_mode_displaying_characters_return = 10,
-	Tel_Withdrawal_of_horizontal_tabs = 11,
-	Tel_Installing_tab_position_withdrawal = 12,
-	Tel_Page_change_command_output_mode = 13,
-	Tel_The_output_vertical_tabs = 14,
-	Tel_Determines_position_vertical_tab = 15,
-	Tel_mode_displaying_symbol_line_translation = 16,
-	Tel_Extended_asciI_code_set = 17,
-	Tel_Return_logout = 18,
-	Tel_Byte_macro = 19,
-	Tel_Data_entry_terminal	= 20,
-	Tel_Supdup = 21,
-	Tel_Supdup_withdrawal = 22,
-	Tel_Departure_location = 23,
-	Tel_Terminal_type = 24,
-	Tel_End_of_recording = 25,
-	Tel_Tacacs_User_Id = 26,
-	Tel_Note_output	= 27,
-	Tel_Terminal_position_code = 28,
-	Tel_Mode = 29,
-	Tel_X3_PAD = 30,
-	Tel_Window_size	= 31,
+        Tel_Binary_exchange = 0,
+        Tel_echo = 1,
+        Tel_reconnecting = 2,
+        Tel_Suppressing_input_buffering = 3,
+        Tel_Dialogue_about_the_size_of_the_message = 4,
+        Tel_status = 5,
+        Tel_Temporary_label = 6,
+        Tel_Remote_access_and_response = 7,
+        Tel_Length_of_output = 8,
+        Tel_Page_output_size = 9,
+        Tel_mode_displaying_characters_return = 10,
+        Tel_Withdrawal_of_horizontal_tabs = 11,
+        Tel_Installing_tab_position_withdrawal = 12,
+        Tel_Page_change_command_output_mode = 13,
+        Tel_The_output_vertical_tabs = 14,
+        Tel_Determines_position_vertical_tab = 15,
+        Tel_mode_displaying_symbol_line_translation = 16,
+        Tel_Extended_asciI_code_set = 17,
+        Tel_Return_logout = 18,
+        Tel_Byte_macro = 19,
+        Tel_Data_entry_terminal = 20,
+        Tel_Supdup = 21,
+        Tel_Supdup_withdrawal = 22,
+        Tel_Departure_location = 23,
+        Tel_Terminal_type = 24,
+        Tel_End_of_recording = 25,
+        Tel_Tacacs_User_Id = 26,
+        Tel_Note_output        = 27,
+        Tel_Terminal_position_code = 28,
+        Tel_Mode = 29,
+        Tel_X3_PAD = 30,
+        Tel_Window_size = 31,
         Tel_TSPEED = 32,                                                        /* terminal speed */ 
         Tel_LFLOW = 33,                                                         /* remote flow control */ 
         Tel_LINEMODE = 34,                                                      /* Linemode option */ 
@@ -68,25 +85,25 @@ typedef enum {
         Tel_PRAGMA_LOGON = 138,               
         Tel_SSPI_LOGON = 139,                 
         Tel_PRAGMA_HEARTBEAT = 140, 
-        TELTM_EOF = 236,	                                                /* File end sign */
-        TELTM_SUSP = 237,	                                                /* Delay the current process */
+        TELTM_EOF = 236,                                                        /* File end sign */
+        TELTM_SUSP = 237,                                                        /* Delay the current process */
         TELTM_ABORT = 238,                                                      /* Abortion process */ 
-        TELTM_EOR = 239,	                                                /* End of recording */ 
-        TELTM_SE = 240,	                                                        /* Completion of the parameters reconciliation (end of subpence) */
-        TELTM_NOP = 241,	                                                /* No action */
-        TELTM_DM = 242,	                                                        /* SYNCH process data block */
+        TELTM_EOR = 239,                                                        /* End of recording */ 
+        TELTM_SE = 240,                                                         /* Completion of the parameters reconciliation (end of subpence) */
+        TELTM_NOP = 241,                                                        /* No action */
+        TELTM_DM = 242,                                                         /* SYNCH process data block */
         TELTM_BRK_Stop = 243,                                                   /* brk symbol (break); */
-        TELTM_IP_Interrupting = 244,	                                        /* IP function */
-        TELTM_io_Breaking = 245,	                                        /* AO function */
-        TELTM_AYT_Are_you_here = 246, 	                                        /* ayt function */
+        TELTM_IP_Interrupting = 244,                                            /* IP function */
+        TELTM_io_Breaking = 245,                                                /* AO function */
+        TELTM_AYT_Are_you_here = 246,                                           /* ayt function */
         TELTM_EC_erase_the_symbol = 247,                                        /* EC function */
-        TELTM_EL_To_erase_the_line = 248,	                                /* EL function */
-        TELTM_GA_Continue = 249,	                                        /* GA function */
-        TELTM_SB = 250,	                                                        /* The beginning of the subpence */
-        TELTM_Will = 251,	                                                /* Start execution (optional) */
-        TELTM_WONT_will_not = 252,	                                        /* Failure to perform or continue execution (optional) */
-        TELTM_DO_perform = 253,	                                                /* Insoculates the request that the other system performs (optional) */
-        TELTM_Dont_No = 254,	                                                /* Requires another system to stop execution (optional) */
+        TELTM_EL_To_erase_the_line = 248,                                        /* EL function */
+        TELTM_GA_Continue = 249,                                                /* GA function */
+        TELTM_SB = 250,                                                         /* The beginning of the subpence */
+        TELTM_Will = 251,                                                       /* Start execution (optional) */
+        TELTM_WONT_will_not = 252,                                              /* Failure to perform or continue execution (optional) */
+        TELTM_DO_perform = 253,                                                 /* Insoculates the request that the other system performs (optional) */
+        TELTM_Dont_No = 254,                                                    /* Requires another system to stop execution (optional) */
         TELTM_IEC = 255                                                         /* Interpreted as the beginning of a team sequence which start @  TEL_EOF */
 } Telnet_Cmds_e;
 
@@ -103,11 +120,22 @@ typedef enum {
 #define API_COGN_TCP_TEL_JOB_NEXT(X) do{ strcpy(X,"TS"); } while(0)
 #define API_COGN_TCP_TEL_STOP(X) do{ strcpy(X,"SO1"); } while(0)
 
+#define COGN_MAX_MSG_SZ 80u
+
+/*! TERMINAL-TYPE codes. */
+#define TELNET_TTYPE_IS 0u
+#define TELNET_TTYPE_SEND 1u
+
+/* =============== function prototypes ====================================== */
 int8_t transbinaryStart( unsigned char* msg );
 int8_t transbinaryStop( unsigned char* msg );
 int8_t transNoEcho( unsigned char* msg );
 int8_t transNoSurpressBuffer( unsigned char* msg );
 int8_t COGN_sendRecipe( unsigned char * msg, unsigned char *rcpFileName );
+int8_t transSubNegHead( unsigned char* msg, uint8_t telopt );
+unsigned char** transSubNegComplete( uint8_t telopt, unsigned char* toSend  );
+void telnet_ttype_is( unsigned char telnet[3u][COGN_MAX_MSG_SZ], char* ttype );
+void telnet_ttype_send( unsigned char *telnet );
 
 /*
    IAC WILL TRANSMIT-BINARY,
@@ -200,6 +228,72 @@ int8_t transNoSurpressBuffer( unsigned char* msg )
   return ret;
 }
 
+/*-----------------------------------------------------------------------------
+ *  transSubNegHead: telnet send subnegotiation header
+ *      
+ *  Parameters: unsigned char* msg
+ *  Return: int8_t
+ *----------------------------------------------------------------------------*/
+int8_t transSubNegHead( unsigned char* msg, uint8_t telopt )
+{
+  int8_t ret = -1;
+  if (sizeof(msg) >= 3u)
+  {
+     msg[0u] = TELTM_IEC;
+     msg[1u] = TELTM_SB;
+     msg[2u] = telopt;
+     ret = 1;
+  }
+  return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  transSubNegComplete: send complete subnegotiation
+ *      
+ *  Parameters: uint8_t telopt, unsigned char* toSend
+ *  Return: unsigned char**
+ *----------------------------------------------------------------------------*/
+unsigned char** transSubNegComplete( uint8_t telopt, unsigned char* toSend  )
+{
+  unsigned char msg[3u][COGN_MAX_MSG_SZ];                                       /* message sends in 3 parts */
+  msg[0u][0u] = TELTM_IEC;                                                      /* first message */
+  msg[0u][1u] = TELTM_SB;
+  msg[0u][2u] = telopt;
+  memcpy((void*)&msg[1u], (void*) toSend, strlen(toSend));                      /* second message */
+  msg[2u][3u] = TELTM_IEC;                                                      /* end message */
+  msg[2u][4u] = TELTM_SE;
+  return &msg;
+}
+/*-----------------------------------------------------------------------------
+ *  telnet_ttype_send: send TERMINAL-TYPE SEND command
+ *      
+ *  Parameters: unsigned char *telnet
+ *  Return: void
+ *----------------------------------------------------------------------------*/
+void telnet_ttype_send(unsigned char *telnet) 
+{
+    static const unsigned char TT_SEND[6u] = { TELTM_IEC, TELTM_SB, Tel_Terminal_type, TELNET_TTYPE_SEND, TELTM_IEC, TELTM_SE };
+    memcpy((void*)telnet,(void*) TT_SEND, sizeof(TT_SEND));
+}
+
+/*-----------------------------------------------------------------------------
+ *  telnet_ttype_send: send TERMINAL-TYPE IS command
+ *      
+ *  Parameters: unsigned char telnet[3u][COGN_MAX_MSG_SZ], const char* ttype
+ *  Return: void
+ *----------------------------------------------------------------------------*/
+void telnet_ttype_is(unsigned char telnet[3u][COGN_MAX_MSG_SZ], char* ttype) 
+{
+    static const unsigned char TT_IS[4u] = { TELTM_IEC, TELTM_SB, Tel_Terminal_type, TELNET_TTYPE_IS };
+    static const unsigned char TT_END[2u] = { TELTM_IEC, TELTM_SE };
+    if (ttype == NULL) 
+    {
+	ttype = "NVT";
+    }
+    memcpy((void*)&telnet[0u],(void*) TT_IS, sizeof(TT_IS));                    /* message 1 */
+    memcpy((void*)&telnet[1u],(void*) ttype, strlen(ttype));                    /* message 2 */
+    memcpy((void*)&telnet[2u],(void*) TT_END, sizeof(TT_END));                  /* message 3 */
+}
 /*-----------------------------------------------------------------------------
  *  COGN_sendRecipe: telnet send of a recipe for cognex camera
  *      
