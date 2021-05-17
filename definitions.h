@@ -13,9 +13,11 @@ extern "C" {
 
 #include <stddef.h>                                                             /* defines size_t and NULL */
 
+/* add this if you need it 
 #ifndef __GNUC__
-#define __GNUC__ 1                                                              /* define the compiler as a derivative of gcc   */
-#endif                                                                          /* set the level */
+#define __GNUC__ 1                                                               define the compiler as a derivative of gcc   
+#endif                                                                           set the level 
+*/
 
 /* #define D_FT900                                                              for mikroC for FT90x */
 #ifdef D_FT900
