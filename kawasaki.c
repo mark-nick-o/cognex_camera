@@ -209,3 +209,6 @@ void kawasakiRcvSendmsg( const char * rcv, char * send, kawasaki_robot_t *rob )
     }
 	
 }
+#ifdef __cplusplus
+}
+#endif
