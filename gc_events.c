@@ -5,6 +5,10 @@
 #include "cpu_endian_defs.h"
 #include <stdint.h>
 
+#ifdef __cplusplus
+ extern "C" {
+#endif
+     
 /* clips from my general library used here */
 bool Quaternion_from_euler(float64_t roll, float64_t pitch, float64_t yaw, dquat *q);
 
@@ -30,3 +34,6 @@ bool Quaternion_from_euler(float64_t roll, float64_t pitch, float64_t yaw, dquat
     q->w = cr2*cp2*sy2 - sr2*sp2*cy2;
     return true;
 }
+#ifdef __cplusplus
+}
+#endif
