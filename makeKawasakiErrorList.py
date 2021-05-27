@@ -3,9 +3,6 @@
 # python case tool for generating the c code / python script needed for error listing
 # all possible errors from the kawasaki robot
 #
-# you might want to move you're most common errors to the top in kawasaki_error_codes.txt
-# so that the code doesnt have to go right down the list before you find it.
-#
 # ===================================================================================
 
 if __name__ == '__main__':
@@ -41,6 +38,7 @@ print('{')
 print('    rob->state = KAWA_IDLE;')
 print('}')
 for line in Lines:
+    line = line.replace('\n', '')
     line1 = line.split(' ')
     firstfield=line1.pop(0)	
     print('else if (strncmp(&rob->feedbackError, KAWA_ERROR_%s, strlen(KAWA_ERROR_%s)) == 0u)' % (firstfield,firstfield))	
@@ -72,6 +70,7 @@ newline = []
 print('if (feedback_error == const.NO_ERROR_FEEDBACK):')	
 print('    return True')
 for line in Lines:
+    line = line.replace('\n', '')
     line1 = line.split(' ')
     firstfield=line1.pop(0)	
     print('elif (feedback_error == const.KAWA_ERROR_%s):' % (firstfield))	
