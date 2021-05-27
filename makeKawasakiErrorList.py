@@ -3,6 +3,9 @@
 # python case tool for generating the c code / python script needed for error listing
 # all possible errors from the kawasaki robot
 #
+# you might want to move you're most common errors to the top in kawasaki_error_codes.txt
+# so that the code doesnt have to go right down the list before you find it.
+#
 # ===================================================================================
 
 if __name__ == '__main__':
