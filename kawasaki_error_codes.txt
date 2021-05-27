@@ -1,0 +1,1638 @@
+P0100 legal input data.
+P0101 Too many arguments.
+P0102 Input data is too big.
+P0103 Illegal PC number.
+P0104 Illegal Robot number.
+P0105 Illegal program.
+P0106 Illegal priority
+P0107 Invalid coordinate value.
+P0108 Syntax error.
+P0109 Invalid statement.
+P0110 Specify full spelling of command.
+P0111 Cannot use this command/instruction in current mode.
+P0112 Cannot execute with DO command.
+P0113 Not a program instruction.
+P0114 Illegal expression.
+P0115 Illegal function.
+P0116 Illegal argument of function.
+P0117 Invalid variable (or program) name.
+P0118 Illegal variable type.
+P0119 Incorrect array suflix.
+P0120 Incongruent num. of parenthesis.
+P0121 Expected to be a binary operator.
+P0122 Illegal constant.
+P0123 Illegal qualifier.
+P0124 Invalid label.
+P0125 Missing expected character.
+P0126 Illegal switch name.
+P0127 Specified switch name needs full spelling.
+P0128 Illegal format specifier.
+P0129 Duplicate statement label.
+P0130 Cannot define as array.
+P0131 No. of dimension in eiray exceeds 3.
+P0135 Local variable expected.
+P0136 Unexpected suffix.
+P0137 Mismatch of arguments at subroutine call.
+P0138 Mismatch of argument type at subroutine call.
+P0139 Illegal control structure.
+P0140 Step:XX Wrong END statement.
+P0141 Step:XX Extra END statement.
+P0142 Step:XX Cannot terminate DO with END.
+P0143 Step:XX No VALUE statement after CASE.
+P0144 Step:XX Preceding IF missing.
+P0145 Step:XX Preceding CASE missing.
+P0146 Step:XX Preceding DO missing.
+P0147 Step:XX Cannot find END of XX.
+P0148 Step:XX Too many control structures.
+P0149 Variable (or program) already exists.
+P0150 Variable of different type already exists.
+P0151 Intemal buffer over due to complicated expression.
+P0152 Undefined variable (or program).
+P0153 Illegal clock value.
+P0IS4 Missing
+P0155 Missing').
+P0156 Missing’:
+PO157 Missing "TO".
+P0158 Missing "BY".
+P0159 Missing’.
+P0160 Specify "ON" or "OFF".
+P0161 Robot Num. must be specified.
+P0162 Cannot modify position data in this instruction.
+P0163 Name of program, variable, file, etc. misspecified.
+P0164 Illegal Robot network ID.
+P0165 Step:XX No SVALUE statement after SCASE.
+P0166 Step:XX Preceding SCASE missing.
+P1000 Cannot execute program because motor power is OFF.
+P1001 Cannot execute program in TEACH mode.
+P1002 Cannot execute program because teach lock is ON.
+P1003 Cannot execute program because of EXT. HOLD input. 
+P1004 Cannot execute program being reset
+P1005 Cannot execute program because of EXT. START ENABLE.
+P1006 Cannot execute program because of EXT. START DISABLE. 
+P1007 Start signal was not input at a RPS_END step. 
+P1008 Cannot execute program, HOLD sw. engaged. 
+P1010 Robot control program is already running. 
+P1011 Cannot continue this program. Use EXECUTE. 
+P1012 Robot is moving now. 
+P1014 Cannot execute because program already in use. 
+P1015 Cannot delete, in use by another command. 
+P1016 Cannot delete, used in program. 
+P1017 Cannot delete a program in Editor. 
+P1018 KILL or PCKILL to delete program. 
+P1019 PC program is running. 
+P1020 Cannot operate, teach pendant in operation. 
+P1021 Cannot execute with DO command. 
+P1022 Cannot execute with MC instruction. 
+P1023 Cannot execute in Robot program. 
+P1024 Statement cannot be executed. 
+P1025 Cannot be executed, function not set. 
+P1026 Cannot KILL program that is running. 
+P1027 Cannot edit program, teach lock is ON. 
+P1028 Cannot paste. 
+P1029 Program name not specified. 
+P1030 Program interlocked by other procedure. 
+P1031 No free memory. 
+P1032 No program step. 
+P1033 Program name already exists. 
+P1034 This program is not editable. 
+PI035 Record inhibited. Set [Record Accept] and operate again. 
+P1036 Program change inhibited. Set [Accept] and operate again. 
+P1037 Program name cannot be called "calibload2. 
+PI038 Program does not exist. PI039 Teach pendant is not connected. 
+P1040 Cannot execute this command in I/F panel. 
+P1041 Auto monitor command failure. 
+P1036 Program change inhibited. Set [Accept] and operate again. 
+P1037 Program name cannot be called "calibload2. 
+P1038 Program does not exist. 
+P1039 Teach pendant is not connected. 
+P1040 Cannot execute this command in I/F panel. 
+P1041 Auto monitor command failure. 
+P1043 [Cannot execute in REPEAT mode.
+P1044 Cannot execute on because motor power is ON.
+P1045 Set TEACH mode and teach lock ON.
+P1046 Turn on trigger switch.
+P1047 The disconnected robot cannot select the program/step.
+P1048 Cannot operate during execution of brake check.
+P1049 Program is locked.
+P1050 Exist protected program.
+P1051 Cannot unlock protection while program running.
+P1052 Because the memory was full, could not copy the program.
+P1053 Because the memory was full, the copy of program was suspended,
+P1054 Turn off trigger switch.
+P1055 Teach the axis lock instruction at the step of clamp ON.
+P1056 Teach the axis unlocking instruction at the step of clamp ON.
+P2000 Turn OFF motor power.
+P2001 Turn HOLD/RUN sw. to HOLD.
+P2002 There is no extemal axis.
+P2003 Illegal positioner type.
+P2004 Cannot change, user data already exists.
+P2005 Graphic area error.
+P2006 Option is OFF.
+P2007 Cannot execute because executed by other device.
+P2008 Device is not ready.
+P2009 Illegal file name.
+P2010 Disk is not ready.
+P2011 Invalid disk format.
+P2012 Disk is write-protected.
+P2013 Disk full.
+P2014 Too many files.
+P2015 Cannot write on read-only file.
+P2016 Cannot open the file.
+P2017 Cannot close the file.
+P2018 Storage data logging now.
+P2019 ADC function already in use.
+P2020 Illegal device number.
+P2022 Cannot use DOUBLE OX.
+P2023 In cooperative mode.
+P2024 Invalid coordinate value X.
+P2025 Invalid coordinate value Y.
+P2026 Invalid coordinate value Z.
+P2027 Cannot use signal, already used in UF panel.
+P2028 Arm ID board is busy.
+P2029 Axis setting data is incorrect.
+P2030 Unknown Aux. function number.
+P2031 Deleted step was destination step of Jump, Call instruction.
+P2032 Incorrect number input as WHERE parameter.
+P2033 Logging is running.
+P2034 Undefined memory.
+P2035 Non data.
+P2036 Memory verify error.
+P2037 Real time path modulation is already running.
+P2038 Matrix calculation error.
+P2039 Cannot start cycle from FN instruction.
+P2040 Card is not ready.
+P2041 Wrong card loaded.
+P2042 Card is write-protected.
+P2043 Card battery is low voltage
+P2044 Card is not formatted.
+P2045 Cannot format this card
+P2046 Card initialization error.
+P2047 File is already open.
+P2048 File does not exist in card.
+P2049 Attempted to open too many files.
+P2050 Unexpected error during card ac:
+P2051 Illegal sequence numbers for file VO data.
+P2052 [LSEQJProgram includes unavailable instruction,
+P2053 [LSEQJToo many steps exist.
+P2054 [LSEQJInvalid type of signal variable.
+P2055 [LSEQJProgram is already running.
+P2056 [LSEQJNo.of signal is outside specifiable range
+P2057 [SerialFlash]Cannot open file.
+P2058 [SerialFlash]Data read error.
+P2060 [SerialFlash]File or directory doesn't exist.
+P2061 File does not exist in floppy.
+P2062 [EDD/PC_CARD]Failure in writing data per verify function.
+P2063 [FDD/PC_CARD]Faulty response from verify function.
+P2064 [EDD JNo space available.
+P2065 [Multi Disks]Invalid disk was loaded.
+P2066 Boot flash state is write-disenable.
+P2067 [Serial Flash]File directory error.
+P2068 Cannot execute program being edited now
+P2069 [EDD/PC_CARD]Device already in use.
+P2070 No more data can be registered.
+P2071 C/S switch set to disable.
+P2072 [LSEQ]Maximum cycles of execution.
+P2073 [LSEQJOther program is waiting execution.
+P2074 Floppy disk is broken.
+P2075 Channel number for JtXX is incorrect.
+P2076 SAVE/LOAD in progress
+P2077 [Serial Flash]Access error occurred.
+P2078 [Serial Flash]Upload or Download was aborted.
+P2079 Card full.
+P2080 Can not execute because of the channel assigned joint No.
+P2083 User log is not created.
+P2084 The number of registration of a user log was changed.
+P2085 Cannot register user log, no free memory.
+P2086 User log data is not registered.
+P2087 The kind of user log data and specified data is different.
+P2088 Cannot load the improper compensation parameter.
+P2090 No servo data of the servo spec.
+P2091 [Serial Flash]The file or directory already exists.
+P2092 [Serial Flash]The directory is not yet empty.
+P2093 [Serial Flash]There is no space to write.
+P2094 [Serial Flash]Cannot access the file for read only.
+P2095 No response from option CPU board.
+P2096 Cannot execute cycle start after palletizing motion aborted.
+P2097 Cannot change steps during palletizing motion.
+P2098 The axis is not for endless rotation.
+P2099 Cannot change palletizing state into ON
+P2100 Macro error.
+P2101 Nesting is too deep in include file.
+P2102 File or folder is missing.
+P2103 USB memory is not inserted.
+P2104 Failed to download softwares.
+P2105 Available USB memory is low
+P2106 Available compact flash memory is low.
+P2107 System is now downloading the software.
+P2108 There is no software in the USB memory.
+P2109 Cannot execute program because of simultaneously operation sig. inputting.
+P2110 [USB/CF]File write error.
+P2111 Please retum spin-axis to the original position.
+P2112 File name is too long.
+P2113 Cannot start cycle from KT instruction.
+P4500 {FIELD-BUS)Interface not enabled.
+P4501 {DEVNET)Node XX not in the scanlist.
+P4502 {DEVNET)Already in that mode.
+P4503 Duplicate signal number.
+P4504 FIELD-BUS)signals limit over.(max. XX)
+P4505 (CC-LINK)Version mismatch.
+P4506 {EN/P-M)Already in specified mode.
+P4507 {FIELD-BUS)Cannot execute with old ANYBUS card firmware.
+P4508 {FIELD-BUS)Cannot communicate with interface card.
+P4509 {FIELD-BUS)Wrong interface card type error.
+P4510 {FIELD-BUS)Initialization of the card is not complete.
+P5000 Waiting weld completion.
+P5001 Waiting retract or extend pos. input signal,
+P5002 Spot sequence is running.
+P5003 Extemnal-axis type and Gun type data mismatch.
+P6000 Shifted location of STEPXX is out of range.
+P6001 STEPXX in source program is out of motion range.
+P6002 Specified painting data bank does not exist.
+P6003 Cannot execute program because of suspend playback.
+P6004 Cannot execute because of the Air Purge sequence.
+P6005 Cannot execute because robot is disconnected.
+P6006 Cannot specify circular move to end point of spraying path.
+P6007 Number of taught points for spraying path exceeds the limit.
+P6008 Number of instructions between points exceeds the limit.
+P6009 Shortage in number of taught points for spraying path.
+P6010 Selected program other than pgxxx.
+P6011 Cannot move, change to joint interpolation or add points.
+P6012 Cannot edit program, TEACH LOCK is OFF,
+P6500 Cannot generate working line direction.
+P6501 Illegal tool posture.
+P6502 No weld database.
+P6503 Cannot change weld condition.
+P6504 Step:XX Preceding LSTART missing.
+P6305 The axis type is not set as the servo torch
+P6506 Shift function can not be used in CIR interp.
+P7000 Cannot program reset, because not at home position 1.
+P7001 In force meas. mode, only NOP Interp. avail.
+P7002 Cannot change stroke because clamp on now.
+P7003 Servo parameter file is not found.
+P7500 Turn motor power on.
+P7501 Because of repeat mode,wwait to teach mode.
+P7502 Over the number which can be registered in interruption.
+P7503 Cannot execute program in error masking.
+P7504 ONC/ONCI channel has already received.
+P7505 Cannot execute in saving.
+P7506 Cannot accept a record because robot is moving.
+P7507 Amount of the data change is too large in repeat operation.
+P8400 Cannot execute program because of CLAMP MODE sig. inputting.
+P8800 The controller number is duplicated.
+P8801 The IL robot number is duplicated.
+P8802 The IL server is processing.
+P8803 The connection with the IL server is disabled.
+P8804 IL server IP address is not yet set.
+P8805 Set the mode to Teach.
+P8806 Turn off servo.
+P8807 ILL)Communication time out error.
+P8808 ILL)Time out error for PC server processing.
+P8809 ILL)PC server processing demand completion waiting is time out error.
+P8810 ILL)Error in auto interlock setting system.
+P8811 ILL)Could not release operation lock for slave controller.
+P8812 ILL)Could not communicate with the PC server.
+P8813 The IL robot number is unregistered.
+P9000 Unacceptable control-direction.
+P9001 Unacceptable control-distance.
+P9002 Same data are specified for some reference points
+P9003 Reference points1,2,3 are on a straight line.
+P9004 Reference point 4 is out of allowed range.
+P9005 Cannot manipulate because teach lock is ON.
+W1000 Cannot move along straight line JIXX in this configuration.
+W1001 Over maximum joint speed in check. Set low speed.
+W1002 Operation log information was cleared.
+W1003 Calibration failed. Retry after changing posture.
+W1004 JtXX out of motion range. Check operational area.
+W1005 Illegal center of gravity, default parameter is set
+W1006 Incorrect load moment. Default parameter is set.
+W1007 Application setting changed. Turn OFF & ON the control power.
+W1008 Parameter changed. Tum OFF & ON the control power.
+W1009 Position envelope error of IKXX at last E-stop.
+W1010 RAM battery low voltage.
+Wi0ll [PLC alarm. (XX)
+W1012 Servo parameter changed. Tur OFF & ON the control power.
+W1013 Encoder battery low voltage. [Servo(XX)]
+W1014 Number of axes changed, Reinitialize,
+W1015 Possibility of failure.
+W1016 Torque of motor is over limit. IXX
+W1017 Encoder battery low voltage [Extemal axis(XX)]
+W1018 Network parameter is changed. Tum OFF & ON the control power.
+W1019 The registered value is beyond rated load.
+W1020 Error sector was found.
+W1021 The optimal posture can't be found at present location.
+W1022 Not execute ZRPAADSET command.
+W1023 Teach Plug Position wrong or P-N low voltage [XX]
+W1024 Deviation from last stop position exceeds the limit set.
+W1025 (SSCNET)Excessive regenerative warning of ItXX.(CodeXX)
+W1026 (SSCNET)Motor overload waming of IXX.(CodeXX)
+W1027 While lifter is locked it cannot move
+W1028 The center of gravity for payload is over limit. Reduction gears could be broken,
+W1029 The center of gravity for payload is over limit. Use the JIS at zero degree only.
+W1030 Braking torque of KX has decreased.
+W1031 Cannot move along straight line unless ItXX value is 0 degree.
+W1032 Cannot move straight - the flange faces direction of upper sphere.
+W1033 Cannot change orientation.
+W1034 Encoder power voltage is low. IXX
+W1035 Encoder battery voltage is low. Check zeroing . IXX
+W1036 Step data is different.
+W1037 The axis is not for endless rotation.
+W1038 Encoder rotation data is abnormal.(JtXX)
+W1039 Encoder response error.(ItXX)
+W1040 Encoder communication error.(JtXX)
+W1041 Speed error XX.
+W1042 Encoder rotation speed exceeded limit (JIXX)
+W1043 Encoder temperature exceeded limit (XXX)
+W1044 Velocity envelope error in endless rotation axis (J1XX)
+W1045 Abn. curr feedback JtXX. (Amp fail, pwr harness disconnect)
+W1046 Encoder ABS-track error.(ItXX)
+W1047 Encoder INC-pulse error.(JIXX)
+W1048 No. of encoder errors exceeded limit IXX.
+W1049 (RSC)TCP communication error occurred (Code:XX)
+W1050 (RSC)Command value output communication error occurred. (Code:XX)
+W1051 (RSC)USB communication initialize error occurred,(Code:XX)
+W1052 (RSC)RC parameter generation error occurred (Code:XX)
+W1053 (FANXX-XX)Rotational speed of fan is below the limit, (ServoBoardXX)
+W1054 AVR reaches the expected lifetime soon
+W1055 Vision cycle timer over.
+W1056 [Main CPU board]CPU temperature exceeded the limit. (XX 1/1000 deg ©)
+W1057 Cannot move along straight line tool in this configuration.
+W1058 Link3 interferes in ground.
+W1059 LinkS interferes in base.
+W1060 Linké interferes in base.
+W1061 TP changed. Confirm current pose, and operate the robot.
+W1062 The TP backlight lighting time exceeded the limit.
+W1063 The number of ON/OFF operations of MC relay exceeded the limit.(SrvB'dXX)(MCXX)
+W1064 Exceeded the limit.(Parts:XX)
+W3806 Total JUXX the total travel dist. exceeded limit, maint. is required.
+W3807 Total times of MC ON exceeded limit, maint. is required.
+W3808 Total times of servo ON exceeded limit, maint. is required.
+W3809 Total times of E-stop exceeded limit, maint. is required.
+W3810 JtXX total (curr)3-motion dist. exceeded limit, maint. is required.
+W3811 JtXX RMS value of current exceeded limit, maint. is required
+W3812 Power supply(1) for input to NO.XX I/O board is abnormal.
+W3813 Power supply(2) for input to NO.XX I/O board is abnormal.
+W3814 Power for output from NO.XX I/O board is abnormal or Fuse blown.
+W4000 No response from PLC to Break down info writing.
+W4001 Break down info cannot write on PLC[EC = XX}.
+W4002 Break down info writing cannot receive correct answer.
+W4500 FIELD-BUS)Slave port OFFLINE.
+W4501 FIELD-BUS)Master port OFFLINE.
+W4502 CC-LINK)Data link error on Master board. XX
+W5000 Release wait cond,, in force measurement mode.
+W5001 PLC communication error.
+W5002 Weld controller XX not connected.
+W5003 Weld controller XX no response.
+W5004 Weld controller XX response error.
+W5005 (Spot welding)No response from RWC XX.
+W5006 (Spot welding)RWC response error XX.
+W5007 (Spot welding) Weld fault XX.
+W5008 (Spot welding)Cable disconnection error XX.
+W5009 (Spot welding)Intemal leak XX.
+W5010 (Spot welding)Main cable exchange alarm XX.
+W5011 (Spot welding)No connection with RWC XX.
+W5012 Cannot achieve set force.
+W5013 Tip wear over the limit. (MOVING SIDE)
+W5014 Tip wear over the limit. (FIXED SIDE)
+W5015 (Spot welding) Welding current has decreased
+W5016 Weld waming has arisen. (CodeXX)
+W6000 Grease reduction gears and motor bearings.
+W6001 Replace the robot main cable.
+W6002 Replace the cooling fans in the controller.
+W6003 Replace the DC power supply in the controller.
+W6004 Replace the servo power unit
+W6005 Replace the power amplifier for the robot arm.
+W6006 Replace the power amplifier for the robot wrist
+W6007 Replace the power amplifier for the traveller.
+W6008 Exp interlock is disabled by jumper wiring.
+W6009 Not selected Internal pressure Explosion-proof.
+W6010 Disable Gun Relative Distance Check (ID:XX)
+W6011 Shutter release signal variable logging error.
+W7000 Cannot operate excluding the servo welding gun axis. Because the pressure
+W7001 Detected board gap quantity error.
+W7002 Detected board gap quantity error.
+W7003 The foreign body was detected in the Tip Dress.
+W7004 Value of auto collect exceeds work abnormality level.
+W7500 Can't continue check motion because separated from last pos.
+W7501 Cannot execute a program because of LOW voltage.
+W8400 Cannot achieve set force of IXX.
+W8800 Command value almost exceeds virtual safety fence.(SphereXX, LineXX)
+W8801 Command value almost exceeds virtual safety fence.(SphereXX, ZUpper)
+W8802 Command value almost exceeds virtual safety fence.(SphereXX, ZLower)
+W8803 Command value almost invades restricted space (SphereXX, Part.XX LineXX)
+W8804 Command value almost invades restricted space.(SphereXX, Part.XX ZUpper)
+W8805 Command value almost invades restricted space.(SphereXX, Part XX ZLower)
+W8806 Command value almost exceeds virtual safety fence (ToolBox, LineXX)
+W8807 Command value almost exceeds virtual safety fence,(ToolBox, ZUpper)
+W8808 Command value almost exceeds virtual safety fence.(ToolBox, ZUpper)
+W8809 Command value almost invades restricted space.(ToolBox, Part. XX)
+W8810 Command value almost exceeds virtual safety fence.(LinkXX, LineXX)
+W8811 Command value almost exceeds virtual safety fence (LinkXX, ZUpper)
+W8812 Command value almost exceeds virtual safety fence. (LinkXX, ZLower)
+W8813 Command value almost invades restricted space.(LinkXX, Part XX LineXX)
+W8814 Command value almost invades restricted space (LinkXX, Part.XX ZUpper)
+W8815 Command value almost invades restricted space,(LinkXX, Part XX ZLower)
+W8851 Detected area interference.
+W8852 Detected arm interference (XX, XX)
+W8853 ILL)Detected arm interference (XX, XX)
+W8854 ILL)Communication time out error.
+W8855 TLL)Sequence processing demand completion waiting is time out error.
+W8856 ILL)Sequence processing completion waiting is time out error.
+W8857 ILL)Sequence processing system error.
+W8858 ILL)Create/Set processing completion waiting is time out error.
+W8859 ILL)Inter lock less function system error.
+W8860 [ARM CONTROL b'd]Data received from IL server is invalid.
+W8900 Can not operate because motion limitation signal was input.
+E0001 Unknown error.
+E0002 [Servo boardXX]CPU BUS error.
+E0100 Abnormal comment statement exists.
+E0101 Nonexistent label.
+E0102 Variable is not defined.
+E0103 Location data is not defined.
+E0104 String variable is not defined.
+E0105 Program or label is not defined
+E0106 Value is out of range.
+E0107 Noarray suflix.
+E0108 Divided by zero.
+E0109 Floating point overflow.
+E0110 String too long.
+E0111 Attempted operation with neg. exponent.
+E0112 Too complicated expression,
+E0113 No expressions to evaluate,
+E0114 SQRT parameter is negative.
+E0115 Array suffix value outside range.
+E0116 Faulty or missing argument value.
+E0117 Incorrect joint number.
+E0118 Too many subroutine calls.
+E0119 Nonexistent subroutine.
+E0120 No destination program.
+E0121 Cannot specify the jump source program as jump destination.
+E0900 Block step instruction check sum error.
+E0901 Step data is broken.
+E0902 Expression data is broken.
+E0903 Check sum error of system data,
+E1000 ADC channel error.
+E1001 ADC input range error.
+E1002 PLC interface error.
+E1003 Built-in PLC is not installed.
+E1004 INTER-bus board is not ready.
+E1005 Spin axis encoder difference error.
+E1006 Touch panel switch is short-circuited.
+E1007 Power sequence board is not installed.
+E1008 Second Power sequence board is not installed.
+E1009 [No.XX 1/0 board is not installed
+E1010 Power sequence detects error.
+E1011 Built-in sequence board is not installed.
+E1012 RV/O board or C-NET board is not installed.
+E1013 INTER-BUS board is not installed.
+E1014 Dual port memory for communication is not installed.
+E1015 Amp Interface board is not installed (Code=XX)
+E1016 [NoXX CC-LINK board is not installed.
+E1017 PLC eror.Error code is Hex.XX.
+E1018 INTER-BUS status error.
+E1019 Power sequence board for safety unit is not installed.
+E1020 External equipment is abnormal.
+E1021 Arm ID board error. (CodeXX)
+E1022 Power sequence board error. (CodeXX)
+E1023 Communication error in robot network.
+E1024 EXT.AXIS release sequence error.(CodeXX)
+E1025 EXT.AXIS connect sequence error.(CodeXX)
+E1026 Main CPU ID mismatch.
+E1027 Safety circuit was cut OFF.
+E1028 JXX motor overloaded.
+E1029 Encoder rotation data is abnormal.(J1XX)
+E1030 Encoder data is abnormal.(ItXX)
+E1031 Miscount of encoder data.(JIXX)
+E1032 Mismatch ABS and INC encoder data(ItXX).
+E1033 Encoder line error of (JIXX).
+E1034 Encoder initialize error (ItXX).
+E1035 Encoder response error(JtXX).
+E1036 Encoder communication error.(J1XX)
+E1037 Encoder data conversion error (J1XX)
+E1038 Encoder ABS-track error.(J1XX)
+E1038 Encoder ABS-track error.(JtXX)
+E1039 Encoder INC-pulse error.(JtXX)
+E1040 Encoder MR-sensor error. (IXXX)
+E1041 Limit switch (11XX) is ON.
+E1042 Limit switch signal line is disconnected.
+E1043 Teach Plug is abnormal.
+E1044 Destination position is out of the specified area.
+E1045 (Spot welding)Gun-clamp mismatch.
+E1046 Too short distance between start point and end point.
+E1047 Axis number is not for conveyor follow mode.
+E1048 Offset data of zeroing is illegal value.
+E1049 Current position is out of the specified area
+E1050 Encoder and brake power off signal not dedicated.
+E1051 Incorrect double OX output
+E1052 Work sensing signal is not dedicated.
+E1053 Work sensing signal already input.
+E1054 Cannot execute motion instruction.
+E1055 Start point position error for circle.
+E1056 MASTER robot already exists.
+E1057 Check to which robot MASTER/ALONE were instructed.
+E1058 SLAVE robot already exists.
+E1059 Not an instruction for cooperative motion,
+E1060 Cannot execute in check back mode.
+E1061 Cannot execute in ONE program.
+E1062 Jt2 and Jt3 interfere during motion to start pose.
+E1063 Jt2 and Jt3 interfere during motion to end pose.
+E1064 Illegal pallet number.
+E1065 Illegal work number.
+E1066 Illegal pattern number.
+E1067 Illegal pattern type.
+E1068 Illegal work data.
+E1069 Illegal pallet data.
+E1070 ON/ONI signal is already input.
+E1071 XMOVE signal is already input.
+E1072 Home position data is not defined.
+E1073 Illegal timer number.
+E1074 Over maximum signal number.
+E1075 Illegal clamp number.
+E1076 Cannot use negative time value.
+E1077 No value set.
+E1078 Illegal signal number.
+E1079 Cannot use dedicated signal.
+E1080 Not RPS mode.
+E1081 Cannot use negative value.
+E1082 Out of absolute lower motion range limit.
+E1083 Out of absolute upper motion range limit.
+E1084 Out of set lower motion range limit.
+E1085 Out of set upper motion range limit.
+E1086 Start point for JEXX beyond motion range.
+E1087 End point for JXX beyond motion range.
+E1088 Destination is out of motion range.
+E1089 Cannot do linear motion in current configuration.
+E1090 External modulation data is not input.
+E1091 External modulation data is abnormal.
+E1092 Modulation data is over limit.
+E1093 Incorrect motion instruction to execute modulate motion.
+E1094 Illegal joint number.
+E1095 Cannot execute motion instruction in PC program.
+E1096 Incorrect auxiliary data settings.
+E1097 Missing CIMOVE or C2MOVE instruction.
+E1098 CIMOVE(CIR1)instruction required before CAMOVE.
+E1099 Unable to create arc path, check positions of the 3 points.
+E1100 Cannot execute in sealing specification,
+E1101 Can only execute in sealing specification.
+E1102 Option is not set, cannot execute.
+E1103 Over conveyer position.
+E1104 [Too many SPINMOVE instructions.
+E1105 Start/Destination point is in protected space.
+E1106 Cannot execute in this robot.
+E1107 Cannot use SEPARATE CONTROL.
+E1108 Duplicate robot network IDs.
+E1109 Conveyor IF board is not installed
+E1110 GROUP isnot primed.
+E1111 Due to motion restriction, JOXX cannot move.
+E1113 Work sensing signal is not detected.
+E1114 Interruption in cooperative control.
+E1115 Forced termination of cooperative control.
+E1116 Spin axis is not stopped on every 360 degrees.
+E1117 Process time over.
+E1118 Command value for ItXX suddenly changed.
+E1119 Command value for JtXX beyond motion range.
+E1120 Current command causes interference betw Ji2 and JB.
+E1121 Other robot is already in the interference area.
+E1122 Unexpected motor power OFF.
+E1123 Speed error XX.
+E1124 Deviation error of XX.
+E1125 Velocity envelope error XX.
+E1126 Command speed error of XX.
+E1127 Command acceleration error of XX.
+E1128 Uncoincidence error betw destination and current JUXX pos.
+E1129 Extemal axis JEXX moved while holding them.
+E1130 JtXX collision was detected.
+E1131 JXX unexpected shock is detected.
+E1132 Motor power OFF. Measurement stopped.
+E1133 Conveyor has reached max. value position,
+E1134 Abnormal work transfer pitch of conveyor.
+E1135 Motor power OFF.
+E1136 Standard terminal is not connected.
+E1137 Cannot input/output to teach pendant.
+E1138 Aux. terminal is not connected.
+E1139 DA board is not installed.
+E1140 No conveyor axis
+E1141 Conveyor transfers beyond syne. zone.
+E1142 No traverse axis.
+E1143 Conveyor axis number is not set.
+E1144 No Am control board
+E1145 Cannot use specified channel, already in use
+E1146 LSEQJAborted by processing time over.
+E1147 Cannot open setting file, so cannot set to shipment state.
+E1148 Cannot read setting file, so cannot set to shipment state.
+E1149 Cannot open setting data, so cannot set to shipment state.
+E1150 Cannot read setting data, so cannot set to shipment state.
+E1151 Too much data for setting to the shipment state.
+E1152 Name of setting data for shipment state is too long.
+E1153 Power sequence board detected error. (Code=XX)
+E1154 Option SIO port not installed.
+E1135 A/D converter is not installed.
+E1156 ARM CONTROL BOARD)Processing time over.
+E1137 Arm ID I/F board error. (CodeXX)
+E1158 (SSCNET)Servo error in XX.
+E1159 (SSCNET)Error code for servo is (XX).
+E1160 (SSCNET)Servo error and monitor setting error of XX.
+E1161 Automatic Tool Registration not supported by robot model.
+E1162 Buffer overflow occurred in the gravity comp. value channel XX.
+E1163 Robot stopped in checking operational area.
+E1164 [LSEQJProgram execution error at control power ON.(CodeXX)
+E1165 Unable to download ext. axis parameter.(I-A)
+E1166 Num. not assigned to specified channel,(Jt-A)
+E1167 Unable to download ext. axis parameter.(Jt-B)
+E1168 Num. not assigned to specified channel,(Jt-B)
+E1169 Errorin servo parameter change sequence.(CodeXX)
+E1170 Slave is not ready.
+E1171 CC-LINK communication board is not installed.
+E1172 Weld Gestation ie knead
+E1173 Servo communication error XX.
+E1174 AD board No.0 is not installed
+E1175 Offset data of zeroing is illegal value, (RobotXX)
+E1176 (SSCNET)Download error of extemal axis parameter.
+E1177 (SSCNET)Joint number is not assigned to the channel.
+E1178 Communication error between Arm Control and Arm U/F board,
+E1179 The current under bending compensation is too large (JIXX)
+E1180 Download error of extemal axis parameter (ItXX)
+E1181 Encoder battery low voltage [Servo(XX)]
+E1182 Encoder battery low voltage [External axis(XX)]
+E1183 Because Jt5 is not zero degree, cannot move along straight line.
+E1184 Illegal configuration for motion.
+E1185 Jt1 and Jt2 is interfered at start location.
+E1186 Jt1 and Jt2 is interfered at end location.
+E1187 Current command between Jtl and 1 is interfered.
+E1188 (SSCNET)Ervor in servo parameter change sequence, (CodeXX)
+E1189 (SSCNET)Regenerative error of IXXX.(CodeXX)
+E1190 (SSCNET)Speed error of IXX.(CodeXX)
+E1191 (SSCNET)Motor overload of IHXX.(CodeXX)
+E1192 (SSCNET)Deviation error of XX. (CodeXX)
+E1193 (SSCNET)Encoder battery of JIXX is low voltage (CodeXX)
+E1194 (SSCNET)Parameter waming of JIXX.(CodeXX)
+E1195 (Dual servo)Deviation error between master joint and slave joint.
+E1196 While lifter is locked, it cannot move.
+E1197 Compensation LS signal is not dedicated.
+E1198 Brake check sequence error.
+E1199 Brake check function is not supported by servo software ver.
+E1200 (Dual servo)Cannot compensate current error (deviation XX).
+E1201 Interference check board is not installed.
+E1202 Voice recorder cannot stop.
+E1203 LS location is not registered.
+E1204 Current stretch over the limit,
+E1205 Total stretch over the limit.
+E1207 The type of /O board on arm ID board is wrong.
+E1208 Download error of servo parameter.(JtXX)
+E1209 Upload error of servo parameter.(JIXX)
+E1210 Cannot execute program because unprotected,
+E1211 Because the memory was full, could not copy the program.
+E1212 Because the memory was full, the copy of program was suspended.
+E1213 Jt4 and robot arm interfere during motion to start pose.
+E1214 Jt4 and robot arm interfere during motion to end pose.
+E1215 Curent command causes interference between Jt4 and robot arm.
+E1216 Jt5 and Jt6 interfere during motion to start pose.
+E1217 Jt5 and Jt6 interfere during motion to end pose.
+E1218 Current command causes interference between J5 and 16.
+E1219 Exceeds allowable No. of output instructions for the path.
+E1220 Signal output point is out of the path.
+E1221 Too many signal numbers are specified.
+E1222 Motion instruction to start/end point of path not set.
+E1223 No pose data in last/next motion instruction.
+E1224 Several signal output points detected at the same point.
+E1225 Correction end instruction is missing.
+E1228 Jt4 value in the start point is not 0 degree.
+E1229 Jt4 value in the target point is not 0 degree.
+E1230 Flange faces direction of upper sphere in start point.
+E1231 Flange faces direction of upper sphere in target point.
+E1232 Option CPU board is not installed.
+E1233 Moint/ILinear signal not specified.
+E1234 Moinv/ILinear signal not detected.
+E1235 Separate control 1/0 board is not installed.
+E1236 Distance is too long to correct.
+E1237 Vision recognition error.
+E1238 Vision communication error.
+E1239 Cannot use this instruction in frame correction mode.
+E1240 BASE FRAME is not sent from vision unit.
+E1241 Improper parameter for FN481
+E1242 Cannot create more than 99 BASE FRAME,
+E1243 Cannot execute because cameraXX is disconnected.
+E1244 Jtl and Jt2 and floor interfere during motion to start pose.
+E1245 Jtl and Jt2 and floor interfere during motion to end pose.
+E1246 Current command causes interference between Jt1, J12 and floor.
+E1247 Calculation of encoder absolute data is not completed.(JXX)
+E1248 EEPROM access flag in encoder is busy.(JtXX)
+E1249 Temperature in encoder is over the limit.(J1XX)
+E1250 Rotation speed of encoder is over the limit.(JtXX)
+E1251_EEPROM access error occurred in encoder.(JtXX)
+E1252 Encoder rotation data (internal) is abnormal.(JtXX)
+E1253 Uncoincidence error between request and response in encoder. (JtXX)
+E1254 Cannot operate because a MC of a group XX is off.
+E1255 The motor power of unchosen robot was turned on,
+E1256 Intemal valve , sensor and error reset I/F board missing.
+E1257 MC of groupXX tumed off during individual repeat operation.
+E1258 MC turned off during operation.
+E1259 Invalid Structure of palletizing instruction.
+E1260 Cannot execute instruction during palletizing motion.
+E1261 Palletising motion aborted.
+E1262 Encoder rotation speed exceeded limit. (J1XX)
+E1263 Encoder temperature exceeded limit. (IDO)
+E1264 Velocity envelope error in endless rotation axis (IIXX)
+E1267 The initial setting of Encoder is abnormal. (IKXX)
+E1268 Breakage in the encoder line or faulty setting of encoder baud rate. (JIXX)
+E1269 The program is for other robot.
+E1270 The pose variable is for other robot.
+E1271 Interference between arm and floor at start pose.
+E1272 Interference between arm and floor at end pose.
+E1273 Command causes interference between arm and floor.
+E1274 JX Over speed in heavy load mode.
+E1275 JXXX Beyond the motion range in heavy load mode.
+E1276 Start point JtXX is beyond the motion range in heavy load mode.
+E1277 End point JUXX is beyond the motion range in heavy load mode.
+E1278 Can't slant wrist any more,
+E1279 Wrist does not face vertically down at start point
+E1280 Wrist does not face vertically down at end point.
+E1281 Command to Jt4 over limit.
+E1282 Cannot operate because a MC of a groupXX(JtXX) is off.
+E1283 (analysis)The E1035 error occurs frequently JXX
+E1284 (analysis)The E1035 and E1029 error occur at the same time.1XX
+E1285 (analysis)The E1035 and E1036 error occur at the same time. XXX
+E1286 (analysis)The E1035 and E1032 error occur at the same time.J1XX
+E1287 Power module error JKXX (UP).
+E1288 Power module error JtXX (LOW).
+E1289 [Servo boardXX]Synchronous error.(Servo FPGA)
+E1290 JtXX The voltage of the current sensor exceeded the upper bound value.
+E1291 JtXX Current sensor is disconnected or out of order.(U)
+E1292 [Servo boardXX]Input abnormal signal from MCXX.
+E1293 [Servo boardXX]FB current setting gain data is abnormal.
+E1294 [Servo boardXXJ1/0 24V is low
+E1295 [Servo boardXX]24V for intemal valve is low.
+E1296 [Servo boardXX]Mismatch in safety circuit LS conditions.
+E1297 [Servo boardXX]Mismatch in jumper wiring of internal pressure.
+E1298 [Servo boardXX]Mismatch in LS override switch.
+E1299 [Servo boardXX]Jumper wiring of internal pressure is disconnected,
+E1300 [Servo boardXX]DC 24V is abnormal.
+E1301 [Servo boardXX]Soff or servo is not compatible with encoder type.
+E1302 [MCXXJOFF check is abnormal.(Servo boardXX)
+E1303 [MCXX]OFF check of safety relay is abnormal. (Servo boardXX)
+E1304 [MCXX]Incorrect operation of K1 (Servo boardXX)
+E1305 [MCXX]Incorrect operation of K2.(Servo boardXX)
+E1306 [MCXX]Incorrect operation of rush control relay.(Servo boardXX)
+E1307 [MCXXJIncorrect operation of safety relay KS1.(Servo boardXX)
+E1308 [MCXXJIncorrect operation of safety relay KS2.(Servo boardXX)
+E1309 [MCXXJIncorrect operation of safety relay KS3.(Servo boardXX)
+E1310 [MCXX]Incorrect operation of motor power ON relay (Servo boardXX)
+EI311 [MCXX]Incorrect operation of safety circuit motor OFF relay (Servo boardXX)
+E1312 [MCXX]Mismatch in safety circuit motor OFF relay (Servo boardXX)
+E1313 [MCXX]Mismatch in MC control of safety circuit.(Servo boardXX)
+E1314 [MCXX]Thyristor Thermal is abnormal.(Servo boardXX)
+E1315 Watchdog error in NoXX I/O board
+E1316 [VO board(No.XX)]JAccess Error [Address:XX][Code:XX]
+EI317 [Servo Board(NoXX)]Response from monitor is abnormal. [Code:XX]
+E1318 [MCXX]DC 20V is abnormal.(Servo boardXX)
+E1319 Intemal valve, sensor and error reset UF board No.2 is not installed.
+E1321 [Main CPU board|Servo board(XX) communication error. (CodeXX)
+E1322 Setting num. of safety circuits differs betw. powerseq.b'd and MCXX. (ServobdXX)
+E1323 Setting num. of safety circuits differs betw. servo bdXX and MCXX.
+E1324 Safe circuit disconnected between power sequence board and servo boardXX.
+E1325 Safe circuit disconnected between servo boardXX and MCXX.
+E1326 Safety fence is open.
+E1327 [Power sequence board|Miscompare in motor off relay condition on safety circuit,
+E1328 [Power sequence board]Error of motor off relay on safety circuit.
+E1329 [Power sequence board]Error in TEACH/REPEAT switch on safety circuit
+E1330 [Power sequence board]IO 24V is low.
+E1331 [Power sequence board] Thermal error.
+E1332 [Power sequence board]Power error signal was input from servo boardXX.
+E1333 Motor power on signal has tured off,(Servo boardXX)(MCXX)
+E1334 TEACH/REPEAT switch is abnormal,(Mode differs betw. safety circuit and monitor.)
+E1335 Unexpected motor powerOFF (Servo boardXX)(MCXX)
+E1336 [Servo boardXX]Communication error with Main CPU board .
+E1337 [MCXX]Brake power is abnormal. (Servo boardXX)
+E1338 [MCXX]P-N low voltage.(Servo boardXX)
+E1339 [MCXX]P-N high voltage.(Servo boardXX)
+E1340 [MCXX]Regenerative time over. (Servo boardXX)
+E1341 [MCXX]Regenerative resistor overheat (Servo boardXX)
+E1342 Motor harness disconnected or robot temperature exceeded limit.(MCXX)
+E1343 Mismatch in wiring brake and software setting (ItXX)
+E1344 JXX Current sendor is disconnected or out of order.(V)
+E1345 [Servo boardXX]Limit switch signal line is disconnected.
+E1346 JOXX Failed to get encoder full data.
+E1347 [[MCXX]Destination spec is incorrect. (Servo boardXX)
+E1348 [MCXX]Controlled target is incorrect. (Servo boardXX)
+E1349 [MCXX]Explosion proof setting is mismatch (Servo boardXX)
+E1350 [MCXX]MC specification error.[CodeXX](Servo boardXX)
+E1351 [MCXX]MC OFF delay specification is incorrect (Servo boardXX)
+E1352 JOXX Codes set in software and power block do not match.
+E1353 [Main CPU board]CPU temperature is abnormal.
+E1354 [Main CPU board]Temperature in CPU board exceeded the limit. (XX 1/1000 deg C)
+E1355 Err in servo I/F command communication (Code:XX)
+E1356 The tool shape is not set.
+E1357 Failed to download ext. axis parameter data (It-©)
+E1358 Axis No. is not assigned to the specified channel.(Jt-C)
+E1359 JXX axis U phase overcurrent.
+E1360 JX axis V phase overcurrent.
+E1361 JX axis W phase overcurrent.
+E1362 [Servo boardXX]Speed of tool center point exceeded safety speed.
+E1363 [Servo boardXX]Speed of flange center point exceeded safety speed.
+E1364 [ARM CONTROL BOARD]Out of command synch, between IF and SV.
+E1365 TEACH KEY SWITCH is ON in two or more places.
+E1366 Watchdog error in NoXX ANYBUS interface board
+E1367 Improper parameter for KI481.
+E3800 JUXX axis amp servo amp heating
+E3801 J0XX axis amp main circuit power supply decrease.
+E3802 Encoder hamess disconnected. IXX
+E3803 JtXX axis amp speed control error.
+E3804 JtXX axis amp velocity feedback error.
+E3805 JtXX axis amp position envelope error.
+E3806 JtXX axis amp servo ready does not tum on.
+E3807 JtXX axis amp IPM overheated.
+E3808 Motor power OFF (EXT_EMG).
+E3809 Brake release signal error.
+E3810 Power sequence ready off.
+E3811 JtXX axis amp command value suddenly changed.
+E3900 Mismatch moving tool data and selected tool data.
+E4000 Data communication error.
+E4001 Data reading error.
+E4002 Data write error.
+E4003 Unexpected error in file access.
+E4004 Communication retry error.
+E4005 Communication process was stopped.
+E4006 Receive no data after request
+E4007 Receiving data is too long(MAX=255 characters).
+E4008 Abnormal data (EOT) received in communication.
+E4009 Communication time out error.
+E4010 Terminal already in use.
+E4011 Communication port already in use.
+E4012 Waiting for input of PROMPT. Connect input device.
+E4013 [TELNET)SEND error. Code=XX
+E4014 [TELNET)RECVerror. Code-XX
+E4015 (TELNET)IAC receive error. Code=XX
+E4016 (TELNET)Close failure. Code=XX
+E4017 (TELNET)Main socket close failure. Code—XX
+E4018 (TELNET)System error. Code-XX
+E4019 (TCPIP)Socket open failure. Code=XX Dst.IP=XX.XX.XX.XX
+E4020 (TCPIP)Socket close failure. Code=XX Dst.IP=XX.XX.XX.XX
+E4021 (TCPIP)Communication Error. Code=XX Dst.IP=XX.XX.XX.XX
+E4022 (TCPIP)Message is too long.
+E4023 (TCPIP)Cannot reach the Host.
+E4024 (TCPIP)Communication Time Out. Dst.IP=XX.XX.XX.XX
+E4025 (TCPIP)Connection aborted,
+E4026 (TCPIP)No Buffer Space.
+E4027 (TCPIPyBad Socket.
+E4028 (FTP)Data receive error (Code=XX)
+E4029 (FTP)Data send error.(Code=XX)
+E4030 (FTP)Server does not recognize command,(Code=XX)
+E4031 (FTP)Failed to disconnect with FTP server. (Code=XX)
+E4032 (FTP)Unregistered OS detected.
+E4033 (FTP)Failed to connect with server. (Code=XX)
+E4034 (FTP)Failed to receive HOST OS information.(Code=XX)
+E4035 (FTP)TCPAP not initialized.
+E4036 (FTP)FTP service busy now,
+E4037 (FTP)Failed AUTO-SAVing.
+E4050 No response from the FDD/PC_CARD driver board.
+E4051 No communication with FDD/PC_CARD driver board.
+E4052 [FDD/PC_CARD Failed to set verify function. Please set again.
+E4053 Channel error.
+E4054 (TCPIP)Cannot execute because Ethernet board not installed.
+E4055 (TCP)Cannot create a socket.
+E4056 (TCP)This port is not in LISTEN (SOCK).
+E4057 (TCP)lllegal Socket ID.
+E4058 Failed download to FDD/PC_CARD driver board.
+E4059 ASCYCLE communication receive error (Code:XX)
+E4060 ARM CONTROL BOARDJASCYCLE communication receive error.(Code:XX)
+E4061 Received gauge hole data exceeds allowable range.
+E4062 Master/slave data is not registered.
+E4063 Reference point data is not registered.
+E4064 3D calibration/measurement modes are both ON.
+E4065 Unregistered variable specified to receive data.
+E4066 Variable specified to receive data is broken.
+E4067 Received data is broken.
+E4068 Start code is not correct.
+E4069 End code is not correct.
+E4070 3D camera group No. not specified.
+E4071 Incorrect 3D camera group No.
+E4072 Communication beginning wait time out error.
+E4073 No servo off signal from ARM UF board.
+E4074 [Servo boardXX]No response from MCXX.(Code:XX)
+E4075 [Servo boardXX]MCXX communication error.(Code:XX)
+E4076 [MCXX]Servo boardXX communication error.(Code:XX)
+E4077 [Servo boardXX]Error in communication with main CPU board.(Code:XX)
+E4078 [Servo boardXX]Error in command communication with the main CPU board.(Code:XX)
+E4300 (ANYBUS)IN-AREA request timeout XX
+E4301 (ANYBUS)OUT/FB.CTRL release timeoutXX
+E4510 (DN)Master status.XX
+E4511 (DN)Node status.XX
+E4512 {ABM-DN)Mailbox error.
+E4520 {ABMA-PDP)Status STOP.XX
+E4521 (ABMA-PDP)Status OFFLINE. XX
+E4522 (ABMA-PDP)I/O data Communication error.XX
+E4523 (ABMA-PDP)Sending of timed out /O data.XX
+E4524 (ABMA-PDP)Timeout of receiving W/O data XX
+E4525 (ABMA-PDP)Timeout of sending message. XX
+E4526 (ABMA-PDP)Timeout of receiving message. XX
+E4527 (ABMA-PDP)Check configuration data XX
+E4528 {PROFIBUS)Slave Diag-error response detected XX
+E4529 {PROFIBUS)Statistic counter-error response detected XX
+E4530 {DN)DeviceNet cable is disconnected.
+E4531 {CC-LINK)Communication has been disconnected. XX
+E4532 {CC-LINK)Initial condition setting is incorrect.
+E4533 {CC-LINK)Watch dog timeout error.
+E4534 {CC-LINK)Parameter setting error. XX
+E4535 {CC-LINK)Time out on setting parameter.
+E4536 (CC-LINK)Master board is abnormal. XX
+E4537 {CC-LINK)Initialization error on master board . XX
+E4538 {CANopen)Network is disconnected.
+E5000 Connected permission signal has not been tumed ON.
+E5001 RWC type is not process control type.
+E5002 1GS board is not process control type.
+E5003 Illegal extend (retract) output signal.
+E5004 Weld completion signal already input.
+E5005 (Spot weld) Weld schedule setting data is abnormal.
+E5006 CLAMP SPEC is not set as PULSE.
+E5007 Servo weld gun not connected or wrong gun connected.
+E5008 Tip wear measurement (STAGE) was not executed.
+E5009 Work sensing signal(gun_tip touch signal) is not set
+E5010 Servo weld gun mechanical parameter is not set
+E5011 This clamp number already set for servo weld gun axis.
+E5012 Cannot change the gun because offet data is abnormal,
+E5013 Cannot change multiple guns at the same step.
+E5014 Cannot execute, gun connected to another joint.
+E5015 Gun status data disagrees with clamp condition.
+E5016 Data of SRVPRESS is wrong.
+E5017 Wear base data is not registered.
+ESO18 Weld completion signal has not been detected.
+E5019 Weld fault signal is detected.
+E5020 Retract pos. monitor error.
+E5021 Extend pos. monitor error.
+E5022 Current gun retract position differs from a destination,
+E5023 Wear is abnormal, cannot take measurement.
+E5024 Pressurization comp. signal has not been detected.
+E5025 Gun opening comp. signal has not been detected,
+E5026 (Spot welding)RWC error. XX
+E5027 Robot stopped in welding.
+E5028 Cannot achieve set force.
+E5029 Gun tip stuck.
+E5030 Copper plate wear exceeds limit. step-XX
+E5031 Weld completion signal is not turned OFF.
+E5032 Calibration did not end normally.
+E5033 Cannot weld because of abnormal thickness.
+E5034 Tip wear exceeds limit. (MOVING SIDE)
+E5035 Tip wear exceeds limit. (FIXED SIDE)
+E5036 Incorrect gun status data
+E5037 Tip wear exceeds limit. XX
+E5038 Arc detection signal did not tum OFF.
+E5039 No response from RWC communication I/F board.
+E5040 Cannot connect gun because gun is already connected.
+E5041 Cannot disconnect gun because gun is already disconnected.
+E5042 Gun No is not defined or Gun type is not servo gun.
+E5043 Communication error in welder. (CodeXX)
+E5044 Failed to get weld data. (timer XX)
+E5045 Failed to change weld data. (timer XX)
+E5046 Weld error has arisen.
+E5047 Receiving weld items now, wait till completion.
+E5048 Weld controller is unconnected or weld items are not received. (timer XX)
+E5049 Serial number signal error.
+E5050 This welder is without Traceability.
+E5051 Cannot calibrate because tool change axis is disconnected
+E5052 The pressurizing power measurement value is abnormal.
+E5053 The pressurizing power sensor is disconnected or it breaks down.
+E5054 The selector switch on TP is set to manual operation.
+E5055 The selector switch on TP is set to automatic operation.
+E5056 No Initialization Weld board.
+ES057 Initialization failure in Initialization Weld board.
+E5058 Welder(DENGEN COMPANY) not connected. (welder XX)
+E5059 Welder(DENGEN COMPANY) response error. (welder XX)
+E5060 Initialization Weld board protected. (welder XX)
+E5061 Welder(DENGEN COMPANY) data process not execute. (welder XX)
+E5062 Welder(DENGEN COMPANY) data process error.(welder XX)
+E5063 Weld error has arisen. (CodeXX)
+E5064 Welder(DENGEN COMPANY) of weld was aborted. (welder XX)
+E5065 Welder(DENGEN COMPANY) error has arisen. (welder XX)
+E5066 Waiting weld completion time out.(welder XX)
+E5067 Magnet control is abnormal. (welder XX)
+E5500 Vision board is not installed.
+E5501 (Vision)Camera not connected.
+E5502 (Vision)Incorrect parameter.
+E5503 (Vision)Incorrect Symbol.
+E5504 (Vision)Incorrect name.
+E5505 (Vision)Incorrect image memory.
+E5506 (Vision)Incorrect histogram data.
+E5507 (Vision)Incorrect mode.
+E5508 (Vision)Incorrect density(/color)..
+E5509 (Vision)Incorrect camera input assignment.
+E5510 (Vision)Incorrect camera ch.number.
+E5511 (Vision)Incorrect Window No.
+E5512 (Vision)Incorrect coordinates data.
+E5513 (Vision)Incorrect number.
+E5514 (Vision)Incorrect image code(binary/mulli).
+E5515 (Vision)Incorrect threshold
+E5516 (Vision)PROTO(/TEMPLATE) not registered or already exists.
+E5517 (Vision)Cal. data not registered,
+E5518 (Vision)Graphic cursor is not initialized.
+E5519 (Vision)Too many samples from PROTO object.
+E5520 (Vision)Too many targets detected.
+E5521 (Vision)Vision command not initiated.
+E5522 (Vision)System registered with abnormal data.
+E5523 (Vision)Error in processing image(s).
+E5524 (Vision)Sound port assigned another function.
+E5525 (Vision)Lack of data storage area.
+E5526 (Vision)Incorrect synch. mode.
+E5527 (Vision)Vision processing now.
+E5528 (Vision)Image capture error.
+E5529 (Vision)Time out or Buffer overflow
+E5530 (Vision)Failed to write on flash memory.
+E5531 (Vision)Proto data abnormal, so initialized.
+E5532 (Vision) Work detection failure
+E5533 (Vision)Initialization error. Code = XX
+E5534 (Vision)Vision system error.
+E5535 (Vision)Specified motion mode is incorrect.
+E5536 (Vision)Inappropriate camera/projector parameters.
+E5537 (Vision)Incorrect camera switch assignment,
+E5538 (Vision)This plane is assigned to another camera.
+E5539 (Vision)Edge was not found.
+E5540 (Vision)Inappropriate HSI data,
+E5541 (Vision)H data range width is over 128.
+E5542 (Vision)Distance image input unit not set for camera.
+E5543 (Vision)Cannot calculate the set edge points.
+E5544 (Vision)Check color conversion table type in set config.
+E5545 (Vision)Incorrect area size.
+E5546 (Vision)Slit image does not exist.
+E5547 (Vision)Incorrect no. of correlation vectors.
+E5548 (Vision)Inappropriate vector data.
+E5549 (Vision)X-Fit environment was not set.
+E5550 (Vision)Mouse is not initialized.
+E5551 (Vision)Camera switcher board is not installed.
+E6000 Explosion proof teach pendant is not connected.
+E6001 Step after XD(2)START must be LMOVE or HMOVE.
+E6002 Signal condition already input.
+E6003 Door open detect signal is not dedicated.
+E6004 Location data was not detected
+E6005 Incorrect setting of barrier unit.
+E6006 Signal not detected.
+E6007 Wrist can't be straightened any more (Singular point 1).
+E6008 Wrist can't be bent any more (Singular point 2).
+E6009 Purge air flow is insufficient
+E6010 Out of XYZ MOVING AREA LIMIT.
+E6011 Pressure within enclosure is low.
+E6012 Relative distance between guns is too near (ID:XX).
+E6013 No free memory in program queue.
+E6014 No free memory in delayed start queue.
+E6015 Special signal is not specialized.
+E6016 Robot arm stretching out (Singular Point 3).
+E6017 Outofmechanical XYZ motion limits.
+E6018 Painting equipment control board error. (CodeXX)
+E6019 Painting equipment control board is not installed.
+E6020 Monitoring Robot ID is duplicate.
+E6021 (Mutual-Wait)There is no response from the other party robot.
+E6022 Duplicate Mutual-Wait IDs
+E6023 (Mutual-Wait)Communication error in Mutual-Wait.
+E6024 Wrist can't bend any further left/right (Singular Point 1).
+E6025 (Conveyer synchronous communications)It is a conveyer position reception error.
+E6026 Guns are too near in X direction. (ID:XX)
+E6027 Guns are too near in Y direction. (ID:XX)
+E6028 Guns are too near in Z direction. (ID:XX)
+E6029 [Servo boardXX]Mismatch in internal pressure of safety relay.
+E6030 [Servo boardXX]Pressure within enclosure is low.
+E6031 Monitoring Robot ID is invalid.
+E6032 [Purge control board]Pressure within enclosure is low.
+E6033 Painting equipment control process error. (CodeXX)
+E6034 Cartridge table rotate command is abnormal.
+E6500 No welding Interface board.
+E6501 No.2 welding Interface board not found.
+E6502 Are failure.
+E6503 Wire stuck.
+E6504 Are start failure.
+E6505 Are weld insulation defect.
+E6506 Torch interference.
+E6507 Illegal interpolation data
+E6508 No D/A board for polarity ratio control.
+E6509 No work detected
+E6510 Undefined sensing direction.
+E6511 Insufficient num. of sensing points.
+E6512 Undefined mother or daughter work.
+E6513 Too many sensing points,
+E6514 Work specification incorrect.
+E6515 Incorrect sensing point specified.
+E6516 Wire check failure
+E6517 Incorrect weld condition number.
+E6518 No weld condition data set.
+E6519 Weld condition data is out of range.
+E6520 Laser sensor tracking value exceeded.
+E6521 Beyond Laser sensor tracking ability.
+E6522 Laser sensor cannot detect welding joint.
+E6523 Calibration data between torch and camera is not ready.
+E6524 Error in data calculated using Laser sensor.
+E6525 Cannot detect weld joint, Laser sensor tracking set already.
+E6526 No response from Laser sensor controller.
+E6527 Laser sensor communication error. Code is XX.
+E6528 Start point not found by Laser sensor.
+E6529 Finish point not found by Laser sensor.
+E6530 Cannot use circular interp. with Laser sensor function.
+E6531 Cannot turn Laser ON because motor power is OFF.
+E6532 No communication board to Laser sensor.
+E6533 NoRTPM board.
+E6534 Too many taught points for RTPM.
+E6535 RTPM are sensor error.
+E6536 RTPM current deviation error.
+E6537 RTPM tracking value is out of range.
+E6538 Beyond RTPM tracking ability.
+E6539 AVC tracking value is out of range.
+E6540 Beyond AVC tracking ability.
+E6541 No AVC board
+E6542 AVC voltage deviation error.
+E6543 Too many taught points for AVC.
+E6544 Hyper Are tracking value is out of range.
+E6545 Beyond Hyper Are tracking ability.
+E6546 Bead end is not found.
+E6547 Finish end is not found.
+E6548 Hyper Are revolution beyond normal deviation.
+E6549 Hyper Are torch calibration error.
+E6550 Hyper Are Z phase index error.
+E6551 No Hyper Are board.
+E6552 Hyper Are board error. Code is XX.
+E6553 Hyper Are current sensor error.
+E6554 Hyper Are voltage sensor error.
+E6555 Hyper Are current deviation error.
+E6556 Hyper Are amplifier error. Code is XX.
+E6557 No Wire feeding Control board.
+E6558 Wire feeding control error, code is XX.
+E6535 RTPM arc sensor error.
+E6566 FN instructions not executed in the correct order.
+E6567 KLS tracking system error(Code=XX)
+E6568 Failed in executing command to tracking system.(emd=XX)
+E6569 Taught data exceeds inclination limit for compensation.
+E6570 Cannot execute because welding now.
+E6571 Cannot execute because wire inching/retracting now.
+E6572 Teach point for circular motion is missing.
+E6573 The welding machine is abnormal. (Code-XX)
+E6574 Sensing of groove: cannot detect edge
+E6575 Sensing of groove: gap error.
+E6576 Welder is not ready for operation. (Code=XX)
+E6577 Deviation is too large Reset allows non-correction movement.
+E6578 Sensing was interrupted due to power OFF. Restore step and retry.
+E6579 KI instructions not executed in the correct order.
+E7000 Servo weld gun disconnected.
+E7001 Location data includes released gun status data.
+E7002 Destination is far from target point.
+E7003 The clearance distance of gunXX is set to Omm.
+E7004 Gun tip wear change over the limit. (MOVING SIDE)
+E7005 Gun tip wear change over the limit. (FIXED SIDE)
+E7006 Clamp number or gun number is not servo weld gun.
+E7007 Cannot change tip base data in 1 Stg. because tip wear rate is not set.
+E7008 Independent Gun control is not completed.
+E7009 Current limit for servo welding gun is abnormal.
+E7500 JXX Collision is detected..
+E7501 JtXX Unexpected shock is detected.
+E7502 AC Fail Process Error = XX
+E7503 POWER SEQUENCE setting data incorrect.
+E7504 Angle between IOXX is out of range at start location.
+E7505 Angle between ItXX is out of range at end location.
+E7506 Angle between IKXX is out of range.
+E7507 SCIMOVE or SC2MOVE instruction is required after SCIMOVE.
+E7508 SCIMOVE instruction is required before SC2MOVE.
+E7509 Cannot execute, interpolation conditions are not fulfilled.
+E7510 Cannot move with current posture.
+E7511 Brake control bit number is duplicated.
+E7512 L3CIMOVE or L3C2MOVE instruction is required after L3CIMOVE.
+E7513 L3CIMOVE instruction is required before L3C2MOVE.
+E7514 Specified parameter is not consistent.
+E8200 Not in cooperative mode.
+E8201 Unmatch the total of motion instruction in cooperative mode.
+E8202 Unmatch step of motion instruction in cooperative mode.
+E8203 Cannot use this instruction in cooperative mode.
+E8204 Invalid cooperative group No.
+E8205 No JMASTER robot.
+E8206 TouchSensing in Cooperative mode is no supported.
+E8207 MASTER robot already exists.
+E8208 WSLAVE robot already exists
+E8209 Fixed Point Motion in Cooperative mode is no supported.
+E8210 No _WSLAVE robot.
+E8211 Outof syne,
+E8212 Cannot continue non-cooperative instruction in cooperative mode.
+E8213 No MASTER robot.
+E8214 No SLAVE robot.
+E8400 Servohand opened in clamp ON step. (CLAMP=XX)
+E8401 Clamping position of servo Hand is error. (CLAMP=XX)
+E8402 Cannot achieve set force of IX.
+E8403 NC Joints lock signal not off.
+E8404 Interpolation other than joint int. is unavailable.
+E8405 It tries to move the Matehan axis with the axis locked.
+E8600 (FS)Processing condition error.XX
+E8601 Gap was over the lower pos. limit.
+E8602 Reached the Penetration depth within min.processing time.
+E8603 It could not reach the set Penetration depth within the appointed period.
+E8604 Pressure cable disconnected,
+E8605 Please input two set pressure or more.
+E8606 Please input data in ascending order.
+E8607 FSI COUNTER ALARM.XX
+E8608 (FSI)FSI schedule setting data is abnormal.
+E8609 Setting tip force is over limit.
+E8610 Setting rotation speed is over limit.
+E8611 FSW Logging buffer is full
+E8800 Command value almost exceeds virtual safety fence,(SphereXX, LineXX)
+E8801 Command value almost exceeds virtual safety fence.(SphereXX, ZUpper)
+E8802 Command value almost exceeds virtual safety fence,(SphereXX, ZLower)
+E8803 Command value almost invades restricted space.(SphereXX, Part. XX LineXX)
+E8804 Command value almost invades restricted space,(SphereXX, Part. XX ZUpper)
+E8805 Command value almost invades restricted space.(SphereXX, Part. XX ZLower)
+E8806 Command value almost exceeds virtual safety fence (ToolBox, LineXX)
+E8807 Command value almost exceeds virtual safety fence,(ToolBox, ZUpper)
+E8808 Command value almost exceeds virtual safety fence.(ToolBox, ZUpper)
+E8809 Command value almost invades restricted space. (ToolBox, Part. XX)
+E8810 Command value almost exceeds virtual safety fence.(LinkXX, LineXX)
+E8811 Command value almost exceeds virtual safety fence (LinkXX, ZUpper)
+E8812 Command value almost exceeds virtual safety fence,(LinkXX, ZLower)
+E8813 Command value almost invades restricted space (LinkXX, Part XX LineXX)
+E8814 Command value almost invades restricted space (LinkXX, PartXX ZUpper)
+E8815 Command value almost invades restricted space (LinkXX, Part XX ZLower)
+E8820 Current value exceeded virtual safety fence.(SphereXX, LineXX)
+E8821 Current value exceeded virtual safety fence (SphereXX, ZUpper)
+E8822 Current value exceeded virtual safety fence (SphereXX, ZLower)
+E8823 Current value invaded restricted space (SphereXX, Part.XX LineXX)
+E8824 Current value invaded restricted space.(SphereXX, Part.XX ZUpper)
+E8825 Current value invaded restricted space.(SphereXX, Part. XX ZLower)
+E8826 Current value exceeded virtual safety fence (ToolBox, LineXX)
+E8827 Current value exceeded virtual safety fence (ToolBox, ZUpper)
+E8828 Current value exceeded virtual safety fence (ToolBox, ZLower)
+E8829 Current value invaded restricted space (ToolBox, Part.XX)
+E8830 Current value exceeded virtual safety fence (LinkXX, LineXX)
+E8831 Current value exceeded virtual safety fence (LinkXX, ZUpper)
+E8832 Current value exceeded virtual safety fence.(LinkXX, ZLower)
+E8833 Current value invaded restricted space (LinkXX, Part. XX LineXX)
+E8834 Current value invaded restricted space (LinkXX, Part.XX ZUpper)
+E8835 Current value invaded restricted space (LinkXX, Part.XX ZLower)
+E8850 Disabled robot motion.
+E8851 Detected area interference.
+E8852 Detected arm interference (XX, XX)
+E8853 Failed to predict trajectory.
+E8854 Detected near miss.(XX, XX)
+E8855 No response from interference check board.
+E8856 Communication error between interference check board and ARM CONTROL
+E8857 The number of robots is too many.
+E8858 INTERFERENCE CHECK BOARD )Processing time-out.
+E8859 INTERFERENCE CHECK BOARDJCan not receive data from ARM CTRL
+E8860 ARM CTRL BOARD]Cannot receive data from INTERFERENCE CHECK
+E8861 Communication error between IL server and ARM CONTROL board.
+E8862 Cable disconnected between IL server and ARM CONTROL board.
+E8900 Detected torque for load presence is abnormal,
+E8901 Detected torque for load absence is abnormal,
+E8902 Stopped because motion limitation signal was input.
+E9000 Joystick of IKXX is disconnected.
+E9100 RSC)Watchdog timer overflow.
+E9101 RSC)Overvoltage error. (3.3V)
+E9102 RSC)Overvoltage error. (SV)
+E9103 RSC)Intemal processing time time-out.
+E9104 RSC)RSC error occurred.(Code:54)
+E9105 RSC)Robot number transmission, interprocessor communication error.
+E9106 RSC)RSC operation status, interprocessor communication error.
+E9107 RSC)VO output, interprocessor communication error.
+E9108 RSO)VO check, interprocessor communication error.
+E9109 RSC)Schedule management, timer synchronization error.
+E9110 RSC)Main module, interprocessor communication error.
+E9111 RSC)Operation part, interprocessor communication error.
+E9112 RSC)Tool number input, interprocessor communication error.
+E9113 RSC)V/O Por filtering, interprocessor communication error.
+E9114 RSC)Robot diagnosis, interprocessor communication error.
+E9115 RSO)RSC error occurred. (Code:5F)
+E9116 RSC)Ethemet chip writing error.
+E9117 RSC)Ethemet chip System. Open failure.
+E9118 RSO)RSC error occurred,(Code:62)
+E9119 RSO)RSC error occurred (Code:63)
+E9120 RSC)RSC error occurred,(Code:64)
+E9121 RSC)Eror log addition error.
+E9122 RSC)Error log acquisition error.
+E9123 RSC)Ervor log overwrite error.
+E9124 RSC)RSC error occurred (Code:68)
+E9125 RSC)RSC error occurred,(Code:69)
+E9126 RSC)Current time initialization error.
+E9127 RSC)Current time acquisition error.
+E9128 RSC)Current time set point error.
+E9129 RSC)RSC error occurred.(Code:6D)
+E9130 RSC)RSC error occurred, (Code:6E)
+E9131 RSC)RSC error occurred. (Code:6F)
+E9132 RSC)CPU error.
+E9133 RSC)Memory error.
+E9134 RSC)CPU status exchange failure.
+E9135 RSC)Firmware CRC error.
+E9136 RSC)RSC parameter CRC error.
+E9137 RSC)RSC error occurred.(Code:75)
+E9138 RSC)Mac address CRC error.
+E9139 RSC)Initialization failure in "power down backup".
+E9140 RSC)RSC error occurred.(Code:78)
+E9141 RSO)RSC error occurred,(Code:79)
+E9142 RSC)Power-source monitoring process error.
+E9143 RSC)Pulse check error.
+E9144 RSC)Readback error.
+E9145 RSC)Relay contact check error.
+E9146 RSC)Crosscheck error.
+E9147 RSC)Input mismatching check error.
+E9148 RSO)Firsttime encoder data receiving time-out.
+E9149 RSO)FPGA operation error.
+E9150 RSC)RSC error occurred.(Code:82)
+E9151 RSC)RSC error occurred. (Code:83)
+E9152 RSC)RSC error occurred. (Code:84)
+E9153 RSC)RSC error occurred, (Code:85)
+E9154 RSC)RSC error occurred, (Code:86)
+E9155 RSC)Command value axes number error.
+E9156 RSC)parameter error (axes number / tool number)
+E9157 RSC)"Command value input section” CRC error.
+E9158 RSC)Robot number transmitting failure.
+E9159 RSC)First command value receive time out.
+E9160 RSC)USB communication impossible.
+E9161 RSC)command value byte-number corruption.
+E9162 RSC)USB Device recognition time-out.
+E9163 RSC)command value receive time out.
+E9164 RSC)RSC error occurred,(Code:90)
+E9165 RSC)RSC error occurred.(Code:91)
+E9166 RSC)RSC parameter read failure.
+E9167 RSC)Robot number error.
+E9168 RSC)Encoder data movement error.
+E9169 RSC)Parameter and RC zeroing data mismatch,
+E9170 RSC)TCP Communication Retry count over.
+E9171 RSQ)Rotary switch number error.
+E9172 RSO)RSC error occurred.(Code:98)
+E9173 RSO)RSC error occurred,(Code:99)
+E9174 RSC)Parameter setting range over error.
+E9175 RSC)Monitoring area parameter setting error.
+E9176 RSC)Parameter error at TOOL monitoring invalid.
+E9177 RSC)Operation part intemal error.
+E9178 RSC)RSC error occurred. (Code:9E)
+E9179 RSC)RSC error occurred. (Code:9F)
+E9180 RSC)Safety speed over. (TCP)
+E9181 RSC)Speed over.(flange point)
+E9182 RSC)Axis upper limit over.
+E9183 RSC)Axis lower limit over.
+E9184 RSC)Outside of a SSL area limit (partial restricted area)
+E9185 RSC)Outside ofa SSL area limit (restriction area)
+E9186 RSC)Outside of a SSF area limit.
+E9187 RSC)Positioning confirmation processing error.
+E9188 RSC)TOOL verification error.
+E9189 RSC)Distance error between flanges
+E9190 RSC)RSC error occurred.(Code:EA)
+E9191 RSC)RSC error occurred.(Code:EB)
+E9192 RSC)RSC error occurred.(Code:EC)
+E9193 RSC)RSC error occurred.(Code:EE)
+E9194 RSC)RSC error occurred. (Code:EE)
+E9195 RSC)RSC error occurred.(Code:EF)
+E9196 RSC)RSC error occurred,(Code:F0)
+E9197 RSC)RSC error occurred.(Code:F1)
+E9198 RSC)RSC error occurred.(Code:F2)
+E9199 RSC)RSC error occurred.(Code:F3)
+E9200 RSC)RSC error occurred,(Code:F4)
+E9201 RSC)RSC error occurred.(Code:F5)
+E9202 RSC)RSC error occurred (Code:F6)
+E9203 RSC)RSC error occurred.(Code:F7)
+E9204 RSC)RSC error occurred,(Code:F8)
+E9205 RSC)RSC error occurred (Code:F9)
+E9206 RSC)Encoder receiving timeout error.
+E9207 RSC)Encoder receiving timeout error 2.
+E9208 RSC)Encoder status error.
+E9209 RSC)Encoder data reading Retry count over.
+E9210 RSC)RSC error occurred. (Code:FE)
+E9211 RSC)RSC error occurred. (Code:FF)
+E9300 Cannot rotate JIXX. Because disconnected axis
+E9301 Cannot rotate JIXX. Because invalid axis.
+E9302 Rotation speed setting for JUXX is abnormal.
+DO001 CPU error(PC=XX)
+D0002 Main CPU BUS error.(PC=XX)
+D0003 VME BUS error.(PC-XX)
+D0004 ARM CONTROL BOARDJCPU error.(PC=XX)
+D0005 ARM CONTROL BOARD] CPU BUS error.(PC-XX)
+D0006 ARM CONTROL BOARDJServo control software CPU error. (PC=XX,
+D0007 Servo boardXXJCPU error. (CodeXX)
+D0008 Servo boardXX]Floating point exception, (CodeXX)
+D0009 Servo boardXX]CPU exception. (PC-XX)
+D0900 Teach data is broken.
+D9001 AS Flash memory sum check error.
+D0902 Servo Flash memory sum check error.
+D0903 IP board memory error. (XX)
+D0904 Memory is locked due to AC_FAIL.
+D1000 Read error of servo control software.
+D1001 Download error of servo control software.
+D1002 Init. error of servo software.
+D1003 Init. error of servo control software.
+D1004 ARM CTRL BOARD]Watch dog error of Servo control software.
+D1005 Servo board command error. (XX)
+D1006 Servo system error.
+D1007 Regenerative time over. [XX]
+D1008 P-N low voltage. [XX]
+D1009 P-Nhigh voltage. [XX]
+D1010 Regenerative resistor overheat. [XX]
+D1011 Asor servo software is not compatible with the robot model.
+D1012 Servo type mismatch. Check the settings.
+D1013 P-N capacitor is not discharged.
+D1014 Servo system error (Code=XX)
+D1015 The servo data file does not exist.
+D1016 Data applicable to the robot model not in servo data file.
+D1017 Emvor of download of servo data.
+D1018 Servo software version mismatch.
+D10I9 ARM CONTROL BOARD]Watchdog error in timer built-in CPU for servo control
+D1020 ARM CONTROL BOARD]Synchronous error between CPUs.
+D1021 Servo FPGA configuration data not found.
+D1022 Configuration error in servo FPGA.(CodeXX)
+D1023 Current mismatch betw. m-plexer&sofiware. IXX
+D1024 ARM CONTROL BOARD]Servo FPGA detected Watch dog error on ARMSC Software.
+D1025 Servo boardXX]Detected Watch dog error. (Servo FPGA)
+D1026 Servo boardXX]Input abnormal signal from power sequence board.
+D1027 MCXX]Detected Watch dog error.
+D1028 Servo boardXX]DC is abnormal.(Servo FPGA)
+D1029 Servo boardXX]AC primary power is abnormal.(Servo FPGA)
+D1030 Cannot start communication with the servo boardXX.
+D1031 Read error of servo software.
+D1032 Servo boardXX]Download error of servo software. (CodeXX)
+D1033 Connection Port No(XX) and Servo board No(XX) mismatch.
+D1034 The servo data file is missing or not acceptable.(CodeXX)
+D1035 Servo boardXX]init. error of servo software. (CodeXX)
+D1036 Servo boardXX]Download error of servo data.(CodeXX)
+D1037 Servo boardXX]Configuration error in servo FPGA.(CodeXX)
+D1038 Servo boardXX]Upload error of servo software initial data,(CodeXX)
+D1039 Servo boardXX]Download error of servo software initial data (CodeXX)
+D1040 Servo boardXX]Device check error. (CodeXX)
+D1041 JXX axis brake release circuit is abnormal.
+D1500 Encoder misread error. XX
+D1501 Defective gun changer connection or encoder comm. error.
+D1502 Amp overcurrent. IXX
+D1503 Current detector type (XX) mismatch!
+D1504 Abn. curr feedback JKXX. (Amp fail, pwr harness disconnect)
+D1505 Motor hamess disconnected or amplifier overheated.(XX)
+D1506 Power module error. XX
+D1507 AC primary power OFF.
+D1508 24VDC power source is too low.
+D1509 Primary power source is too high.
+D1510 Primary power source is too low.
+DISI1 +12VDC or-12VDC is abnormal.
+DIS12 Brake line error for XX.
+D1513 Brake power is abnormal.(XX)
+DIS14 1/0 24V fuse is open.
+D1515 Mismatch in setting of safety circuit as single/double.
+DIS16 Mismatch betw hard/software settings for HOLD backup time.
+D1517 Blown fuse on safety circuit emergency line.
+D1518 Mismatch in the Emer. Stop condition on safety circuit
+D1519 Mismatch in safety circuit LS conditions.
+D1520 Mismatch in safety circuit TEACH/REPEAT condition
+D1521 Mismatch in safety circuit safety-fence condition.
+D1522 Mismatch in cond. of safety circuit enabling devi
+D1523 Mismatch in cond. of safety circuit ext.enabling device.
+D1524 Incorrect operation of the safety relay.
+D1525 Incorrect operation of MC(K1).
+D1526 Incorrect operation of MC(K2).
+D1527 Incorrect operation of MC(K3).
+D1528 Controller temperature is out of range.
+D1529 Signal hamess disconnected or encoder power error.
+D1530 Abnormal current limit of IXX.
+D1531 Heat sink on power block overheated.
+D1532 (SSCNET)EnCoder communication error.(JIXX)(CodeXX)
+D1533 (SSCNET)Absolute position of JUXX is erased.(CodeXX)
+D1534 (SSCNET)Parameter error of JXX.(CodeXX)
+D1535 (SSCNET)Alarm of JKXX.(CodeXX)
+D1536 JtXX does not move normally.
+D1537 Brake rectifier relay failure.
+D1538 DC 24V is abnormal.
+D1539 Power supply circuit for PWM signal output malfunctioned.
+D1540 Amplifier overheats.(XX)
+D1541 Encoder type set in software and arm control board mismatch.
+D1542 No Rotation data from multidrop encoder at initialize.
+D1543 Servo boardXX]DC SV is abnormal.
+D1544 Servo boardXXJDC 3.3V is abnormal.
+D1545 Servo boardXX]DC 12V is abnormal.
+D1546 Servo boardXX]DC 2.5V is abnormal.
+D1547 Servo boardXX]DC 1.2V is abnormal.
+D1548 Servo boardXX]DC 1.0V is abnormal.
+D1549 Servo boardXX]Primary power source is too low.
+D1550 Servo boardXX]Primary power source is too high,
+D1551 Servo boardXXJAC primary power OFF.
+D1352 MCXX]DC 3.3V is abnormal.
+D1353 MCXX]DC 5V is abnormal.
+D1554 Brake power in servo amplifiers abnormal.
+D1555 Amplifier temperature is out of range or regenerative resistor overheats.
+D1556 Control power in servo amplifier is abnormal.
+D1557 Power sequence board]DC 3.3V is abnormal.
+D1558 Power sequence board]DC 5V is abnormal.
+D1559 Power sequence board]DC 12V is abnormal.
+D1560 Power sequence board]DC 24V is abnormal.
+D1561 Power sequence board]AC primary power OFF.
+D1562 Power sequence board]AC primary power voltage is too high.
+D1563 Power sequence board]AC primary power voltage is too low.
+D1564 Power sequence board]Remote power off signal was detected
+D1565 Cannot access power sequence board (CodeXX)
+D1566 P-N capacitor has not discharged.(Servo boardXX)(MCXX)
+D1567 Servo boardXX]Primary Power source is error.
+DIS68 Servo boardXX]Power supply circuit for PWM signal output malfunctioned.
+D1569 Servo amplifier is abnormal.(XX)
+D2000 No response from Comm. board for Laser sensor.
+D2001 RVO or C-NET board initialize error.
+D2002 No response from the Arm ID board.
+D2003 No data in the Arm ID board.
+D2004 Mismatch data in the Arm ID board.
+D2005 CC-LINK software version mismatch.
+D2006 Watch dog error on communication board for Explosion proof TP.
+D2007 No response from the built-in sequence board.
+D2008 Magnet is Contactor of groupXX is stuck.
+D2009 Sensor for detecting pressure in enclosure is abnormal.
+D2010 Sync. error between User I/F and Arm control board.
+D2011 Parameter download error betw User I/F & Arm control boards.
+D2012 Soft Absorber error. Tum OFF & ON the control power.
+D2013 Change gain error. Tum OFF & ON the control power.
+D2014 Robot network initialize error.
+D2016 No response from the Arm control board.
+D2017 No response from User UF board.
+D2018 ARM CTRL BOARDJNo response.
+D2019 ARM CTRL BOARD ]Servo software no response.
+D2020 ARM CTRL BOARD]Servo control software no response.
+D2021 Arm data file is not found.
+D2022 Arm data is not found.
+D2023 Failed to load arm data
+D2024 ARM CTRL BOARD Robot type setting failed.
+D2025 Robot codes set in software and Arm control board do not match 
+D2026 Codes set in software & curr. sensor I/F bid do not match.
+D2027 Codes set in software and power block do not match.
+D2028 (SSCNET) Initialization error. (CodeXX)
+D2029 Motor codes in software & Arm control bid mismatch.(Jt-A)
+D2030 Codes set in software & curr. sensor IF b'd mismatch (Jt-A)
+D2031 Codes set in software and on add'l pwr block mismatch.(Jt-A)
+D2032 Motor codes set in software and Arm ctrl bid mismatch.(Jt-B)
+D2033 Codes set in software & curr. sensor IF b'd mismatch (It-B)
+D2034 Codes set in software and on add'l pwr block mismatch.(Jt-B)
+D2035 Program execution error.
+D2036 (SSCNET)System error occurred in ILP VF board. (CodeXX)
+D2037 Safety unit circuit is abnormal.
+D2038 (SSCNET)Interface board is not installed.
+D2039 (SSCNET)Communication error of JtXX on initialization.
+D2040 (SSCNET)Initialization error of JXX.(CodeXX)
+D2041 Connection of the signal harness is wrong.
+D2042 Servo amp and robot arm are mismatched.
+D2043 Am I/F board detects AC-Fail.
+D2044 ARM CONTROL BOARD INo response from Servo FPGA software
+D2045 ARM CONTROL BOARD]Device check error. (CodeXX)
+D2046 Relay error on purge control board. (relay XX)
+D2047 Jumper setting error or Safety relay failure on Servo CPU board
+D2048 DC 12V Voltage source error on purge control board.
+D2049 Over current error in interlock relay drive circuit(1) for purge control board.
+D2050 Over current error in interlock relay drive circuit(2) for purge control board.
+D2051 Communication error on purge control board
+D2052 Hardware setting for the external axis amplifier has discrepancy. robot=n
+D2053 (FANXX-XX)Rotational speed of fan is abnormal. (Servo boardXX)
+D2054 Codes set in software and power block do not match.(Code:XX)
+D2055 Power sequence board] Watchdog error was detected.
+D2056 W/O board(No.XX)}Several boards have same ID address.
+D2057 Servo boardXX]No response from Servo FPGA device.
+D2058 Main CPU board]DC power supply is abnormal. (XX mV)
+D2059 ISP board is abnormal (DXX)
+D2060 Safety unit is abnormal. (DXX)
+D2061 Mother board is abnormal. (DXX)
+D2062 1QL board is abnormal.(DXX)
+D2063 MC unit is abnormal.(DXX)
+D2064 Purge control board]Pressure within enclosure is low. (during purging)
+D2065 Safety relay is abnormal which cut off brake power when inner pressure is low.
+D2066 Purge control board]DC is abnormal.(12V)
+D2067 Main CPU board|Communication with purge control board is abnormal.
+D2068 10 board No. XXJDevice check failure,(CodeXX)
+D2069 ANYBUS interface board(No.XX)]Several boards have the same ID address,
+D3800 Communication board memory error. (XX)
+D3801 JX axis amp interface error 1.
+D3802 JX axis amp interface error 2.
+D3803 JeXX axis amp interface error 3.
+D3804 JOXX axis amp power element error.
+D3805 JeXX axis amp current detector error.
+D3806 JeXX axis amp main circuit voltage unmatch.
+D3807 J0XX axis amp memory error.(EEPROM error)
+D3808 JXX axis amp inside RAM error.
+D3809 JEXX axis amp servo processor error.
+D3810 JXX axis amp parameter error.
+D3811 JEXX axis amp initial processing error.
+D3812 JeXX axis amp undefinition error 1.
+D3813 Amp communication /F board initialed check error.(XX)
+D3814 Amp communication /F board undefinition error.(XX)
+D3815 Itis not possible to communicate with JIXX axis amp.
+D3816 JXX axis amp communication frame reception error.
+D3817 JXX axis amp communication frame reception timeout.
+D3818 JXX axis amp communication bank data error.
+D3819 JXX axis amp init timeout.
+D3820 JX axis amp communication undefinition error.
+D3821 Motor hamess connection point is error.
+D3822 Motor parameter is not consistent with controller. XX
+D3823 FAN NO. XX in Controller is out of order.
+D3824 Fuse NO.XX on IO board NO.1 is open.
+D3825 Fuse NO.XX on IO board NO.2 is open.
+D3826 Robot DC voltage error.
+D3828 Controller type error.
+D3829 Ki and/or K2 works wrong.
+D3830 PNhigh voltage error.
+D3831 PN low voltage error.
+D3832 Register over time error.
+D3833 Discharge resistor overheated.
+D3834 Power board switching circuit
+D3835 Power board inrush current limiting circuit is abnormal.
+D3836 DC Power voltage is abnormal.(CodeXX)
+D3837 JXX axis amp control power supply error.
+D3838 Power board is abnormal.
+D3839 Servo control line error.
+D3840 FAN NO. XX on power board is out of order.
+D3841 RobotXX servo amp is missing.
+D3842 Control power supply for a power device is abnormal.
+D3843 Brake release setting is abnormal.
+D4000 [DIAG]Error is detected in RS232C,(Code:XX)
+D4001 [DIAG] Error is detected in Ethernet.(Code:XX)
+D4500 Fieldbus interface board is not detected.
+D4501 ABMA-PDP)I/F module error. XX
+D4502 FIELD-BUS-INIT)Error reply. XX
+D4503 FIELD-BUS-INIT)Reply timeout. XX
+D4504 ANYBUS)OUT/FB.CTRL request timeout. XX
+D6000 Over temperature error in Barrier unit
+D6001 Mutual-Wait initialize error.
+
+
