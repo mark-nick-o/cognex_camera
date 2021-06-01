@@ -14,6 +14,10 @@
 extern "C" {
 #endif /* __cplusplus */
 
+void EIPCalculateNextSeed( uint32_t *xor_shift_seed );
+uint64_t EIPRandomGenerate( uint8_t *initFlag );
+const char* EIP_CipVendorStr( int16_t aVendorId );                              /* vendor code extract when using cip */
+
 int8_t decodeListIdentityEIP( const char*msg, EIPListIdentity_t *listId );
 int8_t decodeListInterfaceEIP( const char*msg, EIPListInterface_t *listId );
 int8_t decodeListServicesEIP( const char*msg, EIPListServices_t *listId );
@@ -21,18 +25,89 @@ int8_t decodeCommonPacketFormatEIP( const char*msg, EIPCommonPacketFormat_t *pac
 int8_t decodeMessageRouterResponsetEIP( const char*msg, EIPMessageRouterResponse_t *packet );
 int8_t decodeCommonPacketFormatEIP( const char*msg, EIPCommonPacketFormat_t *packet );
 
-EIPEncapsulationPacket_t encodeListIdentityEIP(const uint64_t context);
-EIPEncapsulationPacket_t encodeListInterfaceEIP(const uint64_t context);
-EIPEncapsulationPacket_t encodeListServicesEIP(const uint64_t context);
+EIPEncapsulationPacket_t encodeListIdentityEIP( const uint64_t context);
+EIPEncapsulationPacket_t encodeListInterfaceEIP( const uint64_t context);
+EIPEncapsulationPacket_t encodeListServicesEIP( const uint64_t context);
 EIPCommonPacketFormatItem_t encodeCommonPacketFormatItemEIP( const EIPItemID_e Type, uint8_t *dataV);
-EIPCommonPacketFormat_t encodeCommonPacketFormatEIP(const EIPCommonPacketFormatItem_t **content, const uint16_t itemCount);
-EIPMessageRouterRequest_t encodeEIPMessageRouterRequestEIP(const uint8_t* path, const uint8_t* dataVals, const uint16_t service);
+EIPCommonPacketFormat_t encodeCommonPacketFormatEIP( const EIPCommonPacketFormatItem_t **items2Send );
+EIPMessageRouterRequest_t encodeEIPMessageRouterRequestEIP( const uint8_t* path, const uint8_t* dataVals, const uint16_t service );
 EIPregisterSessionSpecificData_t encodeRegisterSessionSpecificDataEIP( );
-EIPEncapsulationPacket_t encodeRegisterSessionEIP(const uint64_t context);
-EIPEncapsulationPacket_t encodeUnRegisterSessionEIP(const uint64_t context, const uint64_t sessHandle);
-EIPEncapsulationPacket_t encodeInstructNOPcodeEIP(const int8_t *dataIn);
+EIPEncapsulationPacket_t encodeRegisterSessionEIP( const uint64_t context );
+EIPEncapsulationPacket_t encodeUnRegisterSessionEIP( const uint64_t context, const uint64_t sessHandle );
+EIPEncapsulationPacket_t encodeInstructNOPcodeEIP( const int8_t *dataIn );
+EIPSendDataSpecificData_t encodeSendDataSpecificDataEIP( const uint16_t tim, const EIPCommonPacketFormatItem_t **items2Send );
+EIPEncapsulationPacket_t encodeNewSendRRDataEIP( const uint64_t sessHandle, const uint64_t context, const uint16_t tim, const EIPCommonPacketFormatItem_t **items2Send );
+EIPEncapsulationPacket_t SendRRDataEIP( uint8_t *initSeed, const uint64_t sessHandle, const uint16_t timeout, const EIPCommonPacketFormatItem_t **cpf );
+EIPEncapsulationPacket_t encodeNewSendUnitDataEIP( const uint64_t sessHandle, const uint64_t context, const uint16_t tim, const EIPCommonPacketFormatItem_t **items2Send );
+EIPEncapsulationPacket_t SendUnitDataEIP( uint8_t *initSeed, const uint64_t sessHandle, const uint16_t timeout, const EIPCommonPacketFormatItem_t **cpf );
 
 int8_t readYaskawaEIP_EPath( const char*msg, Yaskawa_EPath_t *epath );
+
+/** 
+ * https://github.com/liftoff-sr/CIPster/blob/master/source/src/utils/xorshiftrandom.cc
+ * @brief Pseudo-random number algorithm
+ * The algorithm used to create the pseudo-random numbers.
+ * Works directly on the file global variable
+ **/
+/* ----------------------------------------------------------------------------
+ *  EIPCalculateNextSeed : calculate the next seed
+ *  param : uint32_t *xor_shift_seed
+ *        
+ *  return : void
+ * -------------------------------------------------------------------------- */
+void EIPCalculateNextSeed( uint32_t *xor_shift_seed ) 
+{
+  *xor_shift_seed ^= *xor_shift_seed << 13u;
+  *xor_shift_seed ^= *xor_shift_seed >> 17u;
+  *xor_shift_seed ^= *xor_shift_seed << 5u;
+}
+
+/* ----------------------------------------------------------------------------
+ *  EIPRandomGenerate : generate random number 64 bits long
+ *  param : uint32_t *xor_shift_seed
+ *        
+ *  return : void
+ * -------------------------------------------------------------------------- */
+uint64_t EIPRandomGenerate( uint8_t *initFlag ) 
+{
+  uint16_t i1;
+  uint16_t i2;
+  uint16_t i3;
+  uint16_t i4;
+  uint32_t i5;
+  uint32_t i6;
+  if (*initFlag == 0)
+  {
+     srand(((uint16_t)CP0_GET(CP0_COUNT)&0xFFFFu));
+     *initFlag = 1;
+  }
+  i1 = rand();
+  i2 = rand();
+  i3 = rand();
+  i4 = rand();
+  i5 = i1 | (((uint32_t)i2) << 16u);
+  i6 = i3 | (((uint32_t)i4) << 16u);  
+  EIPCalculateNextSeed( &i5 );
+  EIPCalculateNextSeed( &i6 ); 
+  return (((uint64_t)i5) | (((uint64_t)i6) << 32u)); 
+}
+
+/* ----------------------------------------------------------------------------
+ *  EIP_CipVendorStr : get a description for the vendor as a string
+ *  param : int16_t aVendorId
+ *        
+ *  return : const char*
+ * -------------------------------------------------------------------------- */
+const char* EIP_CipVendorStr( int16_t aVendorId )
+{
+    int16_t i;
+
+    for( i = 0; i < EIP_VENDOR_COUNT; ++i )
+    {
+        if( gEIP_vendors[i].id == aVendorId )
+            return gEIP_vendors[i].name;
+    }
+}
 
 /* ----------------------------------------------------------------------------
  *  decodeListIdentityEIP : decode list Id message
@@ -50,12 +125,12 @@ int8_t decodeListIdentityEIP( const char*msg, EIPListIdentity_t *listId )
     }
     else
     {
-	if (sizeof(msg) < sizeof(EIPListIdentity_t))
-	{
+        if (sizeof(msg) < sizeof(EIPListIdentity_t))
+        {
             retn = -1;
-	}
-	else
-	{
+        }
+        else
+        {
             memcpy((void*) listId,(void*) msg, sizeof(EIPListIdentity_t));
 #if defined(ETHIP_HOST_IS_BIG_ENDIAN)
             listId->Item.SinFamily = SWAPINT16(listId->Item.SinFamily);
@@ -84,12 +159,12 @@ int8_t decodeListInterfaceEIP( const char*msg, EIPListInterface_t *listId )
     }
     else
     {
-	if (sizeof(msg) < sizeof(EIPListInterface_t))
-	{
+        if (sizeof(msg) < sizeof(EIPListInterface_t))
+        {
             retn = -1;
-	}
-	else
-	{
+        }
+        else
+        {
            memcpy((void*) listId,(void*) msg, sizeof(EIPListInterface_t));  
         } 
     }        
@@ -112,12 +187,12 @@ int8_t decodeListServicesEIP( const char*msg, EIPListServices_t *listId )
     }
     else
     {
-	if (sizeof(msg) < sizeof(EIPListServices_t))
-	{
+        if (sizeof(msg) < sizeof(EIPListServices_t))
+        {
             retn = -1;
-	}
-	else
-	{
+        }
+        else
+        {
            memcpy((void*) listId,(void*) msg, sizeof(EIPListServices_t)); 
         }  
     }        
@@ -136,18 +211,18 @@ int8_t decodeCommonPacketFormatEIP( const char*msg, EIPCommonPacketFormat_t *pac
 
     if ((msg == NULL) || (packet == NULL))        
     {
-	retn = -1;
+        retn = -1;
     }
     else
     {
-	if (sizeof(msg) < sizeof(EIPCommonPacketFormat_t))
-	{
+        if (sizeof(msg) < sizeof(EIPCommonPacketFormat_t))
+        {
             retn = -1;
-	}
-	else
-	{
+        }
+        else
+        {
            memcpy((void*) packet,(void*) msg, sizeof(EIPCommonPacketFormat_t));   
-	}
+        }
     }        
     return retn;
 }
@@ -163,18 +238,18 @@ int8_t decodeMessageRouterResponsetEIP( const char*msg, EIPMessageRouterResponse
 
     if ((msg == NULL) || (packet == NULL))        
     {
-	retn = -1;
+        retn = -1;
     }
     else
     {
-	if (sizeof(msg) < sizeof(EIPMessageRouterResponse_t))
-	{
+        if (sizeof(msg) < sizeof(EIPMessageRouterResponse_t))
+        {
             retn = -1;
-	}
-	else
-	{
+        }
+        else
+        {
            memcpy((void*) packet,(void*) msg, sizeof(EIPMessageRouterResponse_t));   
-	}
+        }
     }        
     return retn;
 }
@@ -231,22 +306,26 @@ EIPCommonPacketFormatItem_t encodeCommonPacketFormatItemEIP( const EIPItemID_e T
     EIPCommonPacketFormatItem_t encapsulationPacket;    
     encapsulationPacket.TypeID = Type;
     encapsulationPacket.Length = strlen(dataV);
-    memcpy((void*)&encapsulationPacket.DataV,(void*)dataV,strlen(dataV));	
+    memcpy((void*)&encapsulationPacket.DataV,(void*)dataV,strlen(dataV));        
     return encapsulationPacket;
 }
 
 /* ----------------------------------------------------------------------------
  *  encodeCommonPacketFormatEIP : encode Common Packet Format message for EIP
- *  param : const EIPCommonPacketFormatItem_t **content, const uint16_t itemCount 
+ *  param : const EIPCommonPacketFormatItem_t **content  
  *        
  *  return : EIPCommonPacketFormat_t*
  * -------------------------------------------------------------------------- */
-EIPCommonPacketFormat_t encodeCommonPacketFormatEIP(const EIPCommonPacketFormatItem_t **content, const uint16_t itemCount) 
+EIPCommonPacketFormat_t encodeCommonPacketFormatEIP(const EIPCommonPacketFormatItem_t **items2Send ) 
 {
     EIPCommonPacketFormat_t encapsulationPacket;    
-    encapsulationPacket.ItemCount = itemCount;
-    memset((void*)&encapsulationPacket.Items[0u],0,sizeof(encapsulationPacket));
-    memcpy((void*)&encapsulationPacket.Items[0u],(void*)&content[0u],(itemCount*sizeof(EIPCommonPacketFormatItem_t)));
+    int16_t itemNo;
+    encapsulationPacket.ItemCount = ((int16_t)sizeof(items2Send)/sizeof(EIPCommonPacketFormatItem_t));
+    for( itemNo = 0; itemNo < encapsulationPacket.ItemCount; ++itemNo )
+    {
+         memset((void*)&encapsulationPacket.Items[itemNo],0,sizeof(EIPCommonPacketFormatItem_t));
+         memcpy((void*)&encapsulationPacket.Items[itemNo],(void*)&items2Send[itemNo],sizeof(EIPCommonPacketFormatItem_t));
+    }    
     return encapsulationPacket;
 }
 
@@ -276,7 +355,7 @@ EIPregisterSessionSpecificData_t encodeRegisterSessionSpecificDataEIP( )
 {
     EIPregisterSessionSpecificData_t encapsulationPacket;    
     encapsulationPacket.ProtocolVersion = 1;
-    encapsulationPacket.OptionsFlags = 0;	
+    encapsulationPacket.OptionsFlags = 0;        
     return encapsulationPacket;
 }
 
@@ -289,7 +368,7 @@ EIPregisterSessionSpecificData_t encodeRegisterSessionSpecificDataEIP( )
 EIPEncapsulationPacket_t encodeRegisterSessionEIP(const uint64_t context) 
 {
     EIPEncapsulationPacket_t encapsulationPacket;  
-    EIPregisterSessionSpecificData_t cmdData;	
+    EIPregisterSessionSpecificData_t cmdData;        
     encapsulationPacket.pHeader.EIPCommand = EIPCommandRegisterSession;
     encapsulationPacket.pHeader.Length = 4u;
     encapsulationPacket.pHeader.SenderContext = context;
@@ -306,7 +385,7 @@ EIPEncapsulationPacket_t encodeRegisterSessionEIP(const uint64_t context)
  * -------------------------------------------------------------------------- */
 EIPEncapsulationPacket_t encodeUnRegisterSessionEIP(const uint64_t context, const uint64_t sessHandle) 
 {
-    EIPEncapsulationPacket_t encapsulationPacket;  	
+    EIPEncapsulationPacket_t encapsulationPacket;          
     encapsulationPacket.pHeader.EIPCommand = EIPCommandUnRegisterSession;
     encapsulationPacket.pHeader.Length = 4u;
     encapsulationPacket.pHeader.SenderContext = context;
@@ -327,6 +406,94 @@ EIPEncapsulationPacket_t encodeInstructNOPcodeEIP(const int8_t *dataIn)
     encapsulationPacket.pHeader.Length = 4u;
     encapsulationPacket.pHeader.SenderContext = 0;
     memcpy((void*)&encapsulationPacket.CommandSpecificData,(void*)dataIn,sizeof(dataIn)); 
+    return encapsulationPacket;
+}
+
+/* ----------------------------------------------------------------------------
+ *  encodeSendDataSpecificDataEIP : encode message Send DataS pecific Data
+ *  param : const uint64_t context 
+ *        
+ *  return : EIPSendDataSpecificData_t
+ * -------------------------------------------------------------------------- */
+EIPSendDataSpecificData_t encodeSendDataSpecificDataEIP( const uint16_t tim, const EIPCommonPacketFormatItem_t **items2Send ) 
+{
+    EIPSendDataSpecificData_t encapsulationPacket; 
+    EIPCommonPacketFormat_t cmdData; 	
+    encapsulationPacket.InterfaceHandle = 0;
+    encapsulationPacket.TimeOut= tim; 
+    cmdData = encodeCommonPacketFormatEIP( items2Send );	
+    memcpy((void*)&encapsulationPacket.Packet[0u],(void*)&cmdData,sizeof(cmdData));    	
+    return encapsulationPacket;
+}
+
+
+/* ----------------------------------------------------------------------------
+ *  encodeNewSendRRDataEIP : encode message RR data
+ *  param : const uint64_t context 
+ *        
+ *  return : EIPEncapsulationPacket_t*
+ * -------------------------------------------------------------------------- */
+EIPEncapsulationPacket_t encodeNewSendRRDataEIP( const uint64_t sessHandle, const uint64_t context, const uint16_t tim, const EIPCommonPacketFormatItem_t **items2Send ) 
+{
+    EIPEncapsulationPacket_t encapsulationPacket;  
+    EIPSendDataSpecificData_t cmdData;        
+    encapsulationPacket.pHeader.EIPCommand = EIPCommandSendRRData;
+    encapsulationPacket.pHeader.Length = 4u;
+    encapsulationPacket.pHeader.SenderContext = context;
+    encapsulationPacket.pHeader.SessionHandle = sessHandle; 
+    cmdData = encodeSendDataSpecificDataEIP( tim, items2Send ); 
+    memcpy((void*)&encapsulationPacket.CommandSpecificData,(void*)&cmdData,sizeof(cmdData)); 
+    return encapsulationPacket;
+}
+
+/* ----------------------------------------------------------------------------
+ *  SendRRDataEIP : encode message RR data
+ *  param : uint8_t *initSeed, const uint64_t sessHandle, const uint16_t timeout, 
+ *          const EIPCommonPacketFormatItem_t **cpf
+ * 
+ *  return : EIPEncapsulationPacket_t*
+ * -------------------------------------------------------------------------- */
+EIPEncapsulationPacket_t SendRRDataEIP( uint8_t *initSeed, const uint64_t sessHandle, const uint16_t timeout, const EIPCommonPacketFormatItem_t **cpf ) 
+{
+    EIPEncapsulationPacket_t encapsulationPacket;  
+    uint64_t ctx = EIPRandomGenerate( initSeed );
+
+    encapsulationPacket = encodeNewSendRRDataEIP(sessHandle, ctx, timeout, cpf );
+    return encapsulationPacket;
+}
+
+/* ----------------------------------------------------------------------------
+ *  encodeNewSendUnitDataEIP : encode message Unit data
+ *  param : const uint64_t context 
+ *        
+ *  return : EIPEncapsulationPacket_t*
+ * -------------------------------------------------------------------------- */
+EIPEncapsulationPacket_t encodeNewSendUnitDataEIP( const uint64_t sessHandle, const uint64_t context, const uint16_t tim, const EIPCommonPacketFormatItem_t **items2Send ) 
+{
+    EIPEncapsulationPacket_t encapsulationPacket;  
+    EIPSendDataSpecificData_t cmdData;        
+    encapsulationPacket.pHeader.EIPCommand = EIPCommandSendUnitData;
+    encapsulationPacket.pHeader.Length = 4u;
+    encapsulationPacket.pHeader.SenderContext = context;
+    encapsulationPacket.pHeader.SessionHandle = sessHandle; 
+    cmdData = encodeSendDataSpecificDataEIP( tim, items2Send ); 
+    memcpy((void*)&encapsulationPacket.CommandSpecificData,(void*)&cmdData,sizeof(cmdData)); 
+    return encapsulationPacket;
+}
+
+/* ----------------------------------------------------------------------------
+ *  SendUnitDataEIP : encode message RR data
+ *  param : uint8_t *initSeed, const uint64_t sessHandle, const uint16_t timeout, 
+ *          const EIPCommonPacketFormatItem_t **cpf
+ * 
+ *  return : EIPEncapsulationPacket_t*
+ * -------------------------------------------------------------------------- */
+EIPEncapsulationPacket_t SendUnitDataEIP( uint8_t *initSeed, const uint64_t sessHandle, const uint16_t timeout, const EIPCommonPacketFormatItem_t **cpf ) 
+{
+    EIPEncapsulationPacket_t encapsulationPacket;  
+    uint64_t ctx = EIPRandomGenerate( initSeed );
+
+    encapsulationPacket = encodeNewSendUnitDataEIP(sessHandle, ctx, timeout, cpf );
     return encapsulationPacket;
 }
 
