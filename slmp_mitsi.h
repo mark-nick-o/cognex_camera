@@ -12,6 +12,7 @@ extern "C" {
    SLMP Mitsubishi Protocol - Carrier TCP stream or UDP socket
    inspired from code by Masahiro Hasegawa
    written in rust and also c# driver by Luke Chen 
+   https://github.com/masahase0117/SlmpClient/tree/main/src
    ========================================================== */
    
 #define _MAX_BIT_RW_POINT_ASCII 3584u
@@ -34,8 +35,7 @@ extern "C" {
 #endif
                 
 typedef enum {
-    // Device
-    DeviceRead = 0x0401,
+    DeviceRead = 0x0401,                                                        // Device
     DeviceWrite = 0x1401,
     DeviceReadRandom = 0x0403,
     DeviceWriteRandom = 0x1402,
@@ -43,33 +43,26 @@ typedef enum {
     ExecuteMonitor = 0x0802,
     ReadBlock = 0x0406,
     WriteBlock = 0x01406,
-    // Label
-    ArrayLabelRead = 0x041A,
+    ArrayLabelRead = 0x041A,                                                    // Label
     ArrayLabelWrite = 0x141A,
     LabelReadRandom = 0x041C,
     LabelWriteRandom = 0x141B,
-    // Memory
-    MemoryRead = 0x0613,
+    MemoryRead = 0x0613,                                                        // Memory
     MemoryWrite = 0x1613,
-    // ExtendUnit
-    ExtendUnitRead = 0x0601,
+    ExtendUnitRead = 0x0601,                                                    // ExtendUnit
     ExtendUnitWrite = 0x1601,
-    // RemoteControl
-    RemoteRun = 0x1001,
+    RemoteRun = 0x1001,                                                         // RemoteControl
     RemoteStop = 0x1002,
     RemotePause = 0x1003,
     RemoteLatchClear = 0x1005,
     RemoteReset = 0x1006,
     ReadTypeName = 0x0101,
     NodeIndication = 0x3070,
-    // Drive
-    ReadDiskState = 0x0205,
+    ReadDiskState = 0x0205,                                                     // Drive
     Defrag = 0x1207,
-    // RemotePassword
-    RemotePasswordLock = 0x1631,
+    RemotePasswordLock = 0x1631,                                                // RemotePassword
     RemotePasswordUnlock = 0x1630,
-    // File
-    ReadFileInfo = 0x0201,
+    ReadFileInfo = 0x0201,                                                      // File
     ReadFileInfoWithTitle = 0x0202,
     ReadFileNoInfo = 0x0204,
     ChangeFileInfo = 0x1204,
@@ -95,16 +88,13 @@ typedef enum {
     ClearErrorCode = 0x1617,
     ClearErrorHistory = 0x1619,
     OnDemand = 0x2101,
-    // DataCollection
-    Auth = 0x4000,
+    Auth = 0x4000,                                                              // DataCollection
     KeepAlive = 0x4001,
     GetData = 0x4002,
     Distribute = 0x4003,
-    // NodeConnection
-    NodeSearch = 0x0E30,
+    NodeSearch = 0x0E30,                                                        // NodeConnection
     IPAddressSet = 0x0E31,
-    // ParameterSetting
-    DeviceInfoCompare = 0x0E32,
+    DeviceInfoCompare = 0x0E32,                                                 // ParameterSetting
     ParameterGet = 0x0E33,
     ParameterUpdate = 0x0E34,
     ParameterSetStart = 0x0E35,
@@ -112,37 +102,30 @@ typedef enum {
     ParameterSetCancel = 0x0E3A,
     DeviceIdentificationInfoGet = 0x0E28,
     CommunicationSpeed = 0x3072,
-    // NodeMonitoring
-    StatusRead = 0x0E44,
+    StatusRead = 0x0E44,                                                        // NodeMonitoring
     StatusRead2 = 0x0E53,
     ConnectionSettingGet = 0x0E45,
     DataMonitoring = 0x0E29,
-    // Other
-    CAN = 0x4020,
+    CAN = 0x4020,                                                               // Other
     IOLInk = 0x5000,
     ModbusTCP = 0x5001,
     ModbusRTU = 0x5002,
-    // CCLinkIEFieldDiagnostics
-    SelectNodeInfoGet = 0x3119,
+    SelectNodeInfoGet = 0x3119,                                                 // CCLinkIEFieldDiagnostics
     CommunicationTest = 0x3040,
     CableTest = 0x3050,
-    // CCLinkIETSNNetworkManagement
-    NetworkConfig = 0x0E90,
+    NetworkConfig = 0x0E90,                                                     // CCLinkIETSNNetworkManagement
     MasterConfig = 0x0E91,
     SlaveConfig = 0x0E92,
     CyclicConfig = 0x0E93,
     Notification = 0x0E94,
-    // LinkDeviceParameter
-    LinkDevicePrmWrite = 0x320A,
+    LinkDevicePrmWrite = 0x320A,                                                // LinkDeviceParameter
     LinkDevicePrmWriteCheckReq = 0x320B,
     LinkDevicePrmWriteCheckResp = 0x320C,
-    // EventHistory
-    GetEventNum = 0x3060,
+    GetEventNum = 0x3060,                                                       // EventHistory
     GetEventHistory = 0x3061,
     ClearEventHistory = 0x161A,
     ClockOffsetDataSend = 0x3062,
-    // BackupRestore
-    GetCommunicationSet = 0x0EB0,
+    GetCommunicationSet = 0x0EB0,                                               // BackupRestore
     GetStationSubIDList = 0x0EB1,
     GetDeviceInfo = 0x0EB2,
     StartBackup = 0x0EB3,
@@ -153,18 +136,14 @@ typedef enum {
     StartRestore = 0x0EB8,
     EndRestore = 0x0EB9,
     SetBackupPrm = 0x0EBA,
-    // SlaveStationPrmRestore_
-    CheckPrmDelivery = 0x0EBE,
-    // StartStopCyclic
-    StopOwnStationCyclic = 0x3206,
+    CheckPrmDelivery = 0x0EBE,                                                  // SlaveStationPrmRestore_
+    StopOwnStationCyclic = 0x3206,                                              // StartStopCyclic
     StartOwnStationCyclic = 0x3207,
     StopOtherStationCyclic = 0x3208,
     StartOtherStationCyclic = 0x3209,
-    //ReservedStation
-    RsvStationConfigTemporaryRelease = 0x320D,
+    RsvStationConfigTemporaryRelease = 0x320D,                                  //ReservedStation
     RsvStationConfig = 0x320E,
-    // WatchdogCounter
-    SetWatchdogCounterInfo = 0x3210,
+    SetWatchdogCounterInfo = 0x3210,                                            // WatchdogCounter
     WatchdogCounterOffsetConfig = 0x3211
 } SLMPCommand_e;
 
@@ -376,16 +355,90 @@ typedef struct  {
 }) SlmpFrameHeader_t;                                                           
 #endif
 
+#if defined(D_FT900)
+typedef struct SLMPPACKED {
+    uint8_t network;                                                            // Network number
+    uint8_t node;                                                               // Node number
+    uint16_t dst_proc;                                                          // Processor number
+    uint8_t m_drop;                                                             // Multi-drop number
+    uint16_t seq_no;
+    SOCKET_Intern_Dsc *TCPSocket;                                               // Communication socket
+    uint8_t buf[];                                                              // Receive buffer
+} SLMPConnectionInfo_t;
+#else
+SLMPPACKED(
+typedef struct  {
+    uint8_t network;                                                            // Network number
+    uint8_t node;                                                               // Node number
+    uint16_t dst_proc;                                                          // Processor number
+    uint8_t m_drop;                                                             // Multi-drop number
+    uint16_t seq_no;
+    SOCKET_Intern_Dsc *TCPSocket;                                               // Communication socket
+    uint8_t buf[];                                                              // Receive buffer
+}) SLMPConnectionInfo_t;                                                           
+#endif
+
+typedef enum { SLMPConInitParam, SLMPConParamsSet, SLMPSerialNew, SLMPSerialSet, NumOfSLMPConnState } SLMP_ConnState_e;
+
+#if defined(D_FT900)
+typedef struct SLMPPACKED {
+    uint8_t connection_info;
+    uint16_t timeout;
+    uint32_t self_addr;
+    uint16_t self_d_code;
+    uint16_t count;
+    uint8_t is_bit: 1u;
+    uint8_t sparebits1 : 7u;
+} Slmp_send_read_cmd_t;
+#else
+SLMPPACKED(
+typedef struct  {
+    uint8_t connection_info;
+    uint16_t timeout;
+    uint32_t self_addr;
+    uint16_t self_d_code;
+    uint16_t count;
+    uint8_t is_bit: 1u;
+    uint8_t sparebits1 : 7u;
+}) Slmpsend_read_cmd_t;                                                           
+#endif
+
 #define SlmpFrameType 0x54u
+
+/* ================== Function prototypes ================================== */
+void SlmpSetCommand( SlmpFrameHeader_t *fh, SLMPCommand_e cmd, uint16_t subcmd );
+int8_t Slmp_make_frame_header( const SlmpFrameHeader_t fh, unsigned char* buf );
+int8_t SlmpcreateBuffer( SlmpFrameHeader_t *fh, unsigned char* sendbuf, const unsigned char* data2send );
+int8_t Slmp_make_cmd_rw_devices16( SLMPDeviceCode_e d_code, const uint16_t first_addr, const uint16_t count, unsigned char * buf);
+int8_t SLMPConnectionInfo( SLMPConnectionInfo_t *info, unsigned char * buf, SLMP_ConnState_e *state );
+
+void Slmp_send_remote_run_cmd( uint8_t force,  SLMPClearMode_e clear_mode, SlmpFrameHeader_t *fh, unsigned char* sendbuf );
+void Slmp_send_remote_stop_cmd( uint8_t force,  SlmpFrameHeader_t *fh, unsigned char* sendbuf );
+void Slmp_send_remote_pause_cmd( uint8_t force, SlmpFrameHeader_t *fh, unsigned char* sendbuf );
+void Slmp_send_remote_latch_clear( uint8_t force,  SlmpFrameHeader_t *fh, unsigned char* sendbuf );
+void Slmp_send_remote_reset_cmd( uint8_t force,  SlmpFrameHeader_t *fh, unsigned char* sendbuf );
+void Slmp_send_read_type_name_cmd( uint8_t force,  SlmpFrameHeader_t *fh, unsigned char* sendbuf );
+
+void SlmpMTHeaderfromBuf( uint8_t* buf, SlmpMTHeader_t *head );
+void SlmpSubHeaderResfromBuf( uint8_t* buf, SlmpSubHeaderRes_t *sub );
+void SlmpSubHeaderReqfromBuf( uint8_t* buf, SlmpSubHeaderReq_t *sub );
+void SlmpSubHeaderOdfromBuf( uint8_t* buf, SlmpSubHeaderOd_t *sub );
+void SlmpErrInfofromBuf( uint8_t* buf, ErrInfo_t *sub );
+int8_t Slmp_decode_read_type_name_response_fromBuf( uint8_t* buf, uint16_t *sCode );
+
+void Slmp_pack16( const uint32_t self_addr, const uint16_t self_d_code, uint8_t *buf );
+void Slmp_send_read_cmd_16( SlmpFrameHeader_t *fh, unsigned char* sendbuf, const Slmpsend_read_cmd_t *sendDat );
+void Slmp_pack32( const uint32_t self_addr, const uint16_t self_d_code, uint8_t *buf );
+void Slmp_send_read_cmd_32( SlmpFrameHeader_t *fh, unsigned char* sendbuf, Slmpsend_read_cmd_t *sendDat );
 
 /*-----------------------------------------------------------------------------
  *  SlmpSetCommand:  Set the command and subcommand 
  *
- *  Parameters: SlmpFrameHeader_t *fh, uint16_t cmd, uint16_t subcmd 
+ *  Parameters: SlmpFrameHeader_t *fh, SLMPCommand_e cmd, uint16_t subcmd 
  *              
  *  Return:     (none)
  *----------------------------------------------------------------------------*/
-void SlmpSetCommand( SlmpFrameHeader_t *fh, uint16_t cmd, uint16_t subcmd )
+void SlmpSetCommand( SlmpFrameHeader_t *fh, SLMPCommand_e cmd, uint16_t subcmd )
 {
    fh->command = cmd;
    fh->sub_command = subcmd; 
@@ -530,7 +583,7 @@ void Slmp_send_remote_run_cmd( uint8_t force,  SLMPClearMode_e clear_mode, SlmpF
     buf[2u] = clear_mode;
     buf[3u] = 0x00u;
     
-    SlmpSetCommand( fh, RemoteRun, 0 );
+    SlmpSetCommand( fh, RemoteRun, 0u );
     SlmpcreateBuffer( fh, sendbuf, &buf );
 }
 
@@ -543,7 +596,7 @@ void Slmp_send_remote_run_cmd( uint8_t force,  SLMPClearMode_e clear_mode, SlmpF
 void Slmp_send_remote_stop_cmd( uint8_t force,  SlmpFrameHeader_t *fh, unsigned char* sendbuf ) 
 { 
    unsigned char buf = 0u;
-   SlmpSetCommand( fh, RemoteStop, 0 );
+   SlmpSetCommand( fh, RemoteStop, 0u );
    SlmpcreateBuffer( fh, sendbuf, &buf );
 }
 
@@ -562,10 +615,304 @@ void Slmp_send_remote_pause_cmd( uint8_t force, SlmpFrameHeader_t *fh, unsigned 
     else
         buf[0u] = 0x03u;
     
-    SlmpSetCommand( fh, RemotePause, 0 );
+    SlmpSetCommand( fh, RemotePause, 0u );
     SlmpcreateBuffer( fh, sendbuf, &buf );
 }
 
+#define SLMP_HEADER_LEN 6u
+#define SLMP_SUBHEADER_LEN 9u
+
+/* ----------------------------------------------------------------------------
+ *  SlmpMTHeaderfromBuf: sub header result messaage parse
+ *  param : uint8_t* buf, SlmpSubHeaderRes_t *sub
+ *        
+ *  return : void
+ * -------------------------------------------------------------------------- */
+void SlmpMTHeaderfromBuf( uint8_t* buf, SlmpMTHeader_t *head ) 
+{
+    head->f_type = ((uint16_t)buf[0u]) | (((uint16_t)buf[1u]) << 8u);
+    head->serial_no = ((uint16_t)buf[2u]) | (((uint16_t)buf[3u]) << 8u);
+    head->reserved2 = ((uint16_t)buf[4u]) | (((uint16_t)buf[5u]) << 8u);
+    buf += SLMP_HEADER_LEN;
+}	
+
+/* ----------------------------------------------------------------------------
+ *  SlmpSubHeaderResfromBuf: sub header result messaage parse
+ *  param : uint8_t* buf, SlmpSubHeaderRes_t *sub
+ *        
+ *  return : void
+ * -------------------------------------------------------------------------- */
+void SlmpSubHeaderResfromBuf( uint8_t* buf, SlmpSubHeaderRes_t *sub )
+{
+    sub->net_no = buf[0u];
+    sub->node_no = buf[1u];
+    sub->dst_proc_no = ((uint16_t)buf[2u]) + (((uint16_t)buf[3u]) << 8u);
+    sub->reserved1 = buf[4u];
+    sub->dl = ((uint16_t)buf[5u]) + (((uint16_t)buf[6u]) << 8u);
+    sub->end_code = ((uint16_t)buf[7u]) + (((uint16_t)buf[8u]) << 8u);
+    buf += SLMP_SUBHEADER_LEN;
+}
+
+/* ----------------------------------------------------------------------------
+ *  SlmpSubHeaderReqfromBuf: sub header request messaage parse
+ *  param : uint8_t* buf, SlmpSubHeaderReq_t *sub
+ *        
+ *  return : void
+ * -------------------------------------------------------------------------- */
+void SlmpSubHeaderReqfromBuf( uint8_t* buf, SlmpSubHeaderReq_t *sub )
+{
+    sub->net_no = buf[0u];
+    sub->node_no = buf[1u];
+    sub->dst_proc_no = ((uint16_t)buf[2u]) + (((uint16_t)buf[3u]) << 8u);
+    sub->reserved1 = buf[4u];
+    sub->dl = ((uint16_t)buf[5u]) + (((uint16_t)buf[6u]) << 8u);
+    sub->timer = ((uint16_t)buf[7u]) + (((uint16_t)buf[8u]) << 8u);
+    buf += SLMP_SUBHEADER_LEN;
+}
+
+/* ----------------------------------------------------------------------------
+ *  SlmpSubHeaderReqfromBuf : sub header od messaage parse
+ *  param : uint8_t* buf, SlmpSubHeaderOd_t *sub
+ *        
+ *  return : void
+ * -------------------------------------------------------------------------- */
+void SlmpSubHeaderOdfromBuf( uint8_t* buf, SlmpSubHeaderOd_t *sub )
+{
+    sub->net_no = buf[0u];
+    sub->node_no = buf[1u];
+    sub->dst_proc_no = ((uint16_t)buf[2u]) + (((uint16_t)buf[3u]) << 8u);
+    sub->reserved1 = buf[4u];
+    sub->dl = ((uint16_t)buf[5u]) + (((uint16_t)buf[6u]) << 8u);
+    sub->reserved3 = ((uint16_t)buf[7u]) + (((uint16_t)buf[8u]) << 8u);
+    buf += SLMP_SUBHEADER_LEN;
+}
+
+/* ----------------------------------------------------------------------------
+ *  SlmpErrInfofromBuf : error info messaage parse
+ *  param : uint8_t* buf, ErrInfo_t *sub
+ *        
+ *  return : void
+ * -------------------------------------------------------------------------- */
+void SlmpErrInfofromBuf( uint8_t* buf, ErrInfo_t *sub )
+{
+    sub->net_no = buf[0u];
+    sub->node_no = buf[1u];
+    sub->dst_proc_no = ((uint16_t)buf[2u]) + (((uint16_t)buf[3u]) << 8u);
+    sub->reserved1 = buf[4u];
+    sub->command = ((uint16_t)buf[5u]) + (((uint16_t)buf[6u]) << 8u);
+    sub->sub_command = ((uint16_t)buf[7u]) + (((uint16_t)buf[8u]) << 8u);
+    buf += SLMP_SUBHEADER_LEN;
+}
+
+/*-----------------------------------------------------------------------------
+ *  SLMPConnectionInfo:  Compose message to connect over SLMP (remote controller)
+ *
+ *  Parameters: SLMPConnectionInfo_t *info, unsigned char * buf, SLMP_ConnState_e *state 
+ *           
+ *  Return: int8_t
+ *----------------------------------------------------------------------------*/
+int8_t SLMPConnectionInfo( SLMPConnectionInfo_t *info, unsigned char * buf, SLMP_ConnState_e *state ) 
+{
+     int8_t ret = 1;
+
+     if ((info == NULL) || ((buf == NULL) || (state == NULL)))
+     {
+         ret = -1;
+     }
+     else
+     {
+        if (*state == SLMPConInitParam)                                         /* if not state set enable defaults */
+        {
+            info->network = 1;
+            info->node = 1;
+            info->dst_proc = 0x3FF;
+            info->m_drop = 0u;
+            srand((CP0_GET(CP0_COUNT) % UINT16_MAX));
+            *state = SLMPConParamsSet;
+        }
+	 
+        memset((void*)&info->buf,0,TCP_IP_MAX_BYTES);
+        memset((void*)buf,0,sizeof(buf));
+        if (*state == SLMPConParamsSet)
+        {
+            info->seq_no = rand() % UINT8_MAX;
+            *state == SLMPSerialSet;
+        }
+        else if (*state == SLMPSerialNew)
+        {
+            info->seq_no += 0x10u;
+            if (info->seq_no > 0xff00u)
+            {
+                info->seq_no = rand() % UINT8_MAX;                
+            }
+            *state == SLMPSerialSet;			
+        }
+	 
+        if (sizeof(buf) >= 7u)
+        {
+           buf[0u] = info->network;
+           buf[1u] = info->node;
+           buf[2u] = info->dst_proc & 0x0Fu;
+           buf[3u] = (info->dst_proc >> 8u);
+           buf[4u] = info->m_drop;
+           buf[5u] = info->seq_no & 0x0Fu;
+           buf[6u] = (info->seq_no >> 8u);
+        }
+        else
+        {
+           ret = -1;
+        }
+     }
+     return ret;
+}
+
+/*-----------------------------------------------------------------------------
+ *  Slmp_send_remote_latch_clear:  Compose message to unlatch coil in PLC (remote controller)
+ *
+ *  Parameters: uint8_t force, SlmpFrameHeader_t *fh, unsigned char* sendbuf
+ *  Return:     (none)
+ *----------------------------------------------------------------------------*/
+void Slmp_send_remote_latch_clear( uint8_t force,  SlmpFrameHeader_t *fh, unsigned char* sendbuf ) 
+{ 
+   unsigned char buf[2u];
+   buf[0u] = 1u;
+   buf[1u] = 0u;   
+   SlmpSetCommand( fh, RemoteLatchClear, 0u );
+   SlmpcreateBuffer( fh, sendbuf, &buf );
+}
+
+/*-----------------------------------------------------------------------------
+ *  Slmp_send_remote_reset_cmd:  Compose message to remote reset PLC (remote controller)
+ *
+ *  Parameters: uint8_t force, SlmpFrameHeader_t *fh, unsigned char* sendbuf
+ *  Return:     (none)
+ *----------------------------------------------------------------------------*/
+void Slmp_send_remote_reset_cmd( uint8_t force,  SlmpFrameHeader_t *fh, unsigned char* sendbuf ) 
+{ 
+   unsigned char buf[2u];
+   buf[0u] = 1u;
+   buf[1u] = 0u;   
+   SlmpSetCommand( fh, RemoteReset, 0u );
+   SlmpcreateBuffer( fh, sendbuf, &buf );
+}
+
+/*-----------------------------------------------------------------------------
+ *  Slmp_send_read_type_name_cmd:  Compose message to read the type name from PLC (remote controller)
+ *
+ *  Parameters: uint8_t force, SlmpFrameHeader_t *fh, unsigned char* sendbuf
+ *  Return:     (none)
+ *----------------------------------------------------------------------------*/
+void Slmp_send_read_type_name_cmd( uint8_t force,  SlmpFrameHeader_t *fh, unsigned char* sendbuf ) 
+{ 
+   unsigned char buf = 0u; 
+   SlmpSetCommand( fh, ReadTypeName, 0u );
+   SlmpcreateBuffer( fh, sendbuf, &buf );
+}
+
+/* ----------------------------------------------------------------------------
+ *  Slmp_decode_read_type_name_response_fromBuf : parse type name response frame
+ *  param : uint8_t* buf, SlmpSubHeaderOd_t *sub
+ *        
+ *  return : int8_t
+ * -------------------------------------------------------------------------- */
+int8_t Slmp_decode_read_type_name_response_fromBuf( uint8_t* buf, uint16_t *sCode )
+{
+    int8_t ret = -1;
+    if ((buf == NULL) || (sCode == NULL)) return ret;
+    if (sizeof(buf) <= 16u) return ret;
+    *sCode = ((uint16_t)buf[16u]) | (((uint16_t)buf[17u]) << 8u);
+    return 1;
+}
+
+/*-----------------------------------------------------------------------------
+ *  Slmp_pack16:  pack address
+ *
+ *  Parameters: const uint32_t self_addr, const uint16_t self_d_code, uint8_t *buf
+ *  Return:     (none)
+ *----------------------------------------------------------------------------*/
+void Slmp_pack16( const uint32_t self_addr, const uint16_t self_d_code, uint8_t *buf )
+{
+    buf[0u] = (((uint8_t)self_addr) & 0xFu);
+    buf[1u] = (((uint8_t)self_addr) >> 8u);
+    buf[2u] = (((uint8_t)self_addr) >> 16u);
+    buf[3u] = (((uint8_t)self_d_code) & 0xFu);
+}
+
+/*-----------------------------------------------------------------------------
+ *  Slmp_send_read_cmd_16:  Compose message to read the type name from PLC (remote controller)
+ *
+ *  Parameters: SlmpFrameHeader_t *fh, unsigned char* sendbuf, const Slmpsend_read_cmd_t *sendDat
+ *  Return:     (none)
+ *----------------------------------------------------------------------------*/
+void Slmp_send_read_cmd_16( SlmpFrameHeader_t *fh, unsigned char* sendbuf, const Slmpsend_read_cmd_t *sendDat ) 
+{ 
+   unsigned char buf[6u]; 
+   uint16_t s_cmd;
+
+   Slmp_pack16( sendDat->self_addr, sendDat->self_d_code, buf );  
+   buf[4u] = (((uint8_t)sendDat->count) & 0xFu);
+   buf[5u] = (((uint8_t)sendDat->count) >> 8u); 
+   if (sendDat->is_bit == true)   
+   {
+       s_cmd = 1u;
+        if ((((uint8_t)buf[4u]) & 1u) == 1u) 
+	{
+            buf[4u] += 1;                                                       // There must be an even number of bit data
+        }	   
+   }
+   else 
+   {
+       s_cmd = 0u;
+   }
+   SlmpSetCommand( fh, MemoryRead, s_cmd );
+   SlmpcreateBuffer( fh, sendbuf, &buf );
+}
+
+/*-----------------------------------------------------------------------------
+ *  Slmp_pack32:  pack address
+ *
+ *  Parameters: const uint32_t self_addr, const uint16_t self_d_code, uint8_t *buf
+ *  Return:     (none)
+ *----------------------------------------------------------------------------*/
+void Slmp_pack32( const uint32_t self_addr, const uint16_t self_d_code, uint8_t *buf )
+{
+        buf[0u] = (((uint8_t)self_addr) & 0xFu);
+        buf[1u] = (((uint8_t)self_addr) >> 8u);
+        buf[2u] = (((uint8_t)self_addr) >> 16u);
+        buf[3u] = (((uint8_t)self_addr) >> 24u);
+        buf[4u] = (((uint8_t)self_d_code) & 0xFu);
+        buf[5u] = (((uint8_t)self_d_code) >> 8u);
+}
+
+/*-----------------------------------------------------------------------------
+ *  Slmp_send_read_cmd_32:  Compose message to read the type name from PLC (remote controller)
+ *
+ *  Parameters: SlmpFrameHeader_t *fh, unsigned char* sendbuf, Slmpsend_read_cmd_t *sendDat
+ *  Return:     (none)
+ *----------------------------------------------------------------------------*/
+void Slmp_send_read_cmd_32( SlmpFrameHeader_t *fh, unsigned char* sendbuf, Slmpsend_read_cmd_t *sendDat ) 
+{ 
+   unsigned char buf[8u]; 
+   uint16_t s_cmd;
+
+   Slmp_pack32( sendDat->self_addr, sendDat->self_d_code, buf );  
+   buf[6u] = (((uint8_t)sendDat->count)&0xFu);
+   buf[7u] = (((uint8_t)sendDat->count) >> 8u); 
+   if (sendDat->is_bit == true)   
+   {
+       s_cmd = 3u;
+        if ((((uint8_t)buf[6u]) & 1u) == 1u) 
+	{
+            buf[6u] += 1;                                                       // There must be an even number of bit data
+        }	   
+   }
+   else 
+   {
+       s_cmd = 2u;
+   }
+   SlmpSetCommand( fh, MemoryRead, s_cmd );
+   SlmpcreateBuffer( fh, sendbuf, &buf );
+}
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
