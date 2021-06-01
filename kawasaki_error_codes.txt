@@ -227,7 +227,7 @@ P2107 System is now downloading the software.
 P2108 There is no software in the USB memory.
 P2109 Cannot execute program because of simultaneously operation sig. inputting.
 P2110 [USB/CF]File write error.
-P2111 Please retum spin-axis to the original position.
+P2111 Please return spin-axis to the original position.
 P2112 File name is too long.
 P2113 Cannot start cycle from KT instruction.
 P4500 {FIELD-BUS)Interface not enabled.
@@ -244,7 +244,7 @@ P4510 {FIELD-BUS)Initialization of the card is not complete.
 P5000 Waiting weld completion.
 P5001 Waiting retract or extend pos. input signal,
 P5002 Spot sequence is running.
-P5003 Extemnal-axis type and Gun type data mismatch.
+P5003 External-axis type and Gun type data mismatch.
 P6000 Shifted location of STEPXX is out of range.
 P6001 STEPXX in source program is out of motion range.
 P6002 Specified painting data bank does not exist.
@@ -270,7 +270,7 @@ P7001 In force meas. mode, only NOP Interp. avail.
 P7002 Cannot change stroke because clamp on now.
 P7003 Servo parameter file is not found.
 P7500 Turn motor power on.
-P7501 Because of repeat mode,wwait to teach mode.
+P7501 Because of repeat mode, wait to teach mode.
 P7502 Over the number which can be registered in interruption.
 P7503 Cannot execute program in error masking.
 P7504 ONC/ONCI channel has already received.
@@ -315,7 +315,7 @@ W1013 Encoder battery low voltage. [Servo(XX)]
 W1014 Number of axes changed, Reinitialize,
 W1015 Possibility of failure.
 W1016 Torque of motor is over limit. IXX
-W1017 Encoder battery low voltage [Extemal axis(XX)]
+W1017 Encoder battery low voltage [External axis(XX)]
 W1018 Network parameter is changed. Tum OFF & ON the control power.
 W1019 The registered value is beyond rated load.
 W1020 Error sector was found.
@@ -387,7 +387,7 @@ W5005 (Spot welding)No response from RWC XX.
 W5006 (Spot welding)RWC response error XX.
 W5007 (Spot welding) Weld fault XX.
 W5008 (Spot welding)Cable disconnection error XX.
-W5009 (Spot welding)Intemal leak XX.
+W5009 (Spot welding)Internal leak XX.
 W5010 (Spot welding)Main cable exchange alarm XX.
 W5011 (Spot welding)No connection with RWC XX.
 W5012 Cannot achieve set force.
@@ -487,7 +487,7 @@ E1013 INTER-BUS board is not installed.
 E1014 Dual port memory for communication is not installed.
 E1015 Amp Interface board is not installed (Code=XX)
 E1016 [NoXX CC-LINK board is not installed.
-E1017 PLC eror.Error code is Hex.XX.
+E1017 PLC error.Error code is Hex.XX.
 E1018 INTER-BUS status error.
 E1019 Power sequence board for safety unit is not installed.
 E1020 External equipment is abnormal.
@@ -581,7 +581,7 @@ E1106 Cannot execute in this robot.
 E1107 Cannot use SEPARATE CONTROL.
 E1108 Duplicate robot network IDs.
 E1109 Conveyor IF board is not installed
-E1110 GROUP isnot primed.
+E1110 GROUP is not primed.
 E1111 Due to motion restriction, JOXX cannot move.
 E1113 Work sensing signal is not detected.
 E1114 Interruption in cooperative control.
@@ -639,14 +639,14 @@ E1165 Unable to download ext. axis parameter.(I-A)
 E1166 Num. not assigned to specified channel,(Jt-A)
 E1167 Unable to download ext. axis parameter.(Jt-B)
 E1168 Num. not assigned to specified channel,(Jt-B)
-E1169 Errorin servo parameter change sequence.(CodeXX)
+E1169 Error in servo parameter change sequence.(CodeXX)
 E1170 Slave is not ready.
 E1171 CC-LINK communication board is not installed.
 E1172 Weld Gestation ie knead
 E1173 Servo communication error XX.
 E1174 AD board No.0 is not installed
 E1175 Offset data of zeroing is illegal value, (RobotXX)
-E1176 (SSCNET)Download error of extemal axis parameter.
+E1176 (SSCNET)Download error of external axis parameter.
 E1177 (SSCNET)Joint number is not assigned to the channel.
 E1178 Communication error between Arm Control and Arm U/F board,
 E1179 The current under bending compensation is too large (JIXX)
@@ -684,7 +684,7 @@ E1211 Because the memory was full, could not copy the program.
 E1212 Because the memory was full, the copy of program was suspended.
 E1213 Jt4 and robot arm interfere during motion to start pose.
 E1214 Jt4 and robot arm interfere during motion to end pose.
-E1215 Curent command causes interference between Jt4 and robot arm.
+E1215 Current command causes interference between Jt4 and robot arm.
 E1216 Jt5 and Jt6 interfere during motion to start pose.
 E1217 Jt5 and Jt6 interfere during motion to end pose.
 E1218 Current command causes interference between J5 and 16.
@@ -723,8 +723,8 @@ E1252 Encoder rotation data (internal) is abnormal.(JtXX)
 E1253 Uncoincidence error between request and response in encoder. (JtXX)
 E1254 Cannot operate because a MC of a group XX is off.
 E1255 The motor power of unchosen robot was turned on,
-E1256 Intemal valve , sensor and error reset I/F board missing.
-E1257 MC of groupXX tumed off during individual repeat operation.
+E1256 Internal valve , sensor and error reset I/F board missing.
+E1257 MC of groupXX turned off during individual repeat operation.
 E1258 MC turned off during operation.
 E1259 Invalid Structure of palletizing instruction.
 E1260 Cannot execute instruction during palletizing motion.
