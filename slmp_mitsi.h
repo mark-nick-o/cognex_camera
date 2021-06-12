@@ -430,6 +430,12 @@ void Slmp_pack16( const uint32_t self_addr, const uint16_t self_d_code, uint8_t 
 void Slmp_send_read_cmd_16( SlmpFrameHeader_t *fh, unsigned char* sendbuf, const Slmpsend_read_cmd_t *sendDat );
 void Slmp_pack32( const uint32_t self_addr, const uint16_t self_d_code, uint8_t *buf );
 void Slmp_send_read_cmd_32( SlmpFrameHeader_t *fh, unsigned char* sendbuf, Slmpsend_read_cmd_t *sendDat );
+void Slmp_send_write_block_cmd_16( SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint16_t *targetWord, uint16_t *targetBits, uint8_t *buf );
+void Slmp_send_write_block_cmd_32( SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint32_t *targetWord, uint32_t *targetBits, uint8_t *buf );
+void Slmp_send_read_block_cmd_16( SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint16_t *targetWord, uint16_t *targetBits, uint8_t *buf );
+void Slmp_send_read_block_cmd_32( SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint32_t *targetWord, uint32_t *targetBits, uint8_t *buf );
+void Slmp_send_emd_cmd_16( SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint16_t *targetWord, uint16_t *targetBits, uint8_t *buf );
+void Slmp_send_emd_cmd_32( SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint32_t *targetWord, uint32_t *targetBits, uint8_t *buf );
 
 /*-----------------------------------------------------------------------------
  *  SlmpSetCommand:  Set the command and subcommand 
@@ -634,7 +640,7 @@ void SlmpMTHeaderfromBuf( uint8_t* buf, SlmpMTHeader_t *head )
     head->serial_no = ((uint16_t)buf[2u]) | (((uint16_t)buf[3u]) << 8u);
     head->reserved2 = ((uint16_t)buf[4u]) | (((uint16_t)buf[5u]) << 8u);
     buf += SLMP_HEADER_LEN;
-}	
+}        
 
 /* ----------------------------------------------------------------------------
  *  SlmpSubHeaderResfromBuf: sub header result messaage parse
@@ -730,7 +736,7 @@ int8_t SLMPConnectionInfo( SLMPConnectionInfo_t *info, unsigned char * buf, SLMP
             srand((CP0_GET(CP0_COUNT) % UINT16_MAX));
             *state = SLMPConParamsSet;
         }
-	 
+         
         memset((void*)&info->buf,0,TCP_IP_MAX_BYTES);
         memset((void*)buf,0,sizeof(buf));
         if (*state == SLMPConParamsSet)
@@ -745,9 +751,9 @@ int8_t SLMPConnectionInfo( SLMPConnectionInfo_t *info, unsigned char * buf, SLMP
             {
                 info->seq_no = rand() % UINT8_MAX;                
             }
-            *state == SLMPSerialSet;			
+            *state == SLMPSerialSet;                        
         }
-	 
+         
         if (sizeof(buf) >= 7u)
         {
            buf[0u] = info->network;
@@ -833,9 +839,9 @@ int8_t Slmp_decode_read_type_name_response_fromBuf( uint8_t* buf, uint16_t *sCod
 void Slmp_pack16( const uint32_t self_addr, const uint16_t self_d_code, uint8_t *buf )
 {
     buf[0u] = (((uint8_t)self_addr) & 0xFu);
-    buf[1u] = (((uint8_t)self_addr) >> 8u);
-    buf[2u] = (((uint8_t)self_addr) >> 16u);
-    buf[3u] = (((uint8_t)self_d_code) & 0xFu);
+    buf[1u] = ((uint8_t)(self_addr >> 8u));
+    buf[2u] = ((uint8_t)(self_addr >> 16u));
+    buf[3u] = ((uint8_t)(self_d_code & 0xFu));
 }
 
 /*-----------------------------------------------------------------------------
@@ -851,14 +857,14 @@ void Slmp_send_read_cmd_16( SlmpFrameHeader_t *fh, unsigned char* sendbuf, const
 
    Slmp_pack16( sendDat->self_addr, sendDat->self_d_code, buf );  
    buf[4u] = (((uint8_t)sendDat->count) & 0xFu);
-   buf[5u] = (((uint8_t)sendDat->count) >> 8u); 
+   buf[5u] = ((uint8_t)(sendDat->count >> 8u)); 
    if (sendDat->is_bit == true)   
    {
        s_cmd = 1u;
         if ((((uint8_t)buf[4u]) & 1u) == 1u) 
-	{
+        {
             buf[4u] += 1;                                                       // There must be an even number of bit data
-        }	   
+        }           
    }
    else 
    {
@@ -877,11 +883,11 @@ void Slmp_send_read_cmd_16( SlmpFrameHeader_t *fh, unsigned char* sendbuf, const
 void Slmp_pack32( const uint32_t self_addr, const uint16_t self_d_code, uint8_t *buf )
 {
         buf[0u] = (((uint8_t)self_addr) & 0xFu);
-        buf[1u] = (((uint8_t)self_addr) >> 8u);
-        buf[2u] = (((uint8_t)self_addr) >> 16u);
-        buf[3u] = (((uint8_t)self_addr) >> 24u);
-        buf[4u] = (((uint8_t)self_d_code) & 0xFu);
-        buf[5u] = (((uint8_t)self_d_code) >> 8u);
+        buf[1u] = ((uint8_t)(self_addr >> 8u));
+        buf[2u] = ((uint8_t)(self_addr >> 16u));
+        buf[3u] = ((uint8_t)(self_addr >> 24u));
+        buf[4u] = ((uint8_t)(self_d_code & 0xFu));
+        buf[5u] = ((uint8_t)(self_d_code >> 8u));
 }
 
 /*-----------------------------------------------------------------------------
@@ -896,21 +902,221 @@ void Slmp_send_read_cmd_32( SlmpFrameHeader_t *fh, unsigned char* sendbuf, Slmps
    uint16_t s_cmd;
 
    Slmp_pack32( sendDat->self_addr, sendDat->self_d_code, buf );  
-   buf[6u] = (((uint8_t)sendDat->count)&0xFu);
-   buf[7u] = (((uint8_t)sendDat->count) >> 8u); 
+   buf[6u] = ((uint8_t)(sendDat->count&0xFu));
+   buf[7u] = ((uint8_t)(sendDat->count >> 8u)); 
    if (sendDat->is_bit == true)   
    {
        s_cmd = 3u;
         if ((((uint8_t)buf[6u]) & 1u) == 1u) 
-	{
+        {
             buf[6u] += 1;                                                       // There must be an even number of bit data
-        }	   
+        }           
    }
    else 
    {
        s_cmd = 2u;
    }
    SlmpSetCommand( fh, MemoryRead, s_cmd );
+   SlmpcreateBuffer( fh, sendbuf, &buf );
+}
+
+/*-----------------------------------------------------------------------------
+ *  Slmp_send_write_block_cmd_16:  Compose message to write block 16bit words to PLC (remote controller)
+ *
+ *  Parameters: SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint16_t *targetWord, uint16_t *targetBits
+ *              uint8_t *buf
+ *
+ *  Return:     (none)
+ *----------------------------------------------------------------------------*/
+void Slmp_send_write_block_cmd_16( SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint16_t *targetWord, uint16_t *targetBits, uint8_t *buf ) 
+{ 
+   uint8_t byte;
+   
+   if (((((fh==NULL) || (sendbuf==NULL)) || (targetWord==NULL)) || (targetBits==NULL)) || (buf==NULL)) return;
+   if (sizeof(buf) < 2u) return;
+   buf[0u] = ((uint8_t)sizeof(targetWord)) / ((uint8_t)sizeof(uint16_t));
+   buf[1u] = ((uint8_t)sizeof(targetBits)) / ((uint8_t)sizeof(uint16_t));
+   if (sizeof(buf) < ((((size_t)buf[0u])+((size_t)buf[1u]))+2u) ) return;
+   
+   for (byte=2u;byte<((uint8_t)sizeof(targetWord)+2u);byte+=2u)
+   {
+       buf[byte] = ((uint8_t) targetWord[byte] & 0x0Fu);
+       buf[byte+1u] = ((uint8_t) ((targetWord[byte]>>8u) & 0x0Fu));
+   }
+   for (byte=byte;byte<((uint8_t)sizeof(targetBits)+2u);byte+=2u)
+   {
+       buf[byte] = ((uint8_t) targetBits[byte] & 0x0Fu);
+       buf[byte+1u] = ((uint8_t) ((targetBits[byte]>>8u) & 0x0Fu));
+   }
+   SlmpSetCommand( fh, WriteBlock, 0u );
+   SlmpcreateBuffer( fh, sendbuf, &buf );
+}
+/*-----------------------------------------------------------------------------
+ *  Slmp_send_write_block_cmd_32:  Compose message to write block 32bit words to PLC (remote controller)
+ *
+ *  Parameters: SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint32_t *targetWord, 
+ *              uint32_t *targetBits, uint8_t *buf
+ *
+ *  Return:     (none)
+ *----------------------------------------------------------------------------*/
+void Slmp_send_write_block_cmd_32( SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint32_t *targetWord, uint32_t *targetBits, uint8_t *buf ) 
+{ 
+   uint8_t byte;
+
+   if (((((fh==NULL) || (sendbuf==NULL)) || (targetWord==NULL)) || (targetBits==NULL)) || (buf==NULL)) return;
+   if (sizeof(buf) < 2u) return;   
+   buf[0u] = ((uint8_t)sizeof(targetWord)) / ((uint8_t)sizeof(uint32_t));
+   buf[1u] = ((uint8_t)sizeof(targetBits)) / ((uint8_t)sizeof(uint32_t));
+   if (sizeof(buf) < ((((size_t)buf[0u])+((size_t)buf[1u]))+2u) ) return;
+   
+   for (byte=2u;byte<((uint8_t)sizeof(targetWord)+2u);byte+=4u)
+   {
+       buf[byte] = ((uint8_t) targetWord[byte] & 0x0Fu);
+       buf[byte+1u] = ((uint8_t) (targetWord[byte]>>8u) & 0x0Fu);
+       buf[byte+2u] = ((uint8_t) (targetWord[byte]>>16u) & 0x0Fu);
+       buf[byte+3u] = ((uint8_t) (targetWord[byte]>>24u) & 0x0Fu);
+   }
+   for (byte=byte;byte<((uint8_t)sizeof(targetBits)+2u);byte+=4u)
+   {
+       buf[byte] = ((uint8_t) targetBits[byte] & 0x0Fu);
+       buf[byte+1u] = ((uint8_t) (targetBits[byte]>>8u) & 0x0Fu);
+       buf[byte+2u] = ((uint8_t) (targetBits[byte]>>16u) & 0x0Fu);
+       buf[byte+3u] = ((uint8_t) (targetBits[byte]>>24u) & 0x0Fu);
+   }
+   SlmpSetCommand( fh, WriteBlock, 2u );
+   SlmpcreateBuffer( fh, sendbuf, &buf );
+}
+/*-----------------------------------------------------------------------------
+ *  Slmp_send_read_block_cmd_16:  Compose message to read block 16bit words to PLC (remote controller)
+ *
+ *  Parameters: SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint16_t *targetWord, uint16_t *targetBits
+ *              uint8_t *buf
+ *
+ *  Return:     (none)
+ *----------------------------------------------------------------------------*/
+void Slmp_send_read_block_cmd_16( SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint16_t *targetWord, uint16_t *targetBits, uint8_t *buf ) 
+{ 
+   uint8_t byte;
+   
+   if (((((fh==NULL) || (sendbuf==NULL)) || (targetWord==NULL)) || (targetBits==NULL)) || (buf==NULL)) return;
+   if (sizeof(buf) < 2u) return;
+   buf[0u] = ((uint8_t)sizeof(targetWord)) / ((uint8_t)sizeof(uint16_t));
+   buf[1u] = ((uint8_t)sizeof(targetBits)) / ((uint8_t)sizeof(uint16_t));
+   if (sizeof(buf) < ((((size_t)buf[0u])+((size_t)buf[1u]))+2u) ) return;
+   
+   for (byte=2u;byte<((uint8_t)sizeof(targetWord)+2u);byte+=2u)
+   {
+       buf[byte] = ((uint8_t) targetWord[byte] & 0x0Fu);
+       buf[byte+1u] = ((uint8_t) ((targetWord[byte]>>8u) & 0x0Fu));
+   }
+   for (byte=byte;byte<((uint8_t)sizeof(targetBits)+2u);byte+=2u)
+   {
+       buf[byte] = ((uint8_t) targetBits[byte] & 0x0Fu);
+       buf[byte+1u] = ((uint8_t) ((targetBits[byte]>>8u) & 0x0Fu));
+   }
+   SlmpSetCommand( fh, ReadBlock, 0u );
+   SlmpcreateBuffer( fh, sendbuf, &buf );
+}
+/*-----------------------------------------------------------------------------
+ *  Slmp_send_read_block_cmd_32:  Compose message to write block 32bit words to PLC (remote controller)
+ *
+ *  Parameters: SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint32_t *targetWord, 
+ *              uint32_t *targetBits, uint8_t *buf
+ *
+ *  Return:     (none)
+ *----------------------------------------------------------------------------*/
+void Slmp_send_read_block_cmd_32( SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint32_t *targetWord, uint32_t *targetBits, uint8_t *buf ) 
+{ 
+   uint8_t byte;
+
+   if (((((fh==NULL) || (sendbuf==NULL)) || (targetWord==NULL)) || (targetBits==NULL)) || (buf==NULL)) return;
+   if (sizeof(buf) < 2u) return;   
+   buf[0u] = ((uint8_t)sizeof(targetWord)) / ((uint8_t)sizeof(uint32_t));
+   buf[1u] = ((uint8_t)sizeof(targetBits)) / ((uint8_t)sizeof(uint32_t));
+   if (sizeof(buf) < ((((size_t)buf[0u])+((size_t)buf[1u]))+2u) ) return;
+   
+   for (byte=2u;byte<((uint8_t)sizeof(targetWord)+2u);byte+=4u)
+   {
+       buf[byte] = ((uint8_t) targetWord[byte] & 0x0Fu);
+       buf[byte+1u] = ((uint8_t) (targetWord[byte]>>8u) & 0x0Fu);
+       buf[byte+2u] = ((uint8_t) (targetWord[byte]>>16u) & 0x0Fu);
+       buf[byte+3u] = ((uint8_t) (targetWord[byte]>>24u) & 0x0Fu);
+   }
+   for (byte=byte;byte<((uint8_t)sizeof(targetBits)+2u);byte+=4u)
+   {
+       buf[byte] = ((uint8_t) targetBits[byte] & 0x0Fu);
+       buf[byte+1u] = ((uint8_t) (targetBits[byte]>>8u) & 0x0Fu);
+       buf[byte+2u] = ((uint8_t) (targetBits[byte]>>16u) & 0x0Fu);
+       buf[byte+3u] = ((uint8_t) (targetBits[byte]>>24u) & 0x0Fu);
+   }
+   SlmpSetCommand( fh, ReadBlock, 2u );
+   SlmpcreateBuffer( fh, sendbuf, &buf );
+}
+
+/*-----------------------------------------------------------------------------
+ *  Slmp_send_emd_cmd_16:  Compose message entry monitor device 16bit words to PLC (remote controller)
+ *
+ *  Parameters: SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint16_t *targetWord, uint16_t *targetBits
+ *              uint8_t *buf
+ *
+ *  Return:     (none)
+ *----------------------------------------------------------------------------*/
+void Slmp_send_emd_cmd_16( SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint16_t *targetWord, uint16_t *targetBits, uint8_t *buf ) 
+{ 
+   uint8_t byte;
+   
+   if (((((fh==NULL) || (sendbuf==NULL)) || (targetWord==NULL)) || (targetBits==NULL)) || (buf==NULL)) return;
+   if (sizeof(buf) < 2u) return;
+   buf[0u] = ((uint8_t)sizeof(targetWord)) / ((uint8_t)sizeof(uint16_t));
+   buf[1u] = ((uint8_t)sizeof(targetBits)) / ((uint8_t)sizeof(uint16_t));
+   if (sizeof(buf) < ((((size_t)buf[0u])+((size_t)buf[1u]))+2u) ) return;
+   
+   for (byte=2u;byte<((uint8_t)sizeof(targetWord)+2u);byte+=2u)
+   {
+       buf[byte] = ((uint8_t) targetWord[byte] & 0x0Fu);
+       buf[byte+1u] = ((uint8_t) ((targetWord[byte]>>8u) & 0x0Fu));
+   }
+   for (byte=byte;byte<((uint8_t)sizeof(targetBits)+2u);byte+=2u)
+   {
+       buf[byte] = ((uint8_t) targetBits[byte] & 0x0Fu);
+       buf[byte+1u] = ((uint8_t) ((targetBits[byte]>>8u) & 0x0Fu));
+   }
+   SlmpSetCommand( fh, EntryMonitorDevice, 0u );
+   SlmpcreateBuffer( fh, sendbuf, &buf );
+}
+/*-----------------------------------------------------------------------------
+ *  Slmp_send_emd_cmd_32:  Compose message entry monitor device 32bit words to PLC (remote controller)
+ *
+ *  Parameters: SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint32_t *targetWord, 
+ *              uint32_t *targetBits, uint8_t *buf
+ *
+ *  Return:     (none)
+ *----------------------------------------------------------------------------*/
+void Slmp_send_emd_cmd_32( SlmpFrameHeader_t *fh, unsigned char* sendbuf, uint32_t *targetWord, uint32_t *targetBits, uint8_t *buf ) 
+{ 
+   uint8_t byte;
+
+   if (((((fh==NULL) || (sendbuf==NULL)) || (targetWord==NULL)) || (targetBits==NULL)) || (buf==NULL)) return;
+   if (sizeof(buf) < 2u) return;   
+   buf[0u] = ((uint8_t)sizeof(targetWord)) / ((uint8_t)sizeof(uint32_t));
+   buf[1u] = ((uint8_t)sizeof(targetBits)) / ((uint8_t)sizeof(uint32_t));
+   if (sizeof(buf) < ((((size_t)buf[0u])+((size_t)buf[1u]))+2u) ) return;
+   
+   for (byte=2u;byte<((uint8_t)sizeof(targetWord)+2u);byte+=4u)
+   {
+       buf[byte] = ((uint8_t) targetWord[byte] & 0x0Fu);
+       buf[byte+1u] = ((uint8_t) (targetWord[byte]>>8u) & 0x0Fu);
+       buf[byte+2u] = ((uint8_t) (targetWord[byte]>>16u) & 0x0Fu);
+       buf[byte+3u] = ((uint8_t) (targetWord[byte]>>24u) & 0x0Fu);
+   }
+   for (byte=byte;byte<((uint8_t)sizeof(targetBits)+2u);byte+=4u)
+   {
+       buf[byte] = ((uint8_t) targetBits[byte] & 0x0Fu);
+       buf[byte+1u] = ((uint8_t) (targetBits[byte]>>8u) & 0x0Fu);
+       buf[byte+2u] = ((uint8_t) (targetBits[byte]>>16u) & 0x0Fu);
+       buf[byte+3u] = ((uint8_t) (targetBits[byte]>>24u) & 0x0Fu);
+   }
+   SlmpSetCommand( fh, EntryMonitorDevice, 2u );
    SlmpcreateBuffer( fh, sendbuf, &buf );
 }
 #ifdef __cplusplus
